@@ -185,3 +185,13 @@ values ('HS001','Tran Ngoc Tuan',1,'7-17-2007','Hoa Binh','100000000001','091754
 ('HS134','Tran Tuan Tu',0,'9-1-2007','Thai Nguyen','100000000134','091754633','HS00134@gmail.com','Le Minh Tu','0912345689','12a3','GV009'),
 ('HS135','Le The Quang',1,'4-1-2007','Ha noi','100000000135','091754633','HS00135@gmail.com','Tran Quang Anh ','0912345690','12a3','GV009')
 
+insert into Mon
+values ('T01','Toan 10','GV001'),
+('L01','Ly 10','GV002'),
+('H01','Hoa 10','GV003'),
+('T02','Toan 11','GV004'),
+('L02','Ly 11','GV005'),
+('H02','Hoa 11','GV005'),
+('T03','Toan 12','GV006'),
+('L03','Ly 12','GV007'),
+('H03','Hoa 12','GV008')
