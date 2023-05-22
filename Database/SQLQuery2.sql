@@ -78,7 +78,7 @@ primary key(Malop,Tiet,Thu),
 )
 
 create table quanlylop(
-Nam date,
+Nam nvarchar(10),
 Malop nvarchar(10) foreign key references lop(Malop),
 MaGV nvarchar(10) foreign key references GV(MaGV),
 Primary key(Nam,Malop,MaGV)
