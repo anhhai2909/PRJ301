@@ -70,7 +70,6 @@ primary key(Nam,MaHS,Malop)
 
 create table tkb(
 Thu nvarchar(10),
-Ngay date,
 Tiet int,
 Mon nvarchar(10),
 Malop nvarchar(10) foreign key references lop(Malop),
