@@ -4,9 +4,9 @@
  */
 package Test;
 
-import DAL.StudentDAO;
+import DAL.newsDAO;
 import java.util.ArrayList;
-import model.Student;
+import model.news;
 
 /**
  *
@@ -14,10 +14,11 @@ import model.Student;
  */
 public class test {
     public static void main(String[] args){
-        StudentDAO c = new StudentDAO();
-        ArrayList<Student> arr = c.getStudent();
-        for(Student i:arr){
-            i.toString();
+        newsDAO c = new newsDAO();
+        ArrayList<news> arr = c.getnews();
+        System.out.println(arr.get(5).getInfo());
+        for(int i=0;i< arr.size();i++){
+            System.out.println(arr.get(i).toString());
         }
     }
 }

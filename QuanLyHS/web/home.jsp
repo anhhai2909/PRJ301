@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.news"%>
+<jsp:include page="/newsservlet" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,22 +29,22 @@
             
             <div class="row body-info">
                 <div class="col-sm-3 news">
+                    <%
+                        ArrayList<news> list = (ArrayList<news>) request.getAttribute("newslist");
+                        
+                    %>
                     <div class="new">
                         <div class="new-header">
                             <p class="tb">Thông Báo</p>
                         </div>
                         
                         <div class="new-info">
-                            <p>aaaaa</p>
-                            <p>aaaaa</p>
-                            <p>aaaaa</p>
-                            <p>aaaaa</p>
-                        </div>
-                        
-                        <div class="add-new">
-                            <a href="#">Thêm thông báo</a>
-                        </div>
-                                            
+                            <%                          
+                                for(news i:list){
+                            %>
+                                <p><%=i.getShortd()%></p>                           
+                            <%}%>
+                        </div>                                                               
                     </div>
                 </div>
                 <div class="col-sm-9 info">

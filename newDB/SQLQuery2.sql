@@ -1028,3 +1028,99 @@ values
 (7.0,7.0,8.0,10.0,10.0,6.0, 7.8 ,2,'ho1','st048',2019),
 (6.0,9.0,7.0,6.0,8.0,8.0, 7.6 ,2,'ho1','st049',2019),
 (7.0,9.0,8.0,9.0,8.0,9.0, 8.5 ,1,'ho1','st050',2019)
+
+select sID,years,avg(avag) as av
+from mark
+group by sID,years
+
+create table 
+
+create table avgyear(
+sID nvarchar(20) foreign key references Student(sID),
+years int ,
+av float,
+primary key(sID,years)
+)
+
+insert into avgyear 
+select *
+from(
+select sID,years,avg(avag) as av
+from mark
+group by sID,years ) as t1
+
+create table subjectmanage(
+tID nvarchar(20) foreign key references teacher(tID),
+suID nvarchar(20) foreign key references subject(suID),
+primary key(tID,suID)
+)
+
+insert into subjectmanage
+values('GV01','to1'),
+('GV02','lo1'),
+('GV03','ho1'),
+('GV04','to2'),
+('GV05','lo2'),
+('GV06','ho2'),
+('GV07','to3'),
+('GV08','lo3'),
+('GV09','ho3')
+
+
+alter table subject
+add descript nvarchar(500)
+
+update subject
+set descript=N'Toán 10 cung cấp cho học sinh những kiến thức về đại số và hình học. Cụ thể, trong chương trình Toán 10, các em sẽ được học về đại số tuyến tính, hàm số, phương trình và bất phương trình, hình học không gian và hình học phẳng.'
+where suID='to1'
+
+update subject
+set descript=N'cung cấp cho học sinh những kiến thức về vật lý cơ bản như: phương trình chuyển động, đồ thị tọa độ – thời gian của chuyển động thẳng đều, quỹ đạo chuyển động của vật rắn, dao động điều hòa và sóng cơ. Ngoài ra, trong Lý 10 còn có các kiến thức về nhiệt động lực học và điện học cơ bản'
+where suID='lo1'
+
+update subject
+set descript=N'Chương trình Hóa học 10 cung cấp cho học sinh những kiến thức cơ bản về các khái niệm trong hóa học như nguyên tử, bảng tuần hoàn các nguyên tố hóa học, nhóm Halogen, nhóm oxi, tốc độ phản ứng và cân bằng hóa học, liên kết hóa học- Phản ứng hóa học'
+where suID='ho1'
+
+update subject
+set descript=N'Toán 11 cung cấp kiến thức về đại số và giải tích. Cụ thể, trong chương trình học Toán 11, bạn sẽ được học về các phần như lượng giác, tổ hợp, dãy số, đạo hàm,…'
+where suID='to2'
+
+update subject
+set descript=N'Lý 11 cung cấp cho học sinh những kiến thức về các chủ đề như điện trường, điện tải, dao động và sóng, vật lý lượng tử và nhiệt động lực học. Ngoài ra, trong môn học này còn có các chủ đề khác như động lực học chất điểm và động lực học vật rắn. '
+where suID='lo2'
+
+update subject
+set descript=N'Hóa 11 cung cấp kiến thức về hóa học vô cơ và hóa học hữu cơ. Trong phần hóa học vô cơ, bạn sẽ được học về các định luật hóa học, các phản ứng hóa học và tính chất của các nguyên tố và hợp chất. Trong phần hóa học hữu cơ, bạn sẽ được học về các phản ứng của các chất hữu cơ và các nhóm chức của chúng.'
+where suID='ho2'
+
+update subject
+set descript=N'Lớp Toán 12 cung cấp cho học sinh những kiến thức về Giải tích và Hình học. Cụ thể, trong môn Giải tích, học sinh sẽ được học về đạo hàm và tích phân của hàm số, giới hạn của dãy số và dãy hàm số. Trong môn Hình học, học sinh sẽ được học về các khái niệm về đường thẳng, mặt phẳng và không gian nhiều chiều. Ngoài ra, lớp Toán 12 còn cung cấp cho học sinh những kiến thức về xác suất và thống kê'
+where suID='to3'
+
+update subject
+set descript=N'Lý 12 là một trong những môn học quan trọng trong chương trình giáo dục phổ thông ở Việt Nam. Trong khóa học này, bạn sẽ được học về các chủ đề như dao động cơ, sóng cơ và sóng âm, điện trường và từ trường, quang học và vật lý hạt nhân. Ngoài ra, bạn cũng sẽ được học về các chủ đề khác như nhiệt động lực học và động lực học chất điểm'
+where suID='lo3'
+
+update subject
+set descript=N'Hóa 12 cung cấp cho học sinh kiến thức về các chất và phản ứng hóa học, cấu trúc nguyên tử và phân tử, các quá trình hóa học trong sinh hoạt và sản xuất, các phương pháp phân tích hóa học và các ứng dụng của hóa học trong đời sống và sản xuất'
+where suID='ho3'
+
+drop table new
+
+create table new(
+nID int,
+udate Date,
+tID nvarchar(20) foreign key references teacher(tID),
+newinfo nvarchar(800),
+primary key(nID)
+)
+
+insert into new
+values(1,'12-1-2018','GV011',N'Năm 2019, cả nước có hơn 887.000 thí sinh dự thi THPT quốc gia để xét tốt nghiệp và xét tuyển đại học. Số đăng ký thi để xét tuyển đại học là 653.200. Tổng chỉ tiêu xét tuyển đại học là 489.630, trong đó 341.840 xét bằng điểm thi THPT quốc gia, còn lại bằng các phương thức khác'),
+(2,'12-10-2019','GV010',N'Bộ GD-ĐT vừa thông báo lịch thi THPT quốc gia năm 2019. Theo đó kỳ thi năm nay sẽ diễn ra từ ngày 24 đến 27/6.Theo công văn hướng dẫn tổ chức kỳ thi THPT quốc gia và xét công nhận tốt nghiệp năm 2019 mà Bộ GD-ĐT vừa ban hành, kỳ thi năm nay sẽ kéo dài trong 3 ngày từ 24-27/6.Cụ thể lịch thi từng ngày, từng môn và thời gian làm bài từng môn như sau'),
+(3,'1-1-2019','GV010',N'Năm 2019, cả nước có hơn 887.000 thí sinh dự thi THPT quốc gia để xét tốt nghiệp và xét tuyển đại học. Số đăng ký thi để xét tuyển đại học là 653.200. Tổng chỉ tiêu xét tuyển đại học là 489.630, trong đó 341.840 xét bằng điểm thi THPT quốc gia, còn lại bằng các phương thức khác'),
+(4,'1-1-2019','GV011',N'Bộ GD-ĐT vừa thông báo lịch thi THPT quốc gia năm 2019. Theo đó kỳ thi năm nay sẽ diễn ra từ ngày 24 đến 27/6.Theo công văn hướng dẫn tổ chức kỳ thi THPT quốc gia và xét công nhận tốt nghiệp năm 2019 mà Bộ GD-ĐT vừa ban hành, kỳ thi năm nay sẽ kéo dài trong 3 ngày từ 24-27/6.Cụ thể lịch thi từng ngày, từng môn và thời gian làm bài từng môn như sau'),
+(5,'1-1-2019','GV011',N'Năm 2019, cả nước có hơn 887.000 thí sinh dự thi THPT quốc gia để xét tốt nghiệp và xét tuyển đại học. Số đăng ký thi để xét tuyển đại học là 653.200. Tổng chỉ tiêu xét tuyển đại học là 489.630, trong đó 341.840 xét bằng điểm thi THPT quốc gia, còn lại bằng các phương thức khác'),
+(6,'1-1-2019','GV011',N'Bộ GD-ĐT vừa thông báo lịch thi THPT quốc gia năm 2019. Theo đó kỳ thi năm nay sẽ diễn ra từ ngày 24 đến 27/6.Theo công văn hướng dẫn tổ chức kỳ thi THPT quốc gia và xét công nhận tốt nghiệp năm 2019 mà Bộ GD-ĐT vừa ban hành, kỳ thi năm nay sẽ kéo dài trong 3 ngày từ 24-27/6.Cụ thể lịch thi từng ngày, từng môn và thời gian làm bài từng môn như sau'),
+(7,'1-1-2019','GV011',N'Năm 2019, cả nước có hơn 887.000 thí sinh dự thi THPT quốc gia để xét tốt nghiệp và xét tuyển đại học. Số đăng ký thi để xét tuyển đại học là 653.200. Tổng chỉ tiêu xét tuyển đại học là 489.630, trong đó 341.840 xét bằng điểm thi THPT quốc gia, còn lại bằng các phương thức khác')

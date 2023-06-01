@@ -31,13 +31,13 @@
                         </div>
                         <div class="form-group">
                             <label for="username" class="form-label">Nhập Tài Khoản</label><br/>
-                            <input id="username" name="username" type="text" placeholder="Tài khoản"/>
+                            <input id="username" name="username" type="text" placeholder="Tài khoản" required/>
                             <span class="form-message"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="password" class="form-label">Nhập Mật Khẩu</label><br/>
-                            <input id="password" name="password" type="password" placeholder="Mật khẩu"/>
+                            <input id="password" name="password" type="password" placeholder="Mật khẩu" required/>
                             <span class="form-message"></span>
                         </div>
                     </div>
