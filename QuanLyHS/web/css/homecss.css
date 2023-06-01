@@ -1,0 +1,86 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 01-06-2023, 23:20:44
+    Author     : anhha
+*/
+
+.logo2{
+    width:60px;
+    height:60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top:5px;
+    margin-left:20px; 
+}
+.header{
+    width: 85%;
+    display: flex;
+    height:70px;
+    border-bottom: 2px solid rgb(185, 197, 201);
+    margin: 0 auto;
+}
+
+.header a{
+    font-size: 30px;
+    font-weight: 400;
+    font-style: unset;
+    margin-top: 10px;
+    margin-left: 70px; 
+    color: black;
+    
+}
+.header a:hover{
+    text-decoration: none;
+}
+.body-info{
+    margin-top:30px;
+    width: 90%;
+    height: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.news{
+    background-color: red;
+    
+}
+.new{
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;   
+}
+
+.tb{
+    font-size: 30px;
+    background-color: rgb(64, 164, 207);
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-bottom:0;
+    border-bottom: 1px solid black;
+}
+
+.info{
+    background-color: green;
+}
+.add-new{
+    background-color: rgb(64, 164, 207);
+    text-align: center;
+}
+.add-new a{
+    color: white;
+}
+.new-info{
+    background-color: white;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-bottom:5px;
+    margin-right: auto;
+    width: 90%;
+    height: 1000px;
+}
+.new-info p{
+    border-bottom: 1px solid black;
+}
