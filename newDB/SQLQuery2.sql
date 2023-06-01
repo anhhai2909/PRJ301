@@ -138,3 +138,52 @@ values(2019,'01-01-2019','01-01-2020','12a1','st01'),
 (2019,'01-01-2019','01-01-2020','10a2','st049'),
 (2019,'01-01-2019','01-01-2020','10a2','st050')
 
+
+create table timetable(
+tt nvarchar(20),
+slot int,
+suID nvarchar(20) foreign key references subject(suID),
+cID nvarchar(20) foreign key references class(cID),
+primary key(tt,slot,suID,cID)
+)
+
+insert into timetable
+values('T2',1,'to1','10a1')
+insert into timetable
+values('T2',2,'to2','11a1')
+insert into timetable
+values('T2',3,'to3','12a1')
+insert into timetable
+values('T2',4,'to1','10a2')
+insert into timetable
+values('T2',5,'to2','11a2')
+insert into timetable
+values('T2',6,'to3','12a2')
+
+insert into timetable
+values('T4',1,'lo1','10a1')
+insert into timetable
+values('T4',2,'lo2','11a1')
+insert into timetable
+values('T4',3,'lo3','12a1')
+insert into timetable
+values('T4',4,'lo1','10a2')
+insert into timetable
+values('T4',5,'lo2','11a2')
+insert into timetable
+values('T4',6,'lo3','12a2')
+
+insert into timetable
+values('T6',1,'ho1','10a1')
+insert into timetable
+values('T6',2,'ho2','11a1')
+insert into timetable
+values('T6',3,'ho3','12a1')
+insert into timetable
+values('T6',4,'ho1','10a2')
+insert into timetable
+values('T6',5,'ho2','11a2')
+insert into timetable
+values('T6',6,'ho3','12a2')
+
+
