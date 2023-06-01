@@ -40,7 +40,6 @@ primary key(years,cID,sID)
 create table timetable(
 tt nvarchar(20),
 subject nvarchar(100),
-tDate Date,
 slot int,
 cID nvarchar(20) foreign key references class(cID),
 primary key(tt,slot,cID)
