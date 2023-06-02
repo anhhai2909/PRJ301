@@ -17,8 +17,7 @@ public class test {
         newsDAO c = new newsDAO();
         ArrayList<news> arr = c.getnews();
         System.out.println(arr.get(5).getInfo());
-        for(int i=0;i< arr.size();i++){
-            System.out.println(arr.get(i).toString());
-        }
+        
+        System.out.println(c.get1news(1));
     }
 }

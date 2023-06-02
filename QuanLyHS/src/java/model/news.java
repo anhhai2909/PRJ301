@@ -11,13 +11,16 @@ import java.sql.Date;
  * @author anhha
  */
 public class news {
-    private String nid;
+    private int nid;
     private Date udate;
     private String tid;
     private String info;
     private String shortd;
 
-    public news(String nid, Date udate, String tid, String info,String shortd) {
+    public news() {
+    }
+    
+    public news(int nid, Date udate, String tid, String info,String shortd) {
         this.nid = nid;
         this.udate = udate;
         this.tid = tid;
@@ -25,11 +28,11 @@ public class news {
         this.shortd=shortd;
     }
 
-    public String getNid() {
+    public int getNid() {
         return nid;
     }
 
-    public void setNid(String nid) {
+    public void setNid(int nid) {
         this.nid = nid;
     }
 
