@@ -11,56 +11,56 @@ import java.sql.Date;
  * @author anhha
  */
 public class Student {
-    private String mahs;
-    private String ten;
-    private int gt;
+    private String sID;
+    private String name;
+    private int gender;
     private Date dob;
-    private String quequan;
-    private String socccd;
-    private String sdt;
+    private String homeaddress;
+    private String idnumber;
     private String email;
-    private String tenph;
-    private String sdtph;
-    private String malop;
-    private String magv;
+    private String phone;
+    private String prname;
+    private String prphone;
+    private String imgaddress;
+    private String cID;
 
-    public Student(String mahs, String ten, int gt, Date dob, String quequan, String socccd, String sdt, String email, String tenph, String sdtph, String malop, String magv) {
-        this.mahs = mahs;
-        this.ten = ten;
-        this.gt = gt;
+    public Student(String sID, String name, int gender, Date dob, String homeaddress, String idnumber, String email, String phone, String prname, String prphone, String imgaddress, String cID) {
+        this.sID = sID;
+        this.name = name;
+        this.gender = gender;
         this.dob = dob;
-        this.quequan = quequan;
-        this.socccd = socccd;
-        this.sdt = sdt;
+        this.homeaddress = homeaddress;
+        this.idnumber = idnumber;
         this.email = email;
-        this.tenph = tenph;
-        this.sdtph = sdtph;
-        this.malop = malop;
-        this.magv = magv;
+        this.phone = phone;
+        this.prname = prname;
+        this.prphone = prphone;
+        this.imgaddress = imgaddress;
+        this.cID = cID;
     }
 
-    public String getMahs() {
-        return mahs;
+    public String getsID() {
+        return sID;
     }
 
-    public void setMahs(String mahs) {
-        this.mahs = mahs;
+    public void setsID(String sID) {
+        this.sID = sID;
     }
 
-    public String getTen() {
-        return ten;
+    public String getName() {
+        return name;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getGt() {
-        return gt;
+    public int getGender() {
+        return gender;
     }
 
-    public void setGt(int gt) {
-        this.gt = gt;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public Date getDob() {
@@ -71,28 +71,20 @@ public class Student {
         this.dob = dob;
     }
 
-    public String getQuequan() {
-        return quequan;
+    public String getHomeaddress() {
+        return homeaddress;
     }
 
-    public void setQuequan(String quequan) {
-        this.quequan = quequan;
+    public void setHomeaddress(String homeaddress) {
+        this.homeaddress = homeaddress;
     }
 
-    public String getSocccd() {
-        return socccd;
+    public String getIdnumber() {
+        return idnumber;
     }
 
-    public void setSocccd(String socccd) {
-        this.socccd = socccd;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setIdnumber(String idnumber) {
+        this.idnumber = idnumber;
     }
 
     public String getEmail() {
@@ -103,41 +95,45 @@ public class Student {
         this.email = email;
     }
 
-    public String getTenph() {
-        return tenph;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTenph(String tenph) {
-        this.tenph = tenph;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getSdtph() {
-        return sdtph;
+    public String getPrname() {
+        return prname;
     }
 
-    public void setSdtph(String sdtph) {
-        this.sdtph = sdtph;
+    public void setPrname(String prname) {
+        this.prname = prname;
     }
 
-    public String getMalop() {
-        return malop;
+    public String getPrphone() {
+        return prphone;
     }
 
-    public void setMalop(String malop) {
-        this.malop = malop;
+    public void setPrphone(String prphone) {
+        this.prphone = prphone;
     }
 
-    public String getMagv() {
-        return magv;
+    public String getImgaddress() {
+        return imgaddress;
     }
 
-    public void setMagv(String magv) {
-        this.magv = magv;
+    public void setImgaddress(String imgaddress) {
+        this.imgaddress = imgaddress;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" + "mahs=" + mahs + ", ten=" + ten + ", gt=" + gt + ", dob=" + dob + ", quequan=" + quequan + ", socccd=" + socccd + ", sdt=" + sdt + ", email=" + email + ", tenph=" + tenph + ", sdtph=" + sdtph + ", malop=" + malop + ", magv=" + magv + '}';
+    public String getcID() {
+        return cID;
+    }
+
+    public void setcID(String cID) {
+        this.cID = cID;
     }
     
+  
 }

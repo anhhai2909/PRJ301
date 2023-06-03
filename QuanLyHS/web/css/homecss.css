@@ -13,7 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     object-fit: cover;
     border-radius: 50%;
     margin-top:5px;
-    margin-left:20px; 
+    margin-left:20px;
 }
 .header{
     width: 85%;
@@ -28,9 +28,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     font-weight: 400;
     font-style: unset;
     margin-top: 10px;
-    margin-left: 70px; 
+    margin-left: 70px;
     color: black;
-    
+
 }
 .header a:hover{
     text-decoration: none;
@@ -41,12 +41,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     height: 1500px;
     margin-left: auto;
     margin-right: auto;
+    display:flex;
 }
 
 .new{
     border: 1px solid black;
     border-radius: 10px;
-    overflow: hidden;   
+    overflow: hidden;
+    width: 310px;
+    margin-right: 10px;
 }
 
 .tb{
@@ -61,6 +64,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 .info{
     background-color: green;
+    width: 1000px;
 }
 .add-new{
     background-color: rgb(64, 164, 207);
@@ -80,4 +84,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 .new-info p{
     border-bottom: 1px solid black;
+}
+
+.npopup{
+    background-color: rgb(240, 247, 247);
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top :130px;
+    left:390px;
+    border-radius: 10px;
+    display: none;
+}
+
+.shorttb:hover~ .npopup{
+    display: block;
 }

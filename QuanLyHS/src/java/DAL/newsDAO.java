@@ -22,7 +22,7 @@ public class newsDAO extends DBContext{
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                news s = new news(rs.getInt("nID"),rs.getDate("udate"),rs.getString("tID"),rs.getString("newinfo"),rs.getString("shortinfp"));           
+                news s = new news(rs.getInt("nID"),rs.getDate("udate"),rs.getString("tID"),rs.getString("newinfo"),rs.getString("shortinf"));           
                 list.add(s);
             }
         }catch(SQLException e){
@@ -42,7 +42,7 @@ public class newsDAO extends DBContext{
                 n.setUdate(rs.getDate("udate"));
                 n.setTid(rs.getString("tID"));
                 n.setInfo(rs.getString("newinfo"));
-                n.setShortd(rs.getString("shortinfp"));
+                n.setShortd(rs.getString("shortinf"));
                 return n;
             }
         }catch(SQLException e){
@@ -52,19 +52,43 @@ public class newsDAO extends DBContext{
     }
     
     public void insertnew(news n){
-        String sql="insert into new values(?,?,?,?,?)";
+        String sql="insert into new values(?,?,?,?)";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, n.getNid());
-            st.setDate(2, n.getUdate());
-            st.setString(3, n.getTid());
-            st.setString(4,n.getInfo());
-            st.setString(5, n.getShortd());
+            st.setDate(1, n.getUdate());
+            st.setString(2, n.getTid());
+            st.setString(3,n.getInfo());
+            st.setString(4, n.getShortd());
             st.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
         }
     }
+    public void updatenews(news n){
+        String sql="update new set [udate]=?,[tID] = ?,[newinfo]=?,[shortinf]=? where [nID]=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setDate(1,n.getUdate());
+            st.setString(2,n.getTid());
+            st.setString(3, n.getInfo());
+            st.setString(4, n.getShortd());
+            st.setInt(5,n.getNid());
+            st.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+        public void deletenew(int id){
+            try{
+                String sql = "delete from new where nID=?";
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, id);
+                st.executeUpdate();
+            }catch(SQLException e){
+                System.out.println(e);
+            }
+        }
+}   
     
     
-}
+
