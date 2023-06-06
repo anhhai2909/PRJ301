@@ -4,9 +4,10 @@
  */
 package Test;
 
-import DAL.newsDAO;
-import java.util.ArrayList;
-import model.news;
+
+import DAL.accountDAO;
+
+
 
 /**
  *
@@ -14,11 +15,8 @@ import model.news;
  */
 public class test {
     public static void main(String[] args){
-        newsDAO c = new newsDAO();
-        ArrayList<news> arr = c.getnews();
-        for(int i =0 ;i< arr.size();i++){
-            System.out.println(arr.get(i).toString());
-        }
+        accountDAO a = new accountDAO();
+        System.out.println(a.get1account("admin1", "123"));
        
     }
 }

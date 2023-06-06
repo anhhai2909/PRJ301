@@ -3,100 +3,83 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
 /* 
-    Created on : 01-06-2023, 23:20:44
+    Created on : 05-06-2023, 09:24:12
     Author     : anhha
 */
 
-.logo2{
-    width:60px;
-    height:60px;
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.tprofile{
+    display: flex;
+}
+.logo{
+    width:50px;
+    height: 50px;
+    object-fit: cover;
+    margin-left: 10px;
+}
+.tphoto{
+    width:40px;
+    height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    margin-top:5px;
-    margin-left:20px;
-}
-.header{
-    width: 85%;
-    display: flex;
-    height:70px;
-    border-bottom: 2px solid rgb(185, 197, 201);
-    margin: 0 auto;
-}
-
-.header a{
-    font-size: 30px;
-    font-weight: 400;
-    font-style: unset;
-    margin-top: 10px;
-    margin-left: 70px;
-    color: black;
+    margin-top:8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    border: 2px solid #E6E6E6;
+    padding: 2px;
 
 }
-.header a:hover{
-    text-decoration: none;
+img{
+    vertical-align: middle;
 }
-.body-info{
-    margin-top:30px;
-    width: 90%;
-    height: 1500px;
-    margin-left: auto;
-    margin-right: auto;
-    display:flex;
+.tpro p{
+    margin-left: 10px;
+    margin-right: 13px;
+    font-weight: 500;
+    align-items: center;
+    margin-top:20px;
 }
-
-.new{
-    border: 1px solid black;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 310px;
-    margin-right: 10px;
+.tprofile{
+    background-color: #F7F7F7;
 }
-
-.tb{
-    font-size: 30px;
-    background-color: rgb(64, 164, 207);
-    width: 100%;
-    text-align: center;
-    color: white;
-    margin-bottom:0;
-    border-bottom: 1px solid black;
+.tprofile:hover{
+    background-color: #F2EFEF;
 }
-
-.info{
-    background-color: green;
-    width: 1000px;
-}
-.add-new{
-    background-color: rgb(64, 164, 207);
-    text-align: center;
-}
-.add-new a{
-    color: white;
-}
-.new-info{
-    background-color: white;
-    margin-top: 5px;
-    margin-left: auto;
-    margin-bottom:5px;
-    margin-right: auto;
-    width: 90%;
-    height: 1000px;
-}
-.new-info p{
-    border-bottom: 1px solid black;
-}
-
-.npopup{
-    background-color: rgb(240, 247, 247);
-    width: 500px;
-    height: 300px;
+.dropdown{
     position: absolute;
-    top :130px;
-    left:390px;
+    right:8px;
+    top:74px;
     border-radius: 10px;
-    display: none;
+    display:none;
+    transform-origin: calc(100% - 40px) top;
+    animation: dropdowngrowth ease-in 0.2s;
+}
+@keyframes dropdowngrowth{
+    from{
+        opacity: 0.3;
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.dropdown a{
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    
+}
+.dropdown-element{
+    width: 120px;
+    line-height: 40px;
+    border:1px solid #E2E2E2;
+    text-align: center;
 }
 
-.shorttb:hover~ .npopup{
-    display: block;
+.dropdown-element:hover{
+    background-color: #F6F5F5;  
 }

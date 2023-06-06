@@ -15,10 +15,7 @@
     <body>
         <form action="loginservlet" method="post">
             <div class="container">
-                <div class="slogan">
-                    <p>Trường THPT Yên Tân số 1</p>
-                    <p></p>
-                </div>
+                
                 <div class="login">
                     <div class="headl">
                         <h1>Đăng Nhập</h1>
@@ -29,25 +26,24 @@
                                 <img src="img/login.jpeg" class="loginimg">
                             </div>
                         </div>
+                        
+                        <div class="error">
+                            <p style="color: red">${error}</p>
+                        </div>
+                        
                         <div class="form-group">
-                            <label for="username" class="form-label">Nhập Tài Khoản</label><br/>
-                            <input id="username" name="username" type="text" placeholder="Tài khoản" required/>
+                            <label for="username" class="form-label">Tài Khoản</label><br/>
+                            <input id="username" name="username" type="text" required/>
                             <span class="form-message"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="password" class="form-label">Nhập Mật Khẩu</label><br/>
-                            <input id="password" name="password" type="password" placeholder="Mật khẩu" required/>
+                            <label for="password" class="form-label">Mật Khẩu</label><br/>
+                            <input id="password" name="password" type="password"  required/>
                             <span class="form-message"></span>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="role" class="form-label">Bạn là: </label>
-                        <select class="opt">
-                            <option>Học Sinh</option>
-                            <option>Giáo Viên</option>
-                        </select>
-                    </div>
+                    </div>    
+                    
                     <div class="submit">
                         <input type="submit" value="Đăng Nhập" class="submitbottom"/>
                     </div>
