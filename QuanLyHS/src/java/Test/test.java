@@ -4,19 +4,23 @@
  */
 package Test;
 
-
 import DAL.accountDAO;
-
-
+import DAL.beststudentDAO;
+import java.util.ArrayList;
+import model.beststudent;
 
 /**
  *
  * @author anhha
  */
 public class test {
-    public static void main(String[] args){
-        accountDAO a = new accountDAO();
-        System.out.println(a.get1account("admin1", "123"));
-       
+
+    public static void main(String[] args) {
+        beststudentDAO d = new beststudentDAO();
+        ArrayList<beststudent> l = d.getbst();
+        for (beststudent i : l) {
+            System.out.println(i.toString());
+        }
+
     }
 }

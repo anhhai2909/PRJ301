@@ -42,6 +42,7 @@ public class StudentDAO extends DBContext{
         }
         return list;
     }
+    
     public Student get1student(String id){
         String sql = "select * from Student where sID=?";
         try{

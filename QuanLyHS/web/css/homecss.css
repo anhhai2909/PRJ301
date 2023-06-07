@@ -10,6 +10,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 .header{
     display: flex;
     justify-content: space-between;
+    height: 60px;
+
 }
 .tprofile{
     display: flex;
@@ -43,24 +45,29 @@ img{
     margin-top:20px;
 }
 .tprofile{
-    background-color: #F7F7F7;
+    background-color: #FDFDFD;
+
 }
 .tprofile:hover{
     background-color: #F2EFEF;
+    cursor: pointer;
 }
 .dropdown{
+    z-index:2;
+    width: 150px;
     position: absolute;
-    right:8px;
-    top:74px;
+    right:0;
+    top:0;
     border-radius: 10px;
     display:none;
-    transform-origin: calc(100% - 40px) top;
+    transform-origin: top;
     animation: dropdowngrowth ease-in 0.2s;
+    background-color: white;
 }
 @keyframes dropdowngrowth{
     from{
         opacity: 0.3;
-        transform: scale(0);
+        transform: scale(0.2);
     }
     to{
         transform: scale(1);
@@ -68,18 +75,102 @@ img{
     }
 }
 .dropdown a{
-    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e3e3e3;
+    padding: 10px 15px;
     text-decoration: none;
     color: black;
-    
-}
-.dropdown-element{
-    width: 120px;
-    line-height: 40px;
-    border:1px solid #E2E2E2;
-    text-align: center;
 }
 
-.dropdown-element:hover{
-    background-color: #F6F5F5;  
+.dropdown a:hover{
+    background-color: #F6F5F5;
+    text-decoration: none;
 }
+
+
+.menutitle{
+    color:  #D8D8D8;
+}
+
+.menu ul{
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.menu-element{
+    display: flex;
+    padding:10px 10px 10px 20px;
+}
+.menu-element:hover{
+    color: #7272E8;
+    cursor: pointer;
+}
+
+.menu-element i{
+    margin-right: 18px;
+}
+
+.menu-element p{
+    font-weight: 500;
+}
+.stlist-option{
+    margin-left: 30px;
+    display:none;
+    transform-origin:  top;
+    animation: dropdowngrowth ease-in 0.3s;
+}
+@keyframes dropdowngrowth{
+    from{
+        opacity: 0;
+    }
+    to{
+
+        opacity: 1;
+    }
+}
+
+.stlist-option li:hover{
+    background-color: #F5F5F5;
+}
+.stlist-option li{
+    width:180px;
+    padding-left: 10px;
+    line-height: 50px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.bodyinfo{
+    background-color: #f7f7fa;   
+}
+.rightpart{
+    background-color: #F0F0F0;
+    justify-content: center;
+    margin-right:0px;
+    margin-left:0px;
+    color:#AFAFAF;
+}
+.spart{
+    display: flex;
+    background-color: white;
+    border-radius: 7px;
+    line-height: 80px;
+    justify-content: center;
+    width: 300px;
+    margin:10px;
+}
+.spart p{
+    font-size: 20px;
+    font-weight: 500;
+
+}
+.spart i{
+    margin-left: 10px;
+    margin-right:15px;
+    margin-top:20px;
+}
+
+
+
+
