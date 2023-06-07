@@ -115,16 +115,7 @@
                         <li>Thêm TKB</li>
                         <li>Sửa</li>
                     </ul>
-
-                    <li class="menu-element" onclick="menudown('menudropdown6')">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <p>Sự Kiện</p>
-                    </li>
-                    <ul class="stlist-option" id ="menudropdown6">
-                        <li>Danh sách sự kiện</li>
-                        <li>Thêm sự kiện</li>
-                        <li>Sửa</li>
-                    </ul>
+                
 
                 </ul>
             </div>
@@ -134,7 +125,7 @@
                     int clsize =(int) request.getAttribute("classlistsize");
                     ArrayList<beststudent> bstlist = (ArrayList<beststudent>) request.getAttribute("bestst");
             %>
-            <div class="col-md-10">
+            <div class="col-md-10 r123">
                 <div style="width:100%;">
                     <div class="row rightpart" >
                         <div class="col-md-4">
@@ -163,19 +154,31 @@
                         </div>              
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6 student-box">
+                        <h4>Học sinh xuất sắc</h4>
+                        <table class="sttable">
+                            <tr class="thead">
+                                <th style="width:70px">Mã HS</th>
+                                <th style="width:200px">Họ & Tên</th>
+                                <th style="width:80px">Lớp</th>
+                                <th style="width:80px">Điểm</th>
+                                <th>Năm học</th>
+                            </tr>
+                            <%for(beststudent i: bstlist){%>
+                            <tr>
+                                <th><%=i.getSid()%></th>
+                                <th><%=i.getName()%></th>
+                                <th><%=i.getClassname()%></th>
+                                <th><%=i.getAvg()%></th>
+                                <th><%=i.getYears()%></th>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
 
-                <div class="student-box">
-                    <h4>Học sinh xuất sắc</h4>
-                    <table>
-                        <tr>
-                            <th>Mã HS</th>
-                            <th>Họ & Tên</th>
-                            <th>Lớp</th>
-                            <th>Điểm</th>
-                            <th>Năm học</th>
-                        </tr>
-                        
-                    </table>
+                    </div>
                 </div>
             </div>
 

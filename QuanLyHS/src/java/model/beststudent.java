@@ -48,7 +48,8 @@ public class beststudent {
     }
 
     public double getAvg() {
-        return avg;
+        double a = (Math.round(avg*10.0))/10.0;
+        return a;
     }
 
     public void setAvg(double avg) {

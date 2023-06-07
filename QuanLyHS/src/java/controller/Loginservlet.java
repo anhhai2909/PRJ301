@@ -46,26 +46,27 @@ public class Loginservlet extends HttpServlet {
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             accountDAO d = new accountDAO();
+            String tid = d.get1account(user, pass);
             StudentDAO d1 = new StudentDAO();
             teacherDAO d2 = new teacherDAO();
             classDAO d3 = new classDAO();
             beststudentDAO d4 = new beststudentDAO();
-            String tid = d.get1account(user, pass);
-            if (tid != null) {               
+            if (tid != null) {
+                request.setAttribute("teacherid", tid);
                 ArrayList<Student> list1 = d1.getStudent();
                 ArrayList<teacher> list2 = d2.getteacher();
                 ArrayList<classes> list3 = d3.getclass();
                 ArrayList<beststudent> list4 = d4.getbst();
                 request.setAttribute("stlistsize", list1.size());
-                request.setAttribute("teacherid", tid);
                 request.setAttribute("teacherlistsize", list2.size());
                 request.setAttribute("classlistsize", list3.size());
                 request.setAttribute("bestst", list4);
-                request.getRequestDispatcher("home.jsp").forward(request, response);;
+                request.getRequestDispatcher("home.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "*Mật khẩu hoặc tài khoản không hợp lệ!*");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
+
         }
     }
 

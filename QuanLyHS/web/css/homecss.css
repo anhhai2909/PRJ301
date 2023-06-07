@@ -140,16 +140,19 @@ img{
     border-radius: 10px;
     font-weight: 500;
 }
-
+.r123{
+    background-color: #f7f7fa;
+}
 .bodyinfo{
     background-color: #f7f7fa;   
 }
 .rightpart{
-    background-color: #F0F0F0;
     justify-content: center;
     margin-right:0px;
     margin-left:0px;
     color:#AFAFAF;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 .spart{
     display: flex;
@@ -159,6 +162,7 @@ img{
     justify-content: center;
     width: 300px;
     margin:10px;
+    margin: 0 auto;
 }
 .spart p{
     font-size: 20px;
@@ -169,6 +173,29 @@ img{
     margin-left: 10px;
     margin-right:15px;
     margin-top:20px;
+}
+.student-box{
+    background-color: white;
+    border-radius: 25px;
+    padding-bottom: 40px;
+}
+.student-box h4{
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.sttable{
+    width: 85%;
+    text-align: center;
+    margin: 0 auto;
+}
+.sttable th{
+    line-height: 40px;
+    border-bottom:1px solid rgba(0,0,0,.125);
+}
+.thead th{
+    background-color: #f7f7fa;
 }
 
 
