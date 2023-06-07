@@ -22,7 +22,7 @@ public class markDAO extends DBContext{
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                mark m = new mark(rs.getDouble("m1"), rs.getDouble("m2"), rs.getDouble("pt1"), rs.getDouble("pt2"), rs.getDouble("mt"), rs.getDouble("fe"), rs.getDouble("avag"), rs.getString("suID"), rs.getString("sID"), rs.getInt("years"));
+                mark m = new mark(rs.getDouble("m1"), rs.getDouble("m2"), rs.getDouble("pt1"), rs.getDouble("pt2"), rs.getDouble("mt"), rs.getDouble("fe"), rs.getDouble("avag"),rs.getInt("rating"), rs.getString("suID"), rs.getString("sID"), rs.getInt("years"));
                 list.add(m);
             }
         }catch(SQLException e){
@@ -39,7 +39,7 @@ public class markDAO extends DBContext{
             st.setInt(2,year);
             ResultSet rs = st.executeQuery();
             if(rs.next()){
-                mark m = new mark(rs.getDouble("m1"), rs.getDouble("m2"), rs.getDouble("pt1"), rs.getDouble("pt2"), rs.getDouble("mt"), rs.getDouble("fe"), rs.getDouble("avag"), rs.getString("suID"), rs.getString("sID"), rs.getInt("years"));
+                mark m = new mark(rs.getDouble("m1"), rs.getDouble("m2"), rs.getDouble("pt1"), rs.getDouble("pt2"), rs.getDouble("mt"), rs.getDouble("fe"), rs.getDouble("avag"),rs.getInt("rating"), rs.getString("suID"), rs.getString("sID"), rs.getInt("years"));
                 return m;
             }
         }catch(SQLException e){
@@ -48,7 +48,7 @@ public class markDAO extends DBContext{
         return null;
     }
     public void updatemark(mark m){
-        String sql="update mark set m1=?,m2=?,pt1=?,pt2=?,mt=?,fe=?,avag=? where suID=? and sID=? and years=?";
+        String sql="update mark set m1=?,m2=?,pt1=?,pt2=?,mt=?,fe=?,avag=?,rating=? where suID=? and sID=? and years=?";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
             st.setDouble(1,m.getM1());
@@ -58,10 +58,16 @@ public class markDAO extends DBContext{
             st.setDouble(5,m.getMt());
             st.setDouble(6,m.getFe());
             st.setDouble(7,m.getAvag());
-            st.setString(8,m.getSuid());
-            st.setString(9,m.getSid());
-            st.setString(8,m.getSuid());
-            st.setInt(9,m.getYears());
+            if(m.getAvag() >=8){
+                st.setInt(8, 1);
+            }else if(m.getAvag()>=6.5){
+                st.setInt(8, 2);
+            }else{
+                st.setInt(8, 3);
+            }
+            st.setString(9,m.getSuid());        
+            st.setString(10,m.getSid());
+            st.setInt(11,m.getYears());
             st.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);

@@ -8,19 +8,17 @@ package model;
  *
  * @author anhha
  */
-public class classes {
+public class classescountst {
     private String cid;
     private String name;
     private int numofst;
-    private String tid;
-    private int years;
+    private int rating;
 
-    public classes(String cid, String name, int numofst, String tid,int years) {
+    public classescountst(String cid, String name, int numofst, int rating) {
         this.cid = cid;
         this.name = name;
         this.numofst = numofst;
-        this.tid = tid;
-        this.years = years;
+        this.rating = rating;
     }
 
     public String getCid() {
@@ -47,20 +45,12 @@ public class classes {
         this.numofst = numofst;
     }
 
-    public String getTid() {
-        return tid;
+    public int getRating() {
+        return rating;
     }
 
-    public void setTid(String tid) {
-        this.tid = tid;
-    }
-
-    public int getYears() {
-        return years;
-    }
-
-    public void setYears(int years) {
-        this.years = years;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
     
     
