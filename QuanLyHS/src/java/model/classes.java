@@ -13,14 +13,13 @@ public class classes {
     private String name;
     private int numofst;
     private String tid;
-    private int years;
 
-    public classes(String cid, String name, int numofst, String tid,int years) {
+
+    public classes(String cid, String name, int numofst, String tid) {
         this.cid = cid;
         this.name = name;
         this.numofst = numofst;
         this.tid = tid;
-        this.years = years;
     }
 
     public String getCid() {
@@ -55,13 +54,7 @@ public class classes {
         this.tid = tid;
     }
 
-    public int getYears() {
-        return years;
-    }
 
-    public void setYears(int years) {
-        this.years = years;
-    }
     
     
 }
