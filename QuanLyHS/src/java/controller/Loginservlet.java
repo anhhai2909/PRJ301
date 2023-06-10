@@ -8,6 +8,7 @@ import DAL.StudentDAO;
 import DAL.accountDAO;
 import DAL.beststudentDAO;
 import DAL.classDAO;
+import DAL.markavgDAO;
 import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Student;
+import model.bestclasses;
 import model.beststudent;
 import model.classes;
 import model.teacher;
@@ -51,16 +53,19 @@ public class Loginservlet extends HttpServlet {
             teacherDAO d2 = new teacherDAO();
             classDAO d3 = new classDAO();
             beststudentDAO d4 = new beststudentDAO();
+            markavgDAO d5 = new markavgDAO();
             if (tid != null) {
                 request.setAttribute("teacherid", tid);
                 ArrayList<Student> list1 = d1.getStudent();
                 ArrayList<teacher> list2 = d2.getteacher();
                 ArrayList<classes> list3 = d3.getclass();
                 ArrayList<beststudent> list4 = d4.getbst();
+                ArrayList<bestclasses> list5 = d5.getnum();
                 request.setAttribute("stlistsize", list1.size());
                 request.setAttribute("teacherlistsize", list2.size());
                 request.setAttribute("classlistsize", list3.size());
                 request.setAttribute("bestst", list4);
+                request.setAttribute("bestclasses", list5);
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "*Mật khẩu hoặc tài khoản không hợp lệ!*");

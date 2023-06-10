@@ -8,6 +8,7 @@
 <%@page import = "model.teacher"%>
 <%@page import="DAL.teacherDAO"%>
 <%@page import="model.beststudent"%>
+<%@page import="model.bestclasses"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@
         %>
         <div class="header">
             <div class="logo">
-                <img class="logo" src="img/logo2.png">
+                <i class="fa-solid fa-school fa-2x"></i>           
             </div>
 
             <div>
@@ -115,7 +116,7 @@
                         <li>Thêm TKB</li>
                         <li>Sửa</li>
                     </ul>
-                
+
 
                 </ul>
             </div>
@@ -124,8 +125,12 @@
                     int tlsize =(int) request.getAttribute("teacherlistsize");
                     int clsize =(int) request.getAttribute("classlistsize");
                     ArrayList<beststudent> bstlist = (ArrayList<beststudent>) request.getAttribute("bestst");
+                    ArrayList<bestclasses> bcllist = (ArrayList<bestclasses>) request.getAttribute("bestclasses");
             %>
             <div class="col-md-10 r123">
+                <div>
+                    <h3 style="margin: 20px">Welcome admin</h3>
+                </div>
                 <div style="width:100%;">
                     <div class="row rightpart" >
                         <div class="col-md-4">
@@ -156,28 +161,51 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 student-box">
-                        <h4>Học sinh xuất sắc</h4>
-                        <table class="sttable">
-                            <tr class="thead">
-                                <th style="width:70px">Mã HS</th>
-                                <th style="width:200px">Họ & Tên</th>
-                                <th style="width:80px">Lớp</th>
-                                <th style="width:80px">Điểm</th>
-                                <th>Năm học</th>
-                            </tr>
-                            <%for(beststudent i: bstlist){%>
-                            <tr>
-                                <th><%=i.getSid()%></th>
-                                <th><%=i.getName()%></th>
-                                <th><%=i.getClassname()%></th>
-                                <th><%=i.getAvg()%></th>
-                                <th><%=i.getYears()%></th>
-                            </tr>
-                            <%}%>
-                        </table>
+                        <div class="box2">
+                            <h4>Học sinh xuất sắc</h4>
+                            <table class="sttable">
+                                <tr class="thead">
+                                    <th style="width:70px">Mã HS</th>
+                                    <th style="width:200px">Họ & Tên</th>
+                                    <th style="width:80px">Lớp</th>
+                                    <th style="width:80px">Điểm</th>
+                                    <th>Năm học</th>
+                                </tr>
+                                <%for(beststudent i: bstlist){%>
+                                <tr>
+                                    <th><%=i.getSid()%></th>
+                                    <th><%=i.getName()%></th>
+                                    <th><%=i.getClassname()%></th>
+                                    <th><%=i.getAvg()%></th>
+                                    <th><%=i.getYears()%></th>
+                                </tr>
+                                <%}%>
+                            </table>
+                        </div>
                     </div>
-                    <div class="col-md-6">
 
+                    <div class="col-md-6 class-box">
+                        <div class="box2">
+                            <h4>Lớp học xuất sắc</h4>
+                            <table class="cltable">
+                                <tr class="thead">
+                                    <th style="width:80px">Mã lớp</th>
+                                    <th style="width:100px">Tên lớp</th>
+                                    <th style="width:110px">Tổng số HS</th>
+                                    <th style="width:70px">Số HSG</th>
+                                    <th style="width:70px">Năm học</th>
+                                </tr>
+                                <%for(bestclasses u: bcllist){%>
+                                <tr>
+                                    <th><%=u.getcID()%></th>
+                                    <th><%=u.getClassname()%></th>
+                                    <th><%=u.getNumofst()%></th>
+                                    <th><%=u.getNumofgoodst()%></th>
+                                    <th><%=u.getYears()%></th>
+                                </tr>
+                                <%}%>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -201,7 +229,6 @@
                     b.style.display = 'none';
                 }
             }
-
         </script>
     </body>
 
