@@ -13,7 +13,7 @@
         <link href="css/logincss.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <form action="loginservlet" method="post">
+        <form action="login" method="post">
             <div class="container">
                 
                 <div class="login">

@@ -7,6 +7,7 @@ package DAL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.account;
 
 /**
  *
@@ -22,6 +23,21 @@ public class accountDAO extends DBContext{
             ResultSet rs = st.executeQuery();
             if(rs.next()){
                 return rs.getString("tID");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
+    public account getaccountbytid(String id){
+        String sql = "select * from adminacc where tID=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();           
+            if(rs.next()){
+                account a = new account(rs.getString("username"), rs.getString("upassword"), id);
+                return a;
             }
         }catch(SQLException e){
             System.out.println(e);

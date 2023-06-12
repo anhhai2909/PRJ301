@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "model.teacher"%>
-<%@page import="DAL.teacherDAO"%>
 <%@page import="model.beststudent"%>
 <%@page import="model.bestclasses"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,9 +20,8 @@
     </head>
     <body>
         <%
-            teacherDAO d = new teacherDAO();
-            String tid = (String) request.getAttribute("teacherid");
-            teacher t = d.get1teacher(tid);
+                  teacher t = (teacher) request.getAttribute("tdata");
+                 request.setAttribute("tpro",t);
         %>
         <div class="header">
             <div class="logo">
@@ -33,7 +31,7 @@
             <div>
                 <div class="tprofile" onclick="showdropdown()">
                     <div >
-                        <img class="tphoto" src =<%= t.getImgaddress()%>>
+                        <img class="tphoto" src =<%=t.getImgaddress()%>>
                     </div>
                     <div class="tpro">
                         <p><%=t.getName()%></p>
@@ -42,7 +40,7 @@
                 </div>
 
                 <div class="dropdown" id="dropdown">
-                    <a href="#">Profile</a>
+                    <a href="tprofile?tid=<%=t.getTid()%>">Profile</a>
                     <a href="#">Cài đặt</a>
                     <a href="login.jsp" id="logout">Đăng xuất</a>
                 </div>
@@ -51,75 +49,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2 menu">
-                <p class="menutitle" style="margin-left: 20px">Menu</p>
-                <ul>
-                    <li class="menu-element"  onclick="menudown('menudropdown')">
-                        <i class="fa fa-graduation-cap"></i>
-                        <p>Học Sinh</p>
-                    </li>
-                    <ul class="stlist-option" id ="menudropdown">
-                        <li>Danh sách học sinh</li>
-                        <li>Thông tin học sinh</li>
-                        <li>Thêm học sinh</li>
-                        <li>Sửa thông tin</li>
-                    </ul>
-
-                    <li class="menu-element" onclick="menudown('menudropdown1')">
-                        <i class="fa fa-chalkboard-user"></i>
-                        <p>Giáo Viên</p>
-                    </li>
-                    <ul class="stlist-option" id ="menudropdown1">
-                        <li>Danh sách giáo viên</li>
-                        <li>Thông tin giáo viên</li>
-                        <li>Thêm giáo viên</li>
-                        <li>Sửa thông tin</li>
-
-                    </ul>
-
-                    <li class="menu-element" onclick="menudown('menudropdown2')">
-                        <i class="fa fa-chalkboard"></i>
-                        <p>Lớp Học</p>
-                    </li>
-                    <ul class="stlist-option" id ="menudropdown2">
-                        <li>Danh sách lớp</li>
-                        <li>Thông tin lớp</li>
-                        <li>Thêm lớp</li>
-                        <li>Sửa thông tin</li>
-                    </ul>
-
-                    <li class="menu-element" onclick="menudown('menudropdown3')">
-                        <i class="fa fa-book"></i>
-                        <p>Môn Học</p>
-                    </li>
-                    <ul class="stlist-option" id ="menudropdown3">
-                        <li>Danh sách môn học</li>
-                        <li>Thêm môn học</li>
-                        <li>Sửa thông tin</li>
-                    </ul>
-
-                    <li class="menu-element" onclick="menudown('menudropdown4')">
-                        <i class="fa fa-square-poll-vertical"></i>
-                        <p>Điểm</p>
-                    </li>
-                    <ul class="stlist-option" id ="menudropdown4">
-                        <li>Danh sách điểm</li>
-                        <li>Sửa điểm</li>
-                    </ul>
-
-                    <li class="menu-element" onclick="menudown('menudropdown5')">
-                        <i class="fa-solid fa-shapes"></i>
-                        <p>Thời Khóa Biểu</p>
-                    </li>
-                    <ul class="stlist-option" id ="menudropdown5">
-                        <li>Xem TKB</li>
-                        <li>Thêm TKB</li>
-                        <li>Sửa</li>
-                    </ul>
-
-
-                </ul>
-            </div>
+            <%@include file="homepagemenu.jsp" %>
             <%
                     int stlsize =(int) request.getAttribute("stlistsize");
                     int tlsize =(int) request.getAttribute("teacherlistsize");
@@ -169,7 +99,7 @@
                                     <th style="width:200px">Họ & Tên</th>
                                     <th style="width:80px">Lớp</th>
                                     <th style="width:80px">Điểm</th>
-                                    <th>Năm học</th>
+                                    <th style="width:74px">Năm học</th>
                                 </tr>
                                 <%for(beststudent i: bstlist){%>
                                 <tr>
@@ -208,6 +138,7 @@
                         </div>
                     </div>
                 </div>
+                <%@include file="homepagefooter.jsp" %>
             </div>
 
         </div>
@@ -217,6 +148,7 @@
                 var a = document.getElementById('dropdown');
                 if (a.style.display === 'none') {
                     a.style.display = 'block';
+
                 } else {
                     a.style.display = 'none';
                 }

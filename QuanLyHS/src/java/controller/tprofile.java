@@ -5,7 +5,8 @@
 
 package controller;
 
-import DAL.StudentDAO;
+import DAL.accountDAO;
+import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,15 +14,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import model.Student;
+import model.account;
+import model.teacher;
 
 /**
  *
  * @author anhha
  */
-@WebServlet(name="homeservlet", urlPatterns={"/homeservlet"})
-public class homeservlet extends HttpServlet {
+@WebServlet(name="tprofile", urlPatterns={"/tprofile"})
+public class tprofile extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,15 +36,7 @@ public class homeservlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet homeservlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet homeservlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     } 
 
@@ -57,12 +50,15 @@ public class homeservlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {      
-//        StudentDAO d = new StudentDAO();
-//        ArrayList<Student> list = d.getStudent();
-//        request.setAttribute("data", list.size());
-//        request.getRequestDispatcher("home.jsp").forward(request, response);
-        
+    throws ServletException, IOException {
+        String tid = request.getParameter("tid");
+        teacherDAO d = new teacherDAO();
+        accountDAO d2 = new accountDAO();
+        teacher t = d.get1teacher(tid);
+        account a = d2.getaccountbytid(tid);
+        request.setAttribute("taccount", a);
+        request.setAttribute("tdata", t);
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
     } 
 
     /** 
