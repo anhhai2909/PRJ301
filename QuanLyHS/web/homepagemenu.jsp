@@ -20,7 +20,7 @@
                     <p>Học Sinh</p>
                 </li>
                 <ul class="stlist-option" id ="menudropdown">
-                    <li>Danh sách học sinh</li>
+                    <li><a href="studentlist.jsp">Danh sách học sinh</a></li>
                     <li>Thông tin học sinh</li>
                     <li>Thêm học sinh</li>
                     <li>Sửa thông tin</li>
@@ -85,7 +85,7 @@
         <script>
             function showdropdown() {
                 var a = document.getElementById('dropdown');
-                if (a.style.display === 'none') {
+                if (a.style.display !== 'block') {
                     a.style.display = 'block';
 
                 } else {
@@ -94,7 +94,7 @@
             }
             function menudown(id) {
                 var b = document.getElementById(id);
-                if (b.style.display === 'none') {
+                if (b.style.display !== 'block') {
                     b.style.display = 'block';
                 } else {
                     b.style.display = 'none';

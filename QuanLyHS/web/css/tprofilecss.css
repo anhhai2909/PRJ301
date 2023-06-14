@@ -85,12 +85,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     display: none;
     animation: displaybytime ease-in 0.2s;
 }
-.pd2 input{
+.pd2 .input{
     color: #7B7B7B;
     border: 1px solid #7B7B7B;
     width: 300px;
     line-height: 30px;
     border-radius: 5px;
+}
+#form-1{
+    animation: displaybytime ease-in 0.2s;
+    display:none;
+}
+#form-2{
+    animation: displaybytime ease-in 0.2s;
+    display:none;
 }
 
 @keyframes displaybytime{
@@ -100,4 +108,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     to{
         opacity: 1;
     }
+}
+.editbotton:hover{
+    color:#8D8DE6;
+    
+}
+.editbotton{
+    border: 0px solid black;
+    background-color: white;
 }

@@ -40,7 +40,6 @@
 
                 <div class="dropdown" id="dropdown">
                     <a href="#">Profile</a>
-                    <a href="#">Cài đặt</a>
                     <a href="login.jsp" id="logout">Đăng xuất</a>
                 </div>
             </div>
@@ -76,11 +75,11 @@
                         </div>
                     </div>
                 </div>
-                <div style="width:95%" class="pd" id="pd">
+                <div style="width:95%;padding-bottom: 60px" class="pd" id="pd">
                     <div class="pdhead">
                         <h3>Thông tin cá nhân</h3>
                         <div>                        
-                            <a href="#"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+                            <button class="editbotton" onclick="menudown('form-1')"><i class="fa-solid fa-pen-to-square">Edit</i></button>
                         </div>
                     </div>
 
@@ -100,27 +99,80 @@
                             <p class="col-md-9 pdr"><%=t.getEmail()%></p>
                         </div>
                     </div>
+
+                    <form action="" id="form-1"  method="post" style="border:1px solid #959595;width:600px;border-radius: 13px;margin-left: 40px;">
+                        <div style="text-align: center;padding-top: 20px;color:#959595">
+                            <h3>EDIT</h3>
+                        </div>
+                        <div style="padding-bottom: 30px" >
+
+                            <div class="row" style="margin-bottom: 20px">
+                                <p class="col-md-3 pdl">Họ và tên</p>
+                                <div class="col-md-9 pdr">
+                                    <input type="text" style="width:400px;line-height: 30px"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <p class="col-md-3 pdl">Email</p>
+                                <div class="col-md-9 pdr">
+                                    <input type="text" style="width:400px;line-height: 30px;margin-bottom: 20px;"/>
+                                </div>
+                            </div>
+
+                            <div  style="text-align: center;"> 
+                                <input type="submit" value="OK"/>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <div style="width:95%" class="pd2" id="pd2">
+                <div style="width:95%;padding-bottom: 60px" class="pd2" id="pd2">
                     <div class="pdhead">
                         <h3>Tài khoản</h3>
-                        <div>                       
-                            <a href="#"><i class="fa-solid fa-pen-to-square"></i>Đổi mật khẩu</a>
+                        <div>                        
+                            <button class="editbotton" onclick="menudown('form-2')"><i class="fa-solid fa-pen-to-square">EDIT</i></button>
                         </div>
 
                     </div>
                     <div style="padding-bottom: 30px">
                         <div class="row" style="width: 60%; margin-bottom: 15px">
                             <p class="col-md-4" style="text-align: right;color:#7B7B7B">Tài khoản</p>
-                            <input class="col-md-8" type="text" value="<%=a.getUser()%>" readonly="true"/><br/>
+                            <input class="col-md-8 input" type="text" value="<%=a.getUser()%>" readonly="true"/><br/>
                         </div>
 
                         <div class="row" style="width: 60%">
                             <p class="col-md-4" style="text-align: right;color:#7B7B7B"">Mật khẩu</p>
-                            <input class="col-md-8" type="text" value="<%=a.getPass()%>" readonly="true"/><br/>
+                            <input class="col-md-8 input" type="text" value="<%=a.getPass()%>" readonly="true"/><br/>
                         </div>
                     </div>
+
+                    <form action="" id="form-2"  method="post" style="border:1px solid #959595;width:600px;border-radius: 13px;margin-left: 100px;">
+                        <div style="text-align: center;padding-top: 20px;color:#959595">
+                            <h3>Đổi mật khẩu</h3>
+                        </div>
+                        <div style="padding-bottom: 30px" >
+
+                            <div class="row" style="margin-bottom: 20px">
+                                <p class="col-md-3 pdl">Mật khẩu mới</p>
+                                <div class="col-md-9 pdr">
+                                    <input type="text" style="width:400px;line-height: 30px"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <p class="col-md-3 pdl">Nhập lại mật khẩu mới</p>
+                                <div class="col-md-9 pdr">
+                                    <input type="text" style="width:400px;line-height: 30px;margin-bottom: 20px;"/>
+                                </div>
+                            </div>
+
+                            <div  style="text-align: center;"> 
+                                <input type="submit" value="OK"/>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
                 <%@include file="homepagefooter.jsp" %>
             </div>
@@ -129,7 +181,6 @@
                     var a = document.getElementById('dropdown');
                     if (a.style.display === 'none') {
                         a.style.display = 'block';
-
                     } else {
                         a.style.display = 'none';
                     }
@@ -147,21 +198,24 @@
                     var c = document.getElementById('pd2');
                     var d = document.getElementById('p2');
                     var e = document.getElementById('p1');
+                    var f = document.getElementById('form-1');
                     b.style.display = 'none';
                     c.style.display = 'block';
                     d.style.border = "2px solid #CFCFCF";
                     e.style.border = "none";
-
+                    f.style.display = 'none';
                 }
                 function showdiv1() {
                     var b = document.getElementById('pd2');
                     var c = document.getElementById('pd');
                     var d = document.getElementById('p1');
                     var e = document.getElementById('p2');
+                    var f = document.getElementById('form-2');
                     b.style.display = 'none';
                     c.style.display = 'block';
                     d.style.border = "2px solid #CFCFCF";
                     e.style.border = "none";
+                    f.style.display = 'none';
                 }
             </script>
     </body>

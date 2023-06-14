@@ -41,7 +41,6 @@
 
                 <div class="dropdown" id="dropdown">
                     <a href="tprofile?tid=<%=t.getTid()%>">Profile</a>
-                    <a href="#">Cài đặt</a>
                     <a href="login.jsp" id="logout">Đăng xuất</a>
                 </div>
             </div>
@@ -146,7 +145,7 @@
         <script>
             function showdropdown() {
                 var a = document.getElementById('dropdown');
-                if (a.style.display === 'none') {
+                if (a.style.display !== 'block') {
                     a.style.display = 'block';
 
                 } else {
@@ -155,7 +154,7 @@
             }
             function menudown(id) {
                 var b = document.getElementById(id);
-                if (b.style.display === 'none') {
+                if (b.style.display !== 'block') {
                     b.style.display = 'block';
                 } else {
                     b.style.display = 'none';

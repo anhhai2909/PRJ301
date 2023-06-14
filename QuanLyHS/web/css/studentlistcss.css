@@ -1,0 +1,42 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 14-06-2023, 07:38:41
+    Author     : anhha
+*/
+
+.search{
+    line-height: 40px;
+}
+.search input{
+    width:80%;
+    border-radius: 7px;
+    border:1px solid #CBCBCB;
+}
+.searchsubmit{
+    line-height: 40px;
+}
+.searchsubmit input{
+    border-radius: 7px;
+    width:40%;
+    border:1px solid #CBCBCB;
+    background-color: #3d5ee1;
+    color: white;
+    font-weight: 500;
+}
+.searchsubmit input:hover{
+    opacity: 0.7;
+}
+.stlist{
+    background-color: white;
+    border-radius: 10px;
+    margin:20px;
+}
+.stlist table{
+    border-bottom: 1px solid black;
+}
+.stlist table thead{
+    text-align: center;
+}
