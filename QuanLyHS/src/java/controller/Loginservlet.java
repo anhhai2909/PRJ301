@@ -4,8 +4,8 @@
  */
 package controller;
 
-
 import DAL.accountDAO;
+import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
+import model.teacher;
 
 /**
  *
@@ -38,19 +39,21 @@ public class Loginservlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
+            teacherDAO d1 = new teacherDAO();
             accountDAO d = new accountDAO();
             String tid = d.get1account(user, pass);
             if (tid != null) {
-                request.setAttribute("teacherid", tid);
-                request.getRequestDispatcher("home").forward(request, response);
+                teacher t = d1.get1teacher(tid);
+                HttpSession session = request.getSession();
+                session.setAttribute("teacher", t);
+                response.sendRedirect("home");
             } else {
                 request.setAttribute("error", "*Mật khẩu hoặc tài khoản không hợp lệ!*");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-
+            
         }
     }
-   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

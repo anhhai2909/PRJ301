@@ -5,10 +5,6 @@
 package controller;
 
 import DAL.StudentDAO;
-import DAL.beststudentDAO;
-import DAL.classDAO;
-import DAL.markavgDAO;
-import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,17 +14,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Student;
-import model.bestclasses;
-import model.beststudent;
-import model.classes;
-import model.teacher;
 
 /**
  *
  * @author anhha
  */
-@WebServlet(name = "homepageservlet", urlPatterns = {"/home"})
-public class homepageservlet extends HttpServlet {
+@WebServlet(name = "studentlistservlet", urlPatterns = {"/studentlist"})
+public class studentlistservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,29 +36,7 @@ public class homepageservlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-//            String tid = (String) request.getAttribute("teacherid");
-    
-            StudentDAO d1 = new StudentDAO();
-            teacherDAO d2 = new teacherDAO();
-            classDAO d3 = new classDAO();
-            beststudentDAO d4 = new beststudentDAO();
-            markavgDAO d5 = new markavgDAO();
 
-            
-//            teacher t = d.get1teacher(tid);
-            ArrayList<Student> list1 = d1.getStudent();
-            ArrayList<teacher> list2 = d2.getteacher();
-            ArrayList<classes> list3 = d3.getclass();
-            ArrayList<beststudent> list4 = d4.getbst();
-            ArrayList<bestclasses> list5 = d5.getnum();
-            
-            request.setAttribute("stlistsize", list1.size());
-            request.setAttribute("teacherlistsize", list2.size());
-            request.setAttribute("classlistsize", list3.size());
-            request.setAttribute("bestst", list4);
-            request.setAttribute("bestclasses", list5);
-            
-            request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 
@@ -82,7 +52,26 @@ public class homepageservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        StudentDAO d = new StudentDAO();
+        ArrayList<Student> list = d.getStudent();       
+        int page, numperpage = 10;
+        int size = list.size();
+        int num = (size%6==0?(size/6):((size/6)+1));
+        String pages = request.getParameter("page");
+        if (pages == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(pages);
+        }
+        int start, end;
+        start = (page - 1) * numperpage;
+        end = Math.min(page * numperpage, size);
+        ArrayList<Student> listperpage =  d.getlistbypage(list, start, end);
+        request.setAttribute("list", listperpage);
+        request.setAttribute("num", num);
+        request.setAttribute("page", page);
+        request.getRequestDispatcher("studentlist.jsp").forward(request, response);
+     
     }
 
     /**
@@ -96,7 +85,8 @@ public class homepageservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+
     }
 
     /**

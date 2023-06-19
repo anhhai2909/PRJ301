@@ -20,7 +20,7 @@
                     <p>Học Sinh</p>
                 </li>
                 <ul class="stlist-option" id ="menudropdown">
-                    <li><a href="studentlist.jsp">Danh sách học sinh</a></li>
+                    <li><a href="studentlist">Danh sách học sinh</a></li>
                     <li>Thông tin học sinh</li>
                     <li>Thêm học sinh</li>
                     <li>Sửa thông tin</li>

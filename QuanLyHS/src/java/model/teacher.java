@@ -15,6 +15,10 @@ public class teacher {
     private int position;
     private String imgaddress;
 
+    public teacher() {
+    }
+
+    
     public teacher(String tid, String name, String email, int position, String imgaddress) {
         this.tid = tid;
         this.name = name;

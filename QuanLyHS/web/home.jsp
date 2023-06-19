@@ -19,34 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <%
-                  teacher t = (teacher) request.getAttribute("tdata");
-                 request.setAttribute("tpro",t);
-        %>
-        <div class="header">
-            <div class="logo">
-                <i class="fa-solid fa-school fa-2x"></i>           
-            </div>
-
-            <div>
-                <div class="tprofile" onclick="showdropdown()">
-                    <div >
-                        <img class="tphoto" src =<%=t.getImgaddress()%>>
-                    </div>
-                    <div class="tpro">
-                        <p><%=t.getName()%></p>
-                    </div>
-
-                </div>
-
-                <div class="dropdown" id="dropdown">
-                    <a href="tprofile?tid=<%=t.getTid()%>">Profile</a>
-                    <a href="login.jsp" id="logout">Đăng xuất</a>
-                </div>
-            </div>
-
-        </div>
-
+        <%@include file="homepageheader.jsp" %>
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <%

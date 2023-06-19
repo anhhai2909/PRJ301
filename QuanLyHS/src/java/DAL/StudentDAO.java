@@ -18,7 +18,7 @@ public class StudentDAO extends DBContext{
     
     public ArrayList<Student> getStudent() {
         ArrayList<Student> list = new ArrayList<>();
-        String sql = "select * from Student";
+        String sql = "select * from Student order by dob asc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -43,6 +43,13 @@ public class StudentDAO extends DBContext{
         return list;
     }
     
+    public ArrayList<Student> getlistbypage(ArrayList<Student> list,int start,int end){
+        ArrayList<Student> arr = new ArrayList<>();
+        for(int i=start;i<end;i++){
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
     public Student get1student(String id){
         String sql = "select * from Student where sID=?";
         try{

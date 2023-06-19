@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.account;
 import model.teacher;
 
@@ -54,7 +55,8 @@ public class tprofile extends HttpServlet {
         String tid = request.getParameter("tid");
         teacherDAO d = new teacherDAO();
         accountDAO d2 = new accountDAO();
-        teacher t = d.get1teacher(tid);
+        HttpSession session = request.getSession(false);
+        teacher t =(teacher) session.getAttribute("teacher");
         account a = d2.getaccountbytid(tid);
         request.setAttribute("taccount", a);
         request.setAttribute("tdata", t);
