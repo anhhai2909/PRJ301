@@ -8,6 +8,7 @@
 <%@page import = "model.teacher"%>
 <%@page import = "model.Student"%>
 <%@page import = "java.util.ArrayList"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,21 +41,17 @@
                         </div>
                     </form>
                 </div>
-                
-                <div>
-                    <%
-                    int num =(int) request.getAttribute("num");
-                    %>
-                </div>
-                
+
+
+
                 <div class="stlist">
                     <div>
                         <h3 style="padding:20px;width:200px">Học sinh</h3>
                     </div>
                     <div>
                         <table style="width:100%;">
-                            <thead style="text-align: center">
-                                <tr class="row" >
+                            <thead style="text-align: center;width:100%;background-color: #FCFCFC">
+                                <tr class="row" style="margin-top:10px;margin-bottom: 10px">
                                     <th class="col-md-1">ID</th>
                                     <th class="col-md-3">Tên</th>
                                     <th class="col-md-1">Giới tính</th>
@@ -64,36 +61,34 @@
                                     <th class="col-md-1" style="padding-left: 0">Tùy chọn</th>
                                 </tr>
                             </thead>
-                            
                             <tbody style="text-align: center">
-                                <%
-                                    ArrayList<Student> list = (ArrayList<Student>) request.getAttribute("list");
-                                    for(Student i:list){
-                                %>
-                                <tr class="row" >
-                                    <th class="col-md-1" style="font-weight: 500;margin-bottom: 10px;"><%=i.getsID()%></th>
-                                    <th class="col-md-3" style="font-weight: 500;margin-bottom: 10px;"><%=i.getName()%></th>
-                                    <%
-                                        String g="";
-                                        if(i.getGender()==1){
-                                            g="Nam";
-                                        }else{
-                                            g="Nữ";
-                                        }
-                                    %>
-                                    <th class="col-md-1" style="font-weight: 500;margin-bottom: 10px;"><%=g%></th>                                  
-                                    <th class="col-md-2" style="font-weight: 500;margin-bottom: 10px;"><%=i.getDob()%></th>
-                                    <th class="col-md-2" style="font-weight: 500;margin-bottom: 10px;"><%=i.getEmail()%></th>
-                                    <th class="col-md-2" style="font-weight: 500;margin-bottom: 10px;"><%=i.getPhone()%></th>
-                                    <th class="col-md-1" style="padding-left: 0">Tùy chọn</th>
-                                </tr>
-                                <%}%>
+                                <c:forEach items="${requestScope.list}" var="i">
+                                    <tr class="row table-body" style="margin-top:10px">
+                                        <td class="col-md-1">${i.sID}</td>
+                                        <td class="col-md-3">${i.name}</td>
+                                        <td class="col-md-1">${i.gender}</td>
+                                        <td class="col-md-2">${i.dob}</td>
+                                        <td class="col-md-2">${i.email}</td>
+                                        <td class="col-md-2">${i.phone}</td>
+                                        <td class="col-md-1" style="padding-left: 0">---------</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
+
+
                         </table>
                     </div>
 
                 </div>
-                
+                <div style="margin-bottom:20px">
+                    <c:set var="page" value="${requestScope.page}"/>
+                    <div class="pagination">
+                        <c:forEach begin="${1}" end="${requestScope.num}" var="i">
+                            <a id="page-${i}" class="page-link" href="studentlist?page=${i}">${i}</a>
+                        </c:forEach>
+                    </div>
+                </div>
+
             </div>
         </div>
         <script>
@@ -114,6 +109,22 @@
                     b.style.display = 'none';
                 }
             }
+            document.addEventListener("DOMContentLoaded", function () {
+                var currentPage = "${requestScope.page}";
+                var pageLinks = document.getElementsByClassName("page-link");
+
+                for (var i = 0; i < pageLinks.length; i++) {
+                    var pageLink = pageLinks[i];
+                    var pageNumber = pageLink.innerHTML;
+
+                    if (pageNumber === currentPage) {
+                        pageLink.classList.add("active");
+                    }
+                }
+            });
         </script>
+
+
+
     </body>
 </html>

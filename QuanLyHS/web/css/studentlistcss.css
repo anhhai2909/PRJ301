@@ -34,6 +34,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     border-radius: 10px;
     margin:20px;
 }
-.stlist table{
-    border-bottom: 1px solid black;
+.pagination{
+    text-align: center;
+    margin-left: 90%;
+    margin-top:10px;
+}
+.page-link{
+    border: 1px solid #ACACAD;
+    color:#7A6FF3;
+    text-decoration: none;
+    background-color: white;
+}
+.pagination a:hover{
+    background-color: #F3F3F3;
+    text-decoration: none;
+}
+.pagination a.active {
+    background-color: #6C71FF;
+    color:white; 
+}
+
+.table-body td{
+    margin-bottom: 20px;
+    font-weight: 500;
 }
