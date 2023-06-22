@@ -37,8 +37,8 @@
                     <p>Lớp Học</p>
                 </li>
                 <ul class="stlist-option" id ="menudropdown2">
-                    <li><a href="classlist.jsp" style="color:black;text-decoration: none;">Danh sách lớp</a></li>
-                    <li>Thêm lớp</li>
+                    <li><a href="classlist" style="color:black;text-decoration: none;">Danh sách lớp</a></li>
+                    <li><a href="addclass" style="color:black;text-decoration: none;">Thêm lớp</a></li>
                 </ul>
 
                 <li class="menu-element" onclick="menudown('menudropdown3')">

@@ -23,7 +23,7 @@
         <%@include file="homepageheader.jsp" %>
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
-            <div class="col-md-10 r123" >
+            <div class="col-md-10 r123"  style="margin-bottom: 100px">
                 <div style="margin-top: 30px">
                     <form action="" method="get">
                         <div class="row">
@@ -50,7 +50,7 @@
                     </div>
                     <div>
                         <table style="width:100%;">
-                            <thead style="text-align: center;width:100%;background-color: #FCFCFC">
+                            <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                 <tr class="row" style="margin-top:10px;margin-bottom: 10px">
                                     <th class="col-md-1">ID</th>
                                     <th class="col-md-3">Tên</th>

@@ -5,7 +5,7 @@
 
 package controller;
 
-import DAL.classDAO;
+import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,14 +14,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.classes;
+import model.teacher;
 
 /**
  *
  * @author anhha
  */
-@WebServlet(name="classlistservlet", urlPatterns={"/classlist"})
-public class classlistservlet extends HttpServlet {
+@WebServlet(name="addclassservlet", urlPatterns={"/addclass"})
+public class addclassservlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +38,10 @@ public class classlistservlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet classlistservlet</title>");  
+            out.println("<title>Servlet addclassservlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet classlistservlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet addclassservlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,10 +58,10 @@ public class classlistservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        classDAO d = new classDAO();
-        ArrayList<classes> list = d.getclass();
+        teacherDAO d = new teacherDAO();
+        ArrayList<teacher> list = d.getteacher();
         request.setAttribute("list", list);
-        request.getRequestDispatcher("classlist.jsp").forward(request, response);
+        request.getRequestDispatcher("addclass.jsp").forward(request, response);
     } 
 
     /** 

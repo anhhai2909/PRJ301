@@ -21,14 +21,14 @@
         <%@include file="homepageheader.jsp"%>
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
-            <div class="col-md-10" style="background-color: #f7f7fa">
+            <div class="col-md-10" style="background-color: #f7f7fa;margin-bottom: 100px">
                 <div style="margin:20px;background-color: white;border-radius: 10px;padding-top:20px">
                     <div>
                         <h3 style="padding:20px;width:200px">Giáo viên</h3>
                     </div>
-                    <div>
-                        <table style="width:100%;">
-                            <thead style="text-align: center;width:100%;background-color: #FCFCFC">
+                    <div style="padding-bottom: 60px">
+                        <table style="width:90%;margin:0 auto">
+                            <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                 <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
                                     <th class="col-md-2">ID</th>
                                     <th class="col-md-3">Tên</th>
