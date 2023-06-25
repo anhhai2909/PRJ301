@@ -46,9 +46,8 @@
                     <p>Môn Học</p>
                 </li>
                 <ul class="stlist-option" id ="menudropdown3">
-                    <li>Danh sách môn học</li>
-                    <li>Thêm môn học</li>
-                    <li>Sửa thông tin</li>
+                    <li><a href="subject" style="color:black;text-decoration: none;">Danh sách môn học</a></li>
+                    <li><a href="addsubject.jsp" style="color:black;text-decoration: none;">Thêm môn học</a></li>
                 </ul>
 
                 <li class="menu-element" onclick="menudown('menudropdown4')">
@@ -56,8 +55,10 @@
                     <p>Điểm</p>
                 </li>
                 <ul class="stlist-option" id ="menudropdown4">
-                    <li>Danh sách điểm</li>
+                    <li><a href="marklist" style="color:black;text-decoration: none;">Danh sách điểm</a></li>
+                    <li><a href="markavg" style="color:black;text-decoration: none;">Điểm trung bình</a></li>
                     <li>Sửa điểm</li>
+                     
                 </ul>
 
                 <li class="menu-element" onclick="menudown('menudropdown5')">

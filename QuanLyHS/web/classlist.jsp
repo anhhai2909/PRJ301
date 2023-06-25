@@ -48,7 +48,7 @@
                                         <td class="col-md-3">${i.name}</td>
                                         <td class="col-md-3">${i.numofst}</td>
                                         <td class="col-md-2">${i.tid}</td>
-                                        <td class="col-md-2" style="padding-left: 0"><a href="#" class="option-icon"><i class="fa-solid fa-pen"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
+                                        <td class="col-md-2" style="padding-left: 0"><a href="#" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

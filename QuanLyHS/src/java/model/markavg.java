@@ -52,5 +52,10 @@ public class markavg {
     public void setYears(int years) {
         this.years = years;
     }
+
+    @Override
+    public String toString() {
+        return "markavg{" + "sid=" + sid + ", cid=" + cid + ", avg=" + avg + ", years=" + years + '}';
+    }
     
 }

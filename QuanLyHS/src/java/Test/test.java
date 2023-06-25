@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import model.bestclasses;
 import model.beststudent;
 import model.classes;
+import model.markavg;
 import model.teacher;
 
 /**
@@ -25,9 +26,9 @@ public class test {
         markavgDAO d = new markavgDAO();
         teacherDAO d1 = new teacherDAO();
         classDAO d2 = new classDAO();
-        ArrayList<classes> l = d2.getclass();
-        for (classes i : l) {
-            System.out.println(i.toString());
+        ArrayList<markavg> l = d.getavg(2019,"10a1");
+        for (markavg i : l) {
+            System.out.println(d.getmaxyear());
         }
 
     }

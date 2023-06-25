@@ -17,21 +17,35 @@ import model.markavg;
  */
 public class markavgDAO extends DBContext {
 
-    public ArrayList<markavg> getavg(int years) {
+    public ArrayList<markavg> getavg(int years,String cid) {
         ArrayList<markavg> list = new ArrayList();
-        String sql = "select * from markavg where years=?";
+        String sql = "select * from markavg where years=? and cid = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, years);
+            st.setString(2, cid);
             ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                markavg m = new markavg(rs.getString("sID"), rs.getString("cID"), rs.getDouble("avgm"), rs.getInt("years"));
+            while (rs.next()) {           
+                markavg m = new markavg(rs.getString("sID"), rs.getString("cID"), (double) Math.ceil(rs.getDouble("avgm") * 10) / 10, rs.getInt("years"));
                 list.add(m);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
         return list;
+    }
+
+    public int getmaxyear() {
+        String sql = "select top 1 years from markavg order by years desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("years");
+            }
+        } catch (SQLException e) {
+        }
+        return 0;
     }
 
     public ArrayList<bestclasses> getnum() {
@@ -45,7 +59,7 @@ public class markavgDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                bestclasses b = new bestclasses(rs.getString("cID"), rs.getString("classname"),rs.getInt("numberofstudent"),rs.getInt("count"),rs.getInt("years"));
+                bestclasses b = new bestclasses(rs.getString("cID"), rs.getString("classname"), rs.getInt("numberofstudent"), rs.getInt("count"), rs.getInt("years"));
                 list.add(b);
             }
         } catch (SQLException e) {

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.mark;
+import model.years;
 
 /**
  *
@@ -31,6 +32,28 @@ public class markDAO extends DBContext{
         return list;
     }
     
+    public ArrayList<years> getyear(){
+        ArrayList<years> list = new ArrayList<>();
+        String sql = "select distinct years from mark";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                years y = new years(rs.getInt("years"));
+                list.add(y);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return list;
+    }
+        public ArrayList<mark> getlistbypage(ArrayList<mark> list,int start,int end){
+        ArrayList<mark> arr = new ArrayList<>();
+        for(int i=start;i<end;i++){
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
     public mark get1mark(String sid,int year){
         String sql = "select * from mark where sID=? and years=?";
         try{
