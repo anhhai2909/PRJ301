@@ -1,0 +1,34 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 26-06-2023, 03:47:24
+    Author     : anhha
+*/
+
+.pagination{
+    text-align: center;
+    margin-top:10px;
+}
+.page-link{
+    border: 1px solid #ACACAD;
+    color:#7A6FF3;
+    text-decoration: none;
+    background-color: white;
+}
+.page-link1{
+    border: 1px solid #ACACAD;
+    color:#7A6FF3;
+    text-decoration: none;
+    background-color: white;
+}
+.pagination a:hover{
+    background-color: #F3F3F3;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #6C71FF;
+    color:white; 
+}

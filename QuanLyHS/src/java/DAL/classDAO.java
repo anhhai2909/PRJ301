@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Student;
 import model.classes;
 
 /**
@@ -17,7 +18,7 @@ import model.classes;
 public class classDAO extends DBContext{
     public ArrayList<classes> getclass(){
         ArrayList<classes> list = new ArrayList<>();
-        String sql = "select * from class";
+        String sql = "select * from class where cID!='0'";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -30,6 +31,36 @@ public class classDAO extends DBContext{
         }
         return list;
     }
+    public ArrayList<Student> getstudentbyclass(String cid){
+        ArrayList<Student> list = new ArrayList<>();
+        String sql = "select * from Student where cID=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, cid);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Student s = new Student(rs.getString("sID"),
+                                        rs.getString("name"),
+                                        rs.getInt("gender"),
+                                        rs.getDate("dob"),
+                                        rs.getString("homeaddress"),
+                                        rs.getString("idnumber"),
+                                        rs.getString("email"),
+                                        rs.getString("phone"),
+                                        rs.getString("prname"),
+                                        rs.getString("prphone"),
+                                        rs.getString("imgaddress"),
+                                        rs.getString("cID")
+                );
+                list.add(s);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return list;
+    }
+   
+    
     public classes get1class(String id){
         String sql = "select * from class where cID = ?";
         try{

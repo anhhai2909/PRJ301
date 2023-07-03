@@ -5,9 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "model.teacher"%>
-<%@page import = "model.classes"%>
-<%@page import = "java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -48,7 +45,7 @@
                                         <td class="col-md-3">${i.name}</td>
                                         <td class="col-md-3">${i.numofst}</td>
                                         <td class="col-md-2">${i.tid}</td>
-                                        <td class="col-md-2" style="padding-left: 0"><a href="#" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
+                                        <td class="col-md-2" style="padding-left: 0"><a href="classprofile?cid=${i.cid}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

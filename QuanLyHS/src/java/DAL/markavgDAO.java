@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.bestclasses;
+import model.classes;
 import model.markavg;
+import model.years;
 
 /**
  *
@@ -28,6 +30,57 @@ public class markavgDAO extends DBContext {
             while (rs.next()) {           
                 markavg m = new markavg(rs.getString("sID"), rs.getString("cID"), (double) Math.ceil(rs.getDouble("avgm") * 10) / 10, rs.getInt("years"));
                 list.add(m);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+     public markavg get1avg(int years,String sid) {
+        String sql = "select * from markavg where years=? and sID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, years);
+            st.setString(2, sid);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {           
+                markavg m = new markavg(rs.getString("sID"), rs.getString("cID"), (double) Math.ceil(rs.getDouble("avgm") * 10) / 10, rs.getInt("years"));
+                return m;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public ArrayList<years> getyears() {
+        ArrayList<years> list = new ArrayList();
+        String sql = "select distinct years from markavg";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {           
+                years y = new years(rs.getInt("years"));
+                list.add(y);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public ArrayList<classes> getclass(int year){
+        ArrayList<classes> list = new ArrayList();
+        String sql = "select distinct cID from markavg where years = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, year);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {           
+                classes c = new classes(rs.getString("cID"),null , 0,null);
+                list.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);

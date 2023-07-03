@@ -54,12 +54,13 @@ public class markDAO extends DBContext{
         }
         return arr;
     }
-    public mark get1mark(String sid,int year){
-        String sql = "select * from mark where sID=? and years=?";
+    public mark get1mark(String sid,String suid,int year){
+        String sql = "select * from mark where sID=? and suID=? and years=?";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, sid);
-            st.setInt(2,year);
+            st.setString(2, suid);
+            st.setInt(3,year);
             ResultSet rs = st.executeQuery();
             if(rs.next()){
                 mark m = new mark(rs.getDouble("m1"), rs.getDouble("m2"), rs.getDouble("pt1"), rs.getDouble("pt2"), rs.getDouble("mt"), rs.getDouble("fe"), rs.getDouble("avag"),rs.getInt("rating"), rs.getString("suID"), rs.getString("sID"), rs.getInt("years"));

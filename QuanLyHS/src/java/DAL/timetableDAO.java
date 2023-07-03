@@ -7,7 +7,6 @@ package DAL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import model.timetable;
 
 /**
@@ -16,15 +15,17 @@ import model.timetable;
  */
 public class timetableDAO extends DBContext {
 
-    public ArrayList<timetable> gettimetalbe() {
-        ArrayList<timetable> list = new ArrayList<>();
-        String sql = "select *from timetable";
+    public String[] gettimetalbe(String cid,String tt) {
+        String[] list = new String[6];
+        String sql = "select *from timetable where cID=? and tt=? order by slot asc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, cid);
+            st.setString(2, tt);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                timetable t = new timetable(rs.getString("tt"), rs.getInt("slot"), rs.getString("suID"), rs.getString("cID"));
-                list.add(t);
+                int s = Integer.parseInt(rs.getString("slot"));
+                list[s-1] = rs.getString("suID");
             }
         } catch (SQLException e) {
             System.out.println(e);

@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "model.teacher"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -63,7 +62,7 @@
                                         <td class="col-md-2" style="text-align: center">${i.suid}</td>
                                         <td class="col-md-2" style="text-align: center">${i.name}</td>
                                         <td class="col-md-6">${i.descript}</td>     
-                                        <th class="col-md-2" style="text-align: center"><a href="#" class="option-icon"><i class="fa-solid fa-pen"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></th>
+                                        <th class="col-md-2" style="text-align: center"><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></th>
                                     </tr>
                                 </c:forEach>
                             </tbody>

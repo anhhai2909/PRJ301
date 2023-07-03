@@ -57,7 +57,6 @@
                 <ul class="stlist-option" id ="menudropdown4">
                     <li><a href="marklist" style="color:black;text-decoration: none;">Danh sách điểm</a></li>
                     <li><a href="markavg" style="color:black;text-decoration: none;">Điểm trung bình</a></li>
-                    <li>Sửa điểm</li>
                      
                 </ul>
 
@@ -66,9 +65,8 @@
                     <p>Thời Khóa Biểu</p>
                 </li>
                 <ul class="stlist-option" id ="menudropdown5">
-                    <li>Xem TKB</li>
+                    <li><a href="timetable" style="color:black;text-decoration: none;">TKB</a></li>
                     <li>Thêm TKB</li>
-                    <li>Sửa</li>
                 </ul>
 
 

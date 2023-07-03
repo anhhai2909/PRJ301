@@ -5,8 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "model.teacher"%>
-<%@page import = "model.subject"%>
 <!DOCTYPE html>
 <html>
     <head>

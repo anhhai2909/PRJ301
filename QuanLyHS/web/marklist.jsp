@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "model.teacher"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -79,23 +78,25 @@
                                     <th class="col-md-1">m2</th>
                                     <th class="col-md-1">pt1</th>
                                     <th class="col-md-1">pt2</th>
-                                    <th class="col-md-2">mt</th>
+                                    <th class="col-md-1">mt</th>
                                     <th class="col-md-2">fe</th>
-                                    <th class="col-md-2">avg</th>                                   
+                                    <th class="col-md-1">avg</th>         
+                                    <th class="col-md-2">Tùy chọn</th>
                                 </tr>
                             </thead>
 
                             <tbody style="text-align: center">
                                 <c:forEach items="${requestScope.list}" var="i">
-                                    <tr class="row table-body" style="width:100%;;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
-                                        <th class="col-md-2">${i.sid}</th>
-                                        <th class="col-md-1">${i.m1}</th>
-                                        <th class="col-md-1">${i.m2}</th>
-                                        <th class="col-md-1">${i.pt1}</th>
-                                        <th class="col-md-1">${i.pt2}</th>
-                                        <th class="col-md-2">${i.mt}</th>
-                                        <th class="col-md-2">${i.fe}</th>
-                                        <th class="col-md-2">${i.avag}</th> 
+                                    <tr class="row table-body" style="width:100%;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;font-weight: 500;line-height: 40px">
+                                        <th class="col-md-2" style="margin: auto 0">${i.sid}</th>
+                                        <th class="col-md-1" style="margin: auto 0">${i.m1}</th>
+                                        <th class="col-md-1" style="margin: auto 0">${i.m2}</th>
+                                        <th class="col-md-1" style="margin: auto 0">${i.pt1}</th>
+                                        <th class="col-md-1" style="margin: auto 0">${i.pt2}</th>
+                                        <th class="col-md-1" style="margin: auto 0">${i.mt}</th>
+                                        <th class="col-md-2" style="margin: auto 0">${i.fe}</th>
+                                        <th class="col-md-1" style="margin: auto 0">${i.avag}</th> 
+                                        <td class="col-md-2" style="padding-left: 0;margin: auto 0"><a href="markupdate?sid=${i.sid}&suid=${i.suid}&years=${i.years}" class="option-icon"><i class="fa-solid fa-pen"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

@@ -5,9 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "model.teacher"%>
-<%@page import = "model.Student"%>
-<%@page import = "java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -66,11 +63,17 @@
                                     <tr class="row table-body" style="margin-top:10px">
                                         <td class="col-md-1">${i.sID}</td>
                                         <td class="col-md-3">${i.name}</td>
-                                        <td class="col-md-1">${i.gender}</td>
+                                        <c:set var = "g" scope = "request" value = "${i.gender}"/>
+                                        <c:if test="${g==1}">
+                                            <td class="col-md-1">Nam</td>
+                                        </c:if>
+                                        <c:if test="${g==0}">
+                                            <td class="col-md-1">Nữ</td>
+                                        </c:if>
                                         <td class="col-md-2">${i.dob}</td>
                                         <td class="col-md-2">${i.email}</td>
                                         <td class="col-md-2">${i.phone}</td>
-                                        <td class="col-md-1" style="padding-left: 0"><a href="#" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-pen"></i></a></td>
+                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -78,6 +81,8 @@
                     </div>
 
                 </div>
+                
+                
                 <div style="margin-bottom:100px">
                     <c:set var="page" value="${requestScope.page}"/>
                     <div class="pagination">

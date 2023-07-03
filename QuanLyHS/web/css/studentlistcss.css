@@ -45,6 +45,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     text-decoration: none;
     background-color: white;
 }
+
 .pagination a:hover{
     background-color: #F3F3F3;
     text-decoration: none;
@@ -61,4 +62,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 .option-icon{
     color:#3F3F3F;
     margin: 4px;
+}
+.option-icon:hover{
+    background-color: white;
 }
