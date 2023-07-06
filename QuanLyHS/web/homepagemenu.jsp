@@ -66,7 +66,7 @@
                 </li>
                 <ul class="stlist-option" id ="menudropdown5">
                     <li><a href="timetable" style="color:black;text-decoration: none;">TKB</a></li>
-                    <li>Thêm TKB</li>
+                    <li><a href="addtimetable" style="color:black;text-decoration: none;">Thêm TKB</a></li>
                 </ul>
 
 
@@ -78,7 +78,6 @@
                 var a = document.getElementById('dropdown');
                 if (a.style.display !== 'block') {
                     a.style.display = 'block';
-
                 } else {
                     a.style.display = 'none';
                 }

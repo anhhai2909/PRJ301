@@ -14,6 +14,7 @@
         <title>JSP Page</title>
         <link href="./font/cssfont/css/all.min.css" rel="stylesheet">
         <link href="css/homecss.css" rel="stylesheet">        
+        <link href="css/markavgcss.css" rel="stylesheet">        
         <link href="css/classlistcss.css" rel="stylesheet">     
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
@@ -22,12 +23,23 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="padding-right: 25px;margin-bottom: 100px" >
-                <div>
-                    <h3 style="padding:20px;width:200px">Lớp học</h3>
+                <div style="background-color: white;border-radius: 10px;width: 90%;margin: 50px auto 10px auto;padding: 20px 0 20px 0">
+                    <div>
+                        <div class="pagination" style="margin-left:20px">
+                            <p style="width: 100px;text-align: left;font-weight: 500;line-height: 30px;margin:auto 0">Năm học </p>
+                            <c:forEach items="${requestScope.list2}" var="i">
+                                <a id="page-${i.year}" class="page-link" href="classlist?y=${i.year}" style="border:1px solid #DFDFDF;padding:5px 10px 2px 10px;border-radius: 5px;line-height: 30px;width:70px">${i.year}</a>
+                            </c:forEach>                      
+                        </div>
+                    </div>
                 </div>
-                <div style="background-color: white;border-radius: 10px;margin-bottom: 100px;padding-bottom: 50px">
-                    <div style="padding-top: 40px">
-                        <table style="width:90%;margin:0 auto">
+                
+                <div style="background-color: white;border-radius: 10px;margin-bottom: 100px;padding-bottom: 50px;width: 90%;margin: 10px auto 70px auto">
+                    <div>
+                        <h3 style="padding:20px;width:200px;padding-top: 40px">Lớp học</h3>
+                    </div>
+                    <div style="padding-top: 20px">
+                        <table style="width:80%;margin:0 auto">
                             <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                 <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
                                     <th class="col-md-2">Mã lớp</th>
@@ -45,7 +57,7 @@
                                         <td class="col-md-3">${i.name}</td>
                                         <td class="col-md-3">${i.numofst}</td>
                                         <td class="col-md-2">${i.tid}</td>
-                                        <td class="col-md-2" style="padding-left: 0"><a href="classprofile?cid=${i.cid}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
+                                        <td class="col-md-2" style="padding-left: 0"><a href="classprofile?cid=${i.cid}&y=${requestScope.y}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="deleteclass?cid=${i.cid}&y=${requestScope.y}" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -54,5 +66,19 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var currentPage = "${requestScope.y}";
+                var pageLinks = document.getElementsByClassName("page-link");
+                for (var i = 0; i < pageLinks.length; i++) {
+                    var pageLink = pageLinks[i];
+                    var pageNumber = pageLink.innerHTML;
+
+                    if (pageNumber === currentPage) {
+                        pageLink.classList.add("active");
+                    }
+                }                             
+            });
+        </script>
     </body>
 </html>

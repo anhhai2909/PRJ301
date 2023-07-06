@@ -65,4 +65,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 .option-icon:hover{
     background-color: white;
+    color:#007bff;
+}
+.updatebutton i:hover{
+    cursor: pointer;
+    color:#007bff;
 }

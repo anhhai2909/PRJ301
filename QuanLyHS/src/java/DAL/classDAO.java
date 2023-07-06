@@ -18,7 +18,7 @@ import model.classes;
 public class classDAO extends DBContext{
     public ArrayList<classes> getclass(){
         ArrayList<classes> list = new ArrayList<>();
-        String sql = "select * from class where cID!='0'";
+        String sql = "select distinct cID,classname,numberofstudent,tID from classes where years = (select distinct top 1 years from classes order by years desc)";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -31,7 +31,43 @@ public class classDAO extends DBContext{
         }
         return list;
     }
-    public ArrayList<Student> getstudentbyclass(String cid){
+    
+    public ArrayList<classes> getclassbyyear(int y){
+        ArrayList<classes> list = new ArrayList<>();
+        String sql = "  select * from classes where years = ?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,y);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                classes c = new classes(rs.getString("cID"), rs.getString("classname"), rs.getInt("numberofstudent"), rs.getString("tID"));
+                list.add(c);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public classes get1classbycidandyear(String id,int year){
+       String sql = "  select * from classes where cID = ? and years = ? ";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1,id);
+            st.setInt(2,year);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                classes c = new classes(rs.getString("cID"), rs.getString("classname"), rs.getInt("numberofstudent"), rs.getString("tID"));
+                return c;
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    
+    public int getnumberofstudentbyclass(String cid){
         ArrayList<Student> list = new ArrayList<>();
         String sql = "select * from Student where cID=?";
         try{
@@ -57,25 +93,9 @@ public class classDAO extends DBContext{
         }catch(SQLException e){
             System.out.println(e);
         }
-        return list;
-    }
-   
+        return list.size();
+    }        
     
-    public classes get1class(String id){
-        String sql = "select * from class where cID = ?";
-        try{
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1,id);
-            ResultSet rs = st.executeQuery();
-            if(rs.next()){
-                classes c = new classes(rs.getString("cID"), rs.getString("classname"), rs.getInt("numberofstudent"), rs.getString("tID"));
-                return c;
-            }
-        }catch(SQLException e){
-            System.out.println(e);
-        }
-        return null;
-    }
     public void insertclass(classes c){
         String sql = "insert into class values(?,?,?,?)";
         try{
@@ -89,14 +109,30 @@ public class classDAO extends DBContext{
             System.out.println(e);
         }
     }
-    public void updateclass(classes c){
-        String sql="update class set cID=?,classname=?,numberofstudent=?,tID=?";
+    
+    public void insertclasstoclasshistory(classes c,int years){
+        String sql = "insert into classes values(?,?,?,?,?)";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, c.getCid());
             st.setString(2, c.getName());
             st.setInt(3, c.getNumofst());
             st.setString(4,c.getTid());
+            st.setInt(5,years);
+            st.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    public void updateclass(String name,String tid,String cid,int years){
+        String sql="update classes set classname=?, tID=? where cid=? and years=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);       
+            st.setString(1, name);
+            st.setString(2, tid);
+            st.setString(3, cid);
+            st.setInt(4,years);
+            
             st.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);
@@ -112,4 +148,16 @@ public class classDAO extends DBContext{
             System.out.println(e);
         }
     }
+    public void deleteclasshistory(String id,int years){
+        String sql= "delete from classes where cID=? and years=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1,id);
+            st.setInt(2,years);
+            st.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+
 }

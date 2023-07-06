@@ -24,11 +24,11 @@
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10" style="background-color: #f7f7fa;margin-bottom: 100px">
 
-                <div>
-                    <h3 style="padding:20px;width:300px">Sửa TKB</h3>
-                </div>
-                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px;padding-top: 30px;margin-bottom: 70px;margin-right: 10px">
-                    <div style="padding-top: 20px">
+                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px;padding-top: 30px;margin-bottom: 70px;margin-right: 10px;margin-top: 50px">
+                    <div>
+                        <h3 style="padding:20px;width:300px">Sửa TKB</h3>
+                    </div>
+                    <div style="padding-top: 10px">
                         <form action="" method="">
                             <div style="text-align: right;margin-bottom: 10px">
                                 <input type="submit" value="Xác nhận" style="margin-right: 65px"/>

@@ -42,5 +42,10 @@ public class subject {
     public void setDescript(String descript) {
         this.descript = descript;
     }
+
+    @Override
+    public String toString() {
+        return "subject{" + "suid=" + suid + ", name=" + name + ", descript=" + descript + '}';
+    }
     
 }

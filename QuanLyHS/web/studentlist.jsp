@@ -22,7 +22,7 @@
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123"  style="margin-bottom: 100px">
                 <div style="margin-top: 30px">
-                    <form action="" method="get">
+                    <form action="stsearch" method="get">
                         <div class="row">
                             <div class="col-md-4 search" style="text-align: center">
                                 <input type="text" name="id" placeholder="Tìm theo mã HS..."/>
@@ -86,7 +86,7 @@
                 <div style="margin-bottom:100px">
                     <c:set var="page" value="${requestScope.page}"/>
                     <div class="pagination">
-                        <c:forEach begin="${1}" end="${requestScope.num}" var="i">
+                        <c:forEach items="${requestScope.pagelist}" var="i">
                             <a id="page-${i}" class="page-link" href="studentlist?page=${i}">${i}</a>
                         </c:forEach>
                     </div>

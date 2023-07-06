@@ -21,21 +21,21 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="margin-bottom: 100px">
-                <div>
-                    <h3 style="padding:20px;width:300px">Thông tin học sinh</h3>
-                </div>
 
                 <div>
-                    <div class="row" style="margin-top:30px;margin-bottom: 90px;">
+                    <div class="row" style="margin-top:50px;margin-bottom: 90px;">
                         <div class="col-md-3">
                             <div style="text-align: center">
-                                <img src="${requestScope.student.imgaddress}" style="width:230px;height:270px;object-fit: cover;margin-top: 60px;box-shadow: 0.5px 0.5px 1px 1px"/>
+                                <div style="background-color: white;border-radius: 15px;width: 100%;margin: 0 auto 0 auto">
+                                    <h3 style="padding:20px;width:300px">Thông tin học sinh</h3>
+                                </div>
+                                <img src="${requestScope.student.imgaddress}" style="width:230px;height:270px;object-fit: cover;margin-top: 30px;box-shadow: 0.5px 0.5px 1px 1px"/>
                             </div>                           
                         </div>
 
                         <div class="col-md-9">
 
-                            <div style="background-color: white;border-radius: 15px;width:95%;padding:15px 40px 30px 10px">
+                            <div style="background-color: white;border-radius: 15px;width:95%;padding:15px 20px 30px 10px">
                                 <div style="text-align: right;margin-bottom: 20px">
                                     <a href="stprofileupdate?sid=${requestScope.student.sID}"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </div>

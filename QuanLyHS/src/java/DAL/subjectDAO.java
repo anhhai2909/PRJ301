@@ -31,7 +31,44 @@ public class subjectDAO extends DBContext {
         }
         return list;
     }
-
+    public ArrayList<subject> searchsubject(String suid,String name) {
+        ArrayList<subject> list = new ArrayList<>();
+        String sql = "select * from subject where suID like ? and name like ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%"+suid+"%");
+            st.setString(2, "%"+name+"%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                subject s = new subject(rs.getString("suID"), rs.getString("name"), rs.getString("descript"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public ArrayList<subject> getsubjectbyyearandclass(int years,String cid) {
+        ArrayList<subject> list = new ArrayList<>();
+        String sql = "select distinct subject.suID,name,descript " +
+                    "from subject join mark on mark.suID = subject.suID join class on class.cID = mark.cID " +
+                    "where mark.years = ? and mark.cID =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, years);
+            st.setString(2, cid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                subject s = new subject(rs.getString("suID"), rs.getString("name"), rs.getString("descript"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
     public subject get1subject(String id) {
         String sql = "select * from subject where suID=?";
         try {

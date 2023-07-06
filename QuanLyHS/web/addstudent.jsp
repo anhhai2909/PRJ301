@@ -22,10 +22,10 @@
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10" style="background-color: #f7f7fa;margin-bottom: 100px">
                 <div>
-                    <h3 style="margin: 20px">Thêm Học Sinh</h3>
-                </div>
-                <div>
-                    <form action="" method="get" style="width: 90%; background-color: white;margin-left: auto ;margin-right: auto;margin-bottom: 50px;border-radius: 10px;padding:40px 0;">
+                    <form action="" method="get" style="width: 90%; background-color: white;margin-left: auto ;margin-right: auto;margin-bottom: 50px;border-radius: 10px;padding:20px 0;margin-top: 50px">
+                        <div>
+                            <h3 style="margin-left: 30px">Thêm Học Sinh</h3>
+                        </div>
                         <div class="row" ">
                             <div class="col-md-6">
                                 <div style="width:80%" >
@@ -36,7 +36,7 @@
                                     <div class="row" style="margin:20px 0">
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">Họ và tên </p><input class="col-md-8" type="text" name="name" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"/>
                                     </div>
-                                    
+
                                     <div class="row" style="margin:20px 0">
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">Niên khóa </p><div class="col-md-8" style="padding:0"><input  type="date" name="datein" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF;width:48%"/>~<input  type="date" name="dateout" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF;width:48%"/></div>
                                     </div>

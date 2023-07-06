@@ -5,9 +5,9 @@
 
 package controller;
 
-import DAL.StudentDAO;
 import DAL.classDAO;
-import DAL.teacherDAO;
+import DAL.markavgDAO;
+import DAL.yearsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,16 +16,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Student;
 import model.classes;
-import model.teacher;
+import model.markavg;
+import model.years;
 
 /**
  *
  * @author anhha
  */
-@WebServlet(name="classprofileservlet", urlPatterns={"/classprofile"})
-public class classprofileservlet extends HttpServlet {
+@WebServlet(name="markavgsearchservlet", urlPatterns={"/markavgsearch"})
+public class markavgsearchservlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,10 +42,10 @@ public class classprofileservlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet classprofileservlet</title>");  
+            out.println("<title>Servlet markavgsearchservlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet classprofileservlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet markavgsearchservlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,19 +62,38 @@ public class classprofileservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        classDAO d = new classDAO();
-        StudentDAO d1 = new StudentDAO();
-        teacherDAO d2 = new teacherDAO();
+        markavgDAO d = new markavgDAO();
+        yearsDAO d2 = new yearsDAO();
+        String searchsid = request.getParameter("searchsid");
+        String searchsname = request.getParameter("searchsname");
+        String searchyears = request.getParameter("searchyears");
+        ArrayList<markavg> list = d.getavgbysidsnameandyear(searchsid, searchsname, searchyears);
+        classDAO d1 = new classDAO();
+        String ys = request.getParameter("y");
+        int y;
         String cid = request.getParameter("cid");
-        int y =Integer.parseInt(request.getParameter("y"));
-        classes c = d.get1classbycidandyear(cid, y);
-        ArrayList<Student> list  = d1.getstudentbyclassandyear(cid, y);
-        ArrayList<String> list2 = d2.getfreeteacher(y);
-        request.setAttribute("y",y);
-        request.setAttribute("classes", c);
-        request.setAttribute("list",list);
-        request.setAttribute("list2",list2);
-        request.getRequestDispatcher("classprofile.jsp").forward(request, response);
+        String cids;
+        if (ys == null) {
+            y = 2019;
+        } else {
+            y = Integer.parseInt(ys);
+        }
+        if (cid == null) {
+            cids = "10a1";
+        } else {
+            cids = cid;
+        }
+        ArrayList<years> list3 = d2.getyear();
+        ArrayList<classes> list2 = d1.getclassbyyear(y);
+
+        request.setAttribute("c", cids);
+        request.setAttribute("year", y);
+
+        request.setAttribute("list2", list2);
+        request.setAttribute("list3", list3);
+
+        request.setAttribute("list", list);
+        request.getRequestDispatcher("markavg.jsp").forward(request, response);
     } 
 
     /** 

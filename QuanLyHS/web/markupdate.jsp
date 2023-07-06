@@ -21,12 +21,13 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="margin-bottom: 100px">
-                <div>
-                    <h3 style="padding:20px;width:300px">Sửa điểm</h3>
-                </div>
 
-                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px">
-                    <div style="padding-top: 40px">
+                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px;margin-top: 50px;margin-bottom: 60px">
+                    <div>
+                        <h3 style="padding:20px;width:300px;padding-top: 30px">Sửa điểm</h3>
+                    </div>
+                    
+                    <div>
                         <form action="" method="">
                             <table style="width:90%;margin:0 auto">
                                 <thead style="text-align: center;width:100%;background-color: #FBFBFB">

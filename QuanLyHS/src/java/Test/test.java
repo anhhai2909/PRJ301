@@ -4,16 +4,22 @@
  */
 package Test;
 
+import DAL.StudentDAO;
 import DAL.accountDAO;
 import DAL.beststudentDAO;
 import DAL.classDAO;
+import DAL.markDAO;
 import DAL.markavgDAO;
+import DAL.subjectDAO;
 import DAL.teacherDAO;
 import java.util.ArrayList;
+import model.Student;
 import model.bestclasses;
 import model.beststudent;
 import model.classes;
+import model.mark;
 import model.markavg;
+import model.subject;
 import model.teacher;
 
 /**
@@ -26,10 +32,11 @@ public class test {
         markavgDAO d = new markavgDAO();
         teacherDAO d1 = new teacherDAO();
         classDAO d2 = new classDAO();
-        ArrayList<markavg> l = d.getavg(2019,"10a1");
-        for (markavg i : l) {
-            System.out.println(d.getmaxyear());
+        StudentDAO d4 = new StudentDAO();
+        subjectDAO d5 = new subjectDAO();       
+        ArrayList<String> l = d1.getfreeteacher(2018);
+        for(int i =0 ; i< l.size();i++){
+            System.out.println(l.get(i));
         }
-
     }
 }

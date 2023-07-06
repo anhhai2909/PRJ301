@@ -43,6 +43,66 @@ public class StudentDAO extends DBContext{
         return list;
     }
     
+    public ArrayList<Student> getstudentbyclassandyear(String cid,int years){
+        ArrayList<Student> list = new ArrayList<>();
+        String sql = "  select Student.sID,Student.name,Student.gender,Student.dob,Student.homeaddress,Student.idnumber,Student.email,Student.phone,Student.prname,Student.prphone,Student.imgaddress,Student.cID " +
+                        "  from Student join learninghistory on learninghistory.sID = Student.sID " +
+                        "  where learninghistory.cID = ? and learninghistory.years=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, cid);
+            st.setInt(2, years);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Student s = new Student(rs.getString("sID"),
+                                        rs.getString("name"),
+                                        rs.getInt("gender"),
+                                        rs.getDate("dob"),
+                                        rs.getString("homeaddress"),
+                                        rs.getString("idnumber"),
+                                        rs.getString("email"),
+                                        rs.getString("phone"),
+                                        rs.getString("prname"),
+                                        rs.getString("prphone"),
+                                        rs.getString("imgaddress"),
+                                        rs.getString("cID")
+                );
+                list.add(s);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return list;
+    }
+    public ArrayList<Student> searchStudent(String sid,String name) {
+        ArrayList<Student> list = new ArrayList<>();
+        String sql = " select * from Student where sID like ? and name like ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%"+sid+"%");
+            st.setString(2, "%"+name+"%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Student s = new Student(rs.getString("sID"),
+                                        rs.getString("name"),
+                                        rs.getInt("gender"),
+                                        rs.getDate("dob"),
+                                        rs.getString("homeaddress"),
+                                        rs.getString("idnumber"),
+                                        rs.getString("email"),
+                                        rs.getString("phone"),
+                                        rs.getString("prname"),
+                                        rs.getString("prphone"),
+                                        rs.getString("imgaddress"),
+                                        rs.getString("cID"));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
     public ArrayList<Student> getlistbypage(ArrayList<Student> list,int start,int end){
         ArrayList<Student> arr = new ArrayList<>();
         for(int i=start;i<end;i++){

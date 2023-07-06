@@ -12,18 +12,16 @@ public class teacher {
     private String tid;
     private String name;
     private String email;
-    private int position;
     private String imgaddress;
 
     public teacher() {
     }
 
     
-    public teacher(String tid, String name, String email, int position, String imgaddress) {
+    public teacher(String tid, String name, String email, String imgaddress) {
         this.tid = tid;
         this.name = name;
         this.email = email;
-        this.position = position;
         this.imgaddress = imgaddress;
     }
 
@@ -51,14 +49,6 @@ public class teacher {
         this.email = email;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
     public String getImgaddress() {
         return imgaddress;
     }
@@ -69,7 +59,7 @@ public class teacher {
 
     @Override
     public String toString() {
-        return "teacher{" + "tid=" + tid + ", name=" + name + ", email=" + email + ", position=" + position + ", imgaddress=" + imgaddress + '}';
+        return "teacher{" + "tid=" + tid + ", name=" + name + ", email=" + email + ", imgaddress=" + imgaddress + '}';
     }
     
     

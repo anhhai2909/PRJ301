@@ -19,8 +19,8 @@ import model.Student;
  *
  * @author anhha
  */
-@WebServlet(name = "studentlistservlet", urlPatterns = {"/studentlist"})
-public class studentlistservlet extends HttpServlet {
+@WebServlet(name = "stsearchservlet", urlPatterns = {"/stsearch"})
+public class stsearchservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +36,15 @@ public class studentlistservlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet stsearchservlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet stsearchservlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -53,25 +61,11 @@ public class studentlistservlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         StudentDAO d = new StudentDAO();
-        ArrayList<Student> list = d.getStudent();       
-        int page, numperpage = 10;
-        int size = list.size();
-        int num = (size%numperpage==0?(size/numperpage):((size/numperpage)+1));
-        String pages = request.getParameter("page");
-        if (pages == null) {
-            page = 1;
-        } else {
-            page = Integer.parseInt(pages);
-        }
-        int start, end;
-        start = (page - 1) * numperpage;
-        end = Math.min(page * numperpage, size);
-        ArrayList<Student> listperpage =  d.getlistbypage(list, start, end);
-        request.setAttribute("list", listperpage);
-        request.setAttribute("num", num);
-        request.setAttribute("page", page);
+        String sid = request.getParameter("id");
+        String name = request.getParameter("name");
+        ArrayList<Student> list = d.searchStudent(sid, name);
+        request.setAttribute("list", list);
         request.getRequestDispatcher("studentlist.jsp").forward(request, response);
-     
     }
 
     /**
@@ -85,8 +79,7 @@ public class studentlistservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-
+        processRequest(request, response);
     }
 
     /**

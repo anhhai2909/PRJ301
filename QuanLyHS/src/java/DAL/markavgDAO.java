@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.bestclasses;
-import model.classes;
 import model.markavg;
 import model.years;
 
@@ -19,13 +18,34 @@ import model.years;
  */
 public class markavgDAO extends DBContext {
 
-    public ArrayList<markavg> getavg(int years,String cid) {
+    public ArrayList<markavg> getavgbyyearandcid(int years,String cid) {
         ArrayList<markavg> list = new ArrayList();
         String sql = "select * from markavg where years=? and cid = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, years);
             st.setString(2, cid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {           
+                markavg m = new markavg(rs.getString("sID"), rs.getString("cID"), (double) Math.ceil(rs.getDouble("avgm") * 10) / 10, rs.getInt("years"));
+                list.add(m);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public ArrayList<markavg> getavgbysidsnameandyear(String sid,String name,String year) {
+        ArrayList<markavg> list = new ArrayList();
+        String sql = "select markavg.sID,markavg.cID,markavg.avgm,markavg.years " +
+                        "from markavg join Student on Student.sID = markavg.sID " +
+                        "where markavg.sID like ? and name like ? and markavg.years like ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%"+sid+"%");
+            st.setString(2, "%"+name+"%");
+            st.setString(3, "%"+year+"%");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {           
                 markavg m = new markavg(rs.getString("sID"), rs.getString("cID"), (double) Math.ceil(rs.getDouble("avgm") * 10) / 10, rs.getInt("years"));
@@ -52,41 +72,7 @@ public class markavgDAO extends DBContext {
             System.out.println(e);
         }
         return null;
-    }
-    
-    public ArrayList<years> getyears() {
-        ArrayList<years> list = new ArrayList();
-        String sql = "select distinct years from markavg";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {           
-                years y = new years(rs.getInt("years"));
-                list.add(y);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
-    
-    public ArrayList<classes> getclass(int year){
-        ArrayList<classes> list = new ArrayList();
-        String sql = "select distinct cID from markavg where years = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, year);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {           
-                classes c = new classes(rs.getString("cID"),null , 0,null);
-                list.add(c);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
+    }   
 
     public int getmaxyear() {
         String sql = "select top 1 years from markavg order by years desc";

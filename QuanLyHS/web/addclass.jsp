@@ -23,25 +23,49 @@
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123"  style="margin-bottom: 100px">
                 <div>
-                    <h3 style="padding:20px;width:300px">Thêm lớp học</h3>
-                </div>
-                <div>
-                    <div style="background-color: white;width:600px;padding:20px 40px 20px 40px;border-radius: 15px;margin:50px auto 150px auto">
-                        <form action="" method="get">
-                            <div style="margin: 20px">
-                                <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px">Mã lớp</p>
+                    <div style="background-color: white;width:900px;padding:20px 40px 20px 40px;border-radius: 15px;margin:50px auto 150px auto">
+                        <div>
+                            <h3 style="padding:20px;width:300px">Thêm lớp học</h3>
+                        </div>
+                        <div style="text-align: center">
+                            <p style="color:red">${Error}</p>
+                        </div>
+                        <div style="text-align: center">
+                            <p style="color:green">${txt}</p>
+                        </div>
+                        <form action="addclass" method="post">
+                            <div style="margin: 20px;display: flex">
+                                <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px;line-height: 40px;margin-right: 50px;width: 85px">Mã lớp</p>
                                 <div style="text-align: center">
-                                    <input  type="text" name="cid" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px"/>
+                                    <input  type="text" name="cid" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px" required/>
                                 </div>
                             </div>
 
-                            <div style="margin: 20px">
-                                <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px">Tên lớp</p>
+                            <div style="margin: 20px;display: flex">
+                                <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px ;line-height: 40px;margin-right: 50px;width: 85px">Tên lớp</p>
                                 <div style="text-align: center">
-                                    <input type="text" name="name" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px"/>
+                                    <input type="text" name="name" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px" required/>
                                 </div>
                             </div>
-                            <div style="text-align: center">
+                            
+                            <div style="margin: 20px;display: flex">
+                                <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px ;line-height: 40px;margin-right: 50px;width: 85px">Năm học</p>
+                                <div style="text-align: center">
+                                    <input type="text" name="year" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px"required/>
+                                </div>
+                            </div>
+                            
+                            <div style="margin: 20px;display: flex">
+                                <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px ;line-height: 40px;margin-right: 50px;width: 85px">GVCN</p>
+                                <div>
+                                    <select name="tid" style="width: 80px;text-align: center;height: 35px;margin-top: 6px;margin-left: 30px;border-radius: 10px">
+                                        <c:forEach items="${requestScope.list}" var="i">
+                                            <option value="${i.tid}">${i.tid}</option>
+                                        </c:forEach>
+                                    </select>                           
+                                </div>
+                            </div>
+                            <div style="text-align: center;margin-bottom: 30px">
                                 <input class="submitbut" type="submit" value="Xác nhận" style="line-height: 40px;width: 150px;border-radius: 10px;border: 1px solid #DFDFDF;background-color: #3d5ee1;color: white"/>
                             </div>
                         </form>

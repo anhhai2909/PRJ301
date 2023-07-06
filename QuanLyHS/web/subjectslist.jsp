@@ -21,15 +21,12 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="margin-bottom: 100px">
-                <div>
-                    <h3 style="padding:20px;width:200px">Môn học</h3>
-                </div>
-                
-                <div style="margin-top: 30px;margin-bottom: 40px">
-                    <form action="" method="get">
+
+                <div style="margin-top: 30px;margin-bottom: 20px">
+                    <form action="subjectsearch" method="get">
                         <div class="row">
                             <div class="col-md-4 search" style="text-align: center">
-                                <input type="text" name="id" placeholder="Tìm theo mã..."/>
+                                <input type="text" name="suid" placeholder="Tìm theo mã..."/>
                             </div>
 
                             <div class="col-md-4 search" style="text-align: center">
@@ -42,10 +39,12 @@
                         </div>
                     </form>
                 </div>
-                
-                
+
                 <div style="background-color: white;border-radius: 10px;margin-bottom: 100px;padding-bottom: 50px">
-                    <div style="padding-top: 40px">
+                    <div>
+                        <h3 style="padding:20px;width:200px;padding-top: 50px">Môn học</h3>
+                    </div>
+                    <div style="padding-top: 20px">
                         <table style="width:90%;margin:0 auto">
                             <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                 <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
@@ -55,7 +54,7 @@
                                     <th class="col-md-2">Tùy chọn</th>
                                 </tr>
                             </thead>
-
+                            
                             <tbody>
                                 <c:forEach items="${requestScope.list}" var="i">
                                     <tr class="row table-body" style="width:100%;;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">

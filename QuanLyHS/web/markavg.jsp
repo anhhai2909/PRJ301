@@ -14,7 +14,8 @@
         <link href="./font/cssfont/css/all.min.css" rel="stylesheet">
         <link href="css/homecss.css" rel="stylesheet">   
         <link href="css/classlistcss.css" rel="stylesheet">
-        <link href="css/markavgcss.css" rel="stylesheet">  
+        <link href="css/markavgcss.css" rel="stylesheet"> 
+        <link href="css/studentlistcss.css" rel="stylesheet"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
@@ -22,11 +23,27 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="margin-bottom: 100px">
-                <div>
-                    <h3 style="padding:20px;width:300px">Điểm trung bình</h3>
+                <div style="background-color: white;border-radius: 15px;padding: 10px 20px 10px 0;margin-bottom: 20px;margin-top: 50px">
+                    <form action="markavgsearch" method="get" style="display:flex">
+                        <div>
+                            <input type="text" name="searchsid" placeholder=" Tìm theo mã HS" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF"/>
+                        </div>
+                        
+                        <div>
+                            <input type="text" name="searchsname" placeholder=" Tìm theo tên" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF"/>
+                        </div>
+                        
+                        <div>
+                            <input type="text" name="searchyears" placeholder=" Tìm theo năm học" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF"/>
+                        </div>
+                        
+                        <div class="searchsubmit">
+                            <input type="submit"  value="Xác nhận" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF;width: 120px"/>
+                        </div>
+                    </form>
                 </div>
-
-                <div style="background-color: white;border-radius: 15px;padding: 10px 20px 10px 0;margin-bottom: 20px">
+                
+                <div style="background-color: white;border-radius: 15px;padding: 10px 20px 10px 0;margin-bottom: 20px;margin-top: 10px">
                     <div>
                         <div class="pagination" style="margin-left:20px">
                             <p style="width: 100px;text-align: left;font-weight: 500;line-height: 30px;margin:auto 0">Năm học </p>
@@ -46,8 +63,11 @@
                     </div> 
                 </div>
 
-                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px;margin-bottom: 40px">
-                    <div style="padding-top: 40px">
+                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px;margin-bottom: 80px">
+                    <div>
+                        <h3 style="padding:20px;width:300px;padding-top: 40px">Điểm trung bình</h3>
+                    </div>
+                    <div style="padding-top: 10px">
                         <table style="width:90%;margin:0 auto">
                             <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                 <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">

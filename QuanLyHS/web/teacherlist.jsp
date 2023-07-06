@@ -21,7 +21,7 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10" style="background-color: #f7f7fa;margin-bottom: 100px">
-                <div style="margin:20px;background-color: white;border-radius: 10px;padding-top:20px">
+                <div style="margin:20px;background-color: white;border-radius: 10px;padding-top:20px;margin-top: 50px;margin-bottom: 60px">
                     <div>
                         <h3 style="padding:20px;width:200px">Giáo viên</h3>
                     </div>

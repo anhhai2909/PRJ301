@@ -6,6 +6,8 @@
 package controller;
 
 import DAL.classDAO;
+import DAL.markavgDAO;
+import DAL.yearsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.classes;
+import model.years;
 
 /**
  *
@@ -59,8 +62,19 @@ public class classlistservlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         classDAO d = new classDAO();
-        ArrayList<classes> list = d.getclass();
+        yearsDAO d2 = new yearsDAO();
+        String ys = request.getParameter("y");
+        ArrayList<years> list2 = d2.getyear();
+        int y;
+        if(ys!=null){
+            y = Integer.parseInt(ys);
+        }else{
+            y = list2.get(0).getYear();
+        }
+        ArrayList<classes> list = d.getclassbyyear(y);
+        request.setAttribute("y", y);
         request.setAttribute("list", list);
+        request.setAttribute("list2", list2);
         request.getRequestDispatcher("classlist.jsp").forward(request, response);
     } 
 

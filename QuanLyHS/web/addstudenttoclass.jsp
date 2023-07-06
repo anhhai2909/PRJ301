@@ -21,11 +21,13 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="padding-right: 25px;margin-bottom: 100px" >
-                <div>
-                    <h3 style="padding:20px;width:250px">Thêm học sinh</h3>
-                </div>              
-                <div style="background-color: white;padding:10px 30px 60px 30px;margin: 10px 10px 60px 10px;border-radius: 15px">
-                    <div style="margin-top: 30px;margin-bottom: 30px">
+
+                <div style="background-color: white;padding:10px 30px 60px 30px;margin: 50px 10px 60px 10px;border-radius: 15px">
+                    <div>
+                        <h3 style="padding:20px;width:250px">Thêm học sinh</h3>
+                    </div> 
+                    
+                    <div style="margin-top: 10px;margin-bottom: 30px">
                         <form action="" method="get">
                             <div class="row" style="width: 50%" >
                                 <div class="col-md-8" style="text-align: center">

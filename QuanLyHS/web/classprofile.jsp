@@ -21,13 +21,74 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="margin-bottom: 100px">
-                <div>
-                    <h3 style="padding:20px;width:300px">Thông tin lớp học</h3>
-                </div>
-                
-                <div style="background-color: white;padding-bottom: 40px;margin-bottom: 60px;border-radius: 15px;margin-right: 10px">
-                    <div style="text-align: right;padding:30px 35px 10px 0">
-                        <a href="addstudenttoclass"><i class="fa-solid fa-square-plus fa-2xl" style="color:#6C71FF"></i></a>
+
+                <div style="background-color: white;padding-bottom: 40px;margin-bottom: 60px;border-radius: 15px;margin-right: 10px;margin-top: 50px">
+                    <div>
+                        <h3 style="padding:40px 20px 30px 20px;width:300px;margin-bottom: 5px">Thông tin lớp học</h3>
+                    </div>
+
+                    <div style="margin-left: 50px;display: flex">
+                        <div id="classinfo" style="display:flex;visibility: visible;">
+                            <div  style="width: 200px;font-size: 17px;font-weight: 600">
+                                <p>Mã lớp: ${requestScope.classes.cid}</p>
+                            </div>
+
+                            <div style="width: 200px;font-size: 17px;font-weight: 600">
+                                <p>Tên lớp: ${requestScope.classes.name}</p>
+                            </div>
+
+                            <div style="width: 200px;font-size: 17px;font-weight: 600">
+                                <p>Số HS: ${requestScope.classes.numofst}</p>
+                            </div>
+
+                            <div style="width: 200px;font-size: 17px;font-weight: 600">
+                                <p>GVCN: ${requestScope.classes.tid}</p>
+                            </div>
+                        </div>
+
+                        <div style="text-align: right;padding:0 35px 10px 0;width: 400px">
+                            <a nohref onclick="showupdatebox()" class="updatebutton"><i class="fa-solid fa-pen fa-xl"></i></a>
+                            <a href="addstudenttoclass" class="option-icon"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
+                        </div>
+                    </div>
+                    <div style="margin-left: 50px;margin-bottom: 10px">
+                        <div id="updatebox" style="visibility: hidden">
+                            <form action="classprofileupdate" method="get" style="display: flex">
+                                <div  style="width: 200px;font-size: 17px;font-weight: 600;display: flex">
+                                    <p style="margin: auto 10px auto 0">Mã lớp: </p>
+                                    <input type="text" name="cid" value="${requestScope.classes.cid}"style="width: 70px;text-align: center;border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px" readonly/>
+                                </div>
+
+                                <div style="width: 200px;font-size: 17px;font-weight: 600;display: flex">
+                                    <p style="margin: auto 10px auto 0">Tên lớp: </p>
+                                    <input type="text" name="updatename" value="${requestScope.classes.name}"style="width: 70px;text-align: center;border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px"/>
+                                </div>
+
+                                <div style="width: 200px;font-size: 17px;font-weight: 600;display: flex">
+                                    <p style="margin: auto 10px auto 0">Số HS: </p>
+                                    <input type="text" name="updatenumofst" value="${requestScope.classes.numofst}"style="width: 70px;text-align: center;border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px" readonly/>
+                                </div>
+
+                                <div style="width: 200px;font-size: 17px;font-weight: 600;display: flex">
+                                    <p style="margin: auto 10px auto 0">GVCN: </p>
+                                    <select name="updatetid" style="width: 70px;text-align: center;border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px">
+                                        <c:forEach items="${requestScope.list2}" var="i">
+                                            <option value="${i}">${i}</option>
+                                        </c:forEach>
+                                       
+                                    </select>
+                                </div>
+                                
+                                <div style="width: 200px;font-size: 17px;font-weight: 600;display: flex">
+                                    <p style="margin: auto 10px auto 0">Năm học: </p>
+                                    <input type="text" name="y" value="${requestScope.y}"style="width: 70px;text-align: center;border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px" readonly/>
+                                </div>
+                                
+                                <div>
+                                    <input style="border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px;background-color: #3d5ee1;color:white" type="submit" value="Xác nhận"/>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div style="width: 95%;margin:0 auto">
                         <table style="width:100%;">
@@ -57,7 +118,7 @@
                                         <td class="col-md-2">${i.dob}</td>
                                         <td class="col-md-2">${i.email}</td>
                                         <td class="col-md-2">${i.phone}</td>
-                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a></td>
+                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash" ></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -66,5 +127,18 @@
                 </div>
             </div>
         </div>
+        <script>
+            function showupdatebox() {
+                var a = document.getElementById('updatebox');
+                var b = document.getElementById('classinfo');
+                if (a.style.visibility !== 'visible') {
+                    a.style.visibility = 'visible';
+                    b.style.visibility = 'hidden';
+                } else {
+                    a.style.visibility = 'hidden';
+                    b.style.visibility = 'visible';
+                }
+            }
+        </script>
     </body>
 </html>

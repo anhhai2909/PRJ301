@@ -134,6 +134,11 @@ public class Student {
     public void setcID(String cID) {
         this.cID = cID;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" + "sID=" + sID + ", name=" + name + ", gender=" + gender + ", dob=" + dob + ", homeaddress=" + homeaddress + ", idnumber=" + idnumber + ", email=" + email + ", phone=" + phone + ", prname=" + prname + ", prphone=" + prphone + ", imgaddress=" + imgaddress + ", cID=" + cID + '}';
+    }
     
   
 }

@@ -21,11 +21,12 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10" style="background-color: #f7f7fa;margin-bottom: 100px">
-                <div>
-                    <h3 style="margin: 20px">Sửa thông tin</h3>
-                </div>
-                <div>
-                    <form action="" method="get" style="width: 90%; background-color: white;margin-left: auto ;margin-right: auto;margin-bottom: 50px;border-radius: 10px;padding:40px 0;">
+
+                <div style="margin-top: 50px">
+                    <form action="" method="get" style="width: 90%; background-color: white;margin-left: auto ;margin-right: auto;margin-bottom: 50px;border-radius: 10px;padding:10px 0  40px 0;">
+                        <div>
+                            <h3 style="padding: 20px">Sửa thông tin</h3>
+                        </div>
                         <div class="row" ">
                             <div class="col-md-6">
                                 <div style="width:80%" >
@@ -83,7 +84,7 @@
                                     <div class="row" style="margin:20px 0">
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">Ảnh thẻ </p><input class="col-md-8" type="text" name="idnum" value="${requestScope.student.imgaddress}"style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"/>
                                     </div>
-                                                                    
+
                                 </div>                            
                             </div>
                         </div>

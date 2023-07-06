@@ -16,12 +16,11 @@ public class mark {
     private double mt;
     private double fe;
     private double avag;
-    private int rating;
     private String suid;
     private String sid;
     private int years;
 
-    public mark(double m1, double m2, double pt1, double pt2, double mt, double fe, double avag,int rating, String suid, String sid, int years) {
+    public mark(double m1, double m2, double pt1, double pt2, double mt, double fe, double avag, String suid, String sid, int years) {
         this.m1 = m1;
         this.m2 = m2;
         this.pt1 = pt1;
@@ -29,18 +28,9 @@ public class mark {
         this.mt = mt;
         this.fe = fe;
         this.avag = avag;
-        this.rating=rating;
         this.suid = suid;
         this.sid = sid;
         this.years = years;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
     
     public double getM1() {
@@ -123,8 +113,10 @@ public class mark {
         this.years = years;
     }
 
+    @Override
+    public String toString() {
+        return "mark{" + "m1=" + m1 + ", m2=" + m2 + ", pt1=" + pt1 + ", pt2=" + pt2 + ", mt=" + mt + ", fe=" + fe + ", avag=" + avag + ", suid=" + suid + ", sid=" + sid + ", years=" + years + '}';
+    }
     
-
-  
     
 }

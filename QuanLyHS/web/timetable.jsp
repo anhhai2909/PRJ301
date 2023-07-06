@@ -24,18 +24,17 @@
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10" style="background-color: #f7f7fa;margin-bottom: 100px">
 
-                <div>
-                    <h3 style="padding:20px;width:300px">Thời khóa biểu</h3>
-                </div>
-                
-                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px;margin-bottom: 40px;margin-right: 10px">
+                <div style="background-color: white;border-radius: 10px;padding-bottom: 50px;margin-bottom: 40px;margin-right: 10px;margin-top: 50px">
                     <div>
-                        <div class="pagination" style="margin-left:20px;padding: 40px 0 0px 50px">
+                        <h3 style="padding:20px;width:300px">Thời khóa biểu</h3>
+                    </div>
+                    <div>
+                        <div class="pagination" style="margin-left:20px;padding: 10px 0 0px 50px">
                             <p style="width: 100px;text-align: left;font-weight: 500;line-height: 30px;margin:auto 0">Chọn lớp</p>
                             <c:forEach items="${requestScope.list2}" var="i">
                                 <a id="page-${i.cid}" class="page-link" href="timetable?cid=${i.cid}" style="border:1px solid #DFDFDF;padding:5px 10px 2px 10px;border-radius: 5px;line-height: 30px;width:70px">${i.cid}</a>
                             </c:forEach>
-                                
+
                             <div style="margin: auto 0;margin-left: 540px">
                                 <a href="timetableupdate?cid=${requestScope.cid}" class="option-icon"><i class="fa-solid fa-pen"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a>
                             </div>

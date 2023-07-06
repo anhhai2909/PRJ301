@@ -20,28 +20,28 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="margin-bottom: 100px">
-                <div>
-                    <h3 style="padding:20px;width:300px">Thêm môn học</h3>
-                </div>
 
-                <div style="width: 700px;background-color: white;border-radius: 15px;margin: 0 auto 100px auto;padding-top:40px;padding-bottom:40px">
+                <div style="width: 700px;background-color: white;border-radius: 15px;margin: 50px auto 100px auto;padding-top:30px;padding-bottom:40px;width: 1000px">
+                    <div>
+                        <h3 style="padding:20px;width:300px">Thêm môn học</h3>
+                    </div>
                     <form action="" method="get">
-                        <div style="margin-bottom: 20px">
-                            <p style="margin-left: 150px;margin-bottom: 0;font-weight: 500;font-size: 20px;">Mã môn</p>
+                        <div style="margin-bottom: 20px;display: flex">
+                            <p style="margin-left: 150px;margin-bottom: 0;font-weight: 500;font-size: 20px;width: 140px">Mã môn</p>
                             <div style="text-align: center">
                                 <input type="text" name="id" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px"/>
                             </div>
                         </div>
 
-                        <div style="margin-bottom: 20px">
-                            <p style="margin-left: 150px;margin-bottom: 0;font-weight: 500;font-size: 20px">Tên môn</p>
+                        <div style="margin-bottom: 20px;display: flex">
+                            <p style="margin-left: 150px;margin-bottom: 0;font-weight: 500;font-size: 20px;width: 140px">Tên môn</p>
                             <div style="text-align: center">
                                 <input type="text" name="name" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px"/>
                             </div>
                         </div>
 
-                        <div style="margin-bottom: 20px">
-                            <p style="margin-left: 150px;margin-bottom: 0;font-weight: 500;font-size: 20px">Mô tả</p>
+                        <div style="margin-bottom: 20px;display: flex">
+                            <p style="margin-left: 150px;margin-bottom: 0;font-weight: 500;font-size: 20px;width: 140px">Mô tả</p>
                             <div style="text-align: center">
                                 <textarea rows="5" cols="50" name="descript"style="border-radius: 10px;border:1px solid #DFDFDF;width:400px;"> 
                                 </textarea>
