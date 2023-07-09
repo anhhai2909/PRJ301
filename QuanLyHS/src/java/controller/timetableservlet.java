@@ -68,7 +68,7 @@ public class timetableservlet extends HttpServlet {
         }else{
             cid=cids;
         }
-        ArrayList<classes> list2 = d2.getclass();
+        ArrayList<classes> list2 = d2.getpresentclass();
         
         String[] listt2 = d.gettimetalbe(cid,"T2");
         String[] listt3 = d.gettimetalbe(cid,"T3");

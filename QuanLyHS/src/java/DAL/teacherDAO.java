@@ -51,9 +51,9 @@ public class teacherDAO extends DBContext {
         return list;
     }
 
-    public teacher get1teacherbyyearandid(String id, int years) {
-        String sql = "  select * from classes "
-                + "  where tID =? and years=?";
+    public ArrayList<teacher> get1teacherbyyearandid(String id, int years) {
+        ArrayList<teacher> list = new ArrayList<>();
+        String sql = "select * from classes where tID =? and years=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, id);
@@ -61,15 +61,15 @@ public class teacherDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 teacher t = new teacher(rs.getString("tID"),
-                        rs.getString("name"),
-                        rs.getString("email"),
-                        rs.getString("imgaddress"));
-                return t;
+                        null,
+                        null,
+                        null);
+                list.add(t);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null;
+        return list;
     }
 
     public teacher get1teacher(String id) {
@@ -89,5 +89,17 @@ public class teacherDAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+    public void updateteacher(String id,String name,String email) {
+        String sql = "update teacher set name=?,email=? where tID=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            st.setString(2, email);
+            st.setString(3, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 }

@@ -86,7 +86,7 @@ public class marksearchservlet extends HttpServlet {
         String suids;
         ArrayList<years> list2 = d5.getyear();
         if (ys == null) {
-            y = 2019;
+            y = 2017;
         } else {
             y = Integer.parseInt(ys);
         }
@@ -96,7 +96,7 @@ public class marksearchservlet extends HttpServlet {
         } else {
             cids = cid;
         }       
-        ArrayList<subject> list4 = d3.getsubjectbyyearandclass(y, cids);
+        ArrayList<subject> list4 = d3.getsubjectbygrade(cids.substring(0, 2));
         if (suid == null) {
             suids = list4.get(0).getSuid();
         } else {

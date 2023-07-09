@@ -48,7 +48,7 @@
 
                         <div style="text-align: right;padding:0 35px 10px 0;width: 400px">
                             <a nohref onclick="showupdatebox()" class="updatebutton"><i class="fa-solid fa-pen fa-xl"></i></a>
-                            <a href="addstudenttoclass" class="option-icon"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
+                            <a href="loaddata?year=${requestScope.y}&cid=${requestScope.classes.cid}" class="option-icon"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
                         </div>
                     </div>
                     <div style="margin-left: 50px;margin-bottom: 10px">

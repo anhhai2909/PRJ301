@@ -66,7 +66,6 @@
                 </li>
                 <ul class="stlist-option" id ="menudropdown5">
                     <li><a href="timetable" style="color:black;text-decoration: none;">TKB</a></li>
-                    <li><a href="addtimetable" style="color:black;text-decoration: none;">Thêm TKB</a></li>
                 </ul>
 
 

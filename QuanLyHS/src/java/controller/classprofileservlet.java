@@ -71,6 +71,7 @@ public class classprofileservlet extends HttpServlet {
         ArrayList<Student> list  = d1.getstudentbyclassandyear(cid, y);
         ArrayList<String> list2 = d2.getfreeteacher(y);
         request.setAttribute("y",y);
+
         request.setAttribute("classes", c);
         request.setAttribute("list",list);
         request.setAttribute("list2",list2);

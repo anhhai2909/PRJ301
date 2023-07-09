@@ -41,8 +41,12 @@
                 </div>
 
                 <div style="background-color: white;border-radius: 10px;margin-bottom: 100px;padding-bottom: 50px">
+
                     <div>
                         <h3 style="padding:20px;width:200px;padding-top: 50px">Môn học</h3>
+                    </div>
+                    <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
+                        <p style="color: green;text-align: center">${txt}</p>
                     </div>
                     <div style="padding-top: 20px">
                         <table style="width:90%;margin:0 auto">
@@ -54,14 +58,14 @@
                                     <th class="col-md-2">Tùy chọn</th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody>
                                 <c:forEach items="${requestScope.list}" var="i">
                                     <tr class="row table-body" style="width:100%;;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
                                         <td class="col-md-2" style="text-align: center">${i.suid}</td>
                                         <td class="col-md-2" style="text-align: center">${i.name}</td>
                                         <td class="col-md-6">${i.descript}</td>     
-                                        <th class="col-md-2" style="text-align: center"><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></th>
+                                        <th class="col-md-2" style="text-align: center"><a href="deletesubject?suid=${i.suid}" class="option-icon"><i class="fa-solid fa-trash"></i></a></th>
                                     </tr>
                                 </c:forEach>
                             </tbody>

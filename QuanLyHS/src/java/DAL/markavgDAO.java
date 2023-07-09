@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.bestclasses;
 import model.markavg;
-import model.years;
+
 
 /**
  *
@@ -86,7 +86,56 @@ public class markavgDAO extends DBContext {
         }
         return 0;
     }
-
+    
+    public void insertmarkavg(markavg m) {
+        String sql = " insert into markavg values(?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, m.getSid());
+            st.setString(2, m.getCid());
+            st.setDouble(3, m.getAvg());
+            st.setInt(4, m.getYears());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void updatemarkavg(markavg m) {
+        String sql = "update markavg set avgm = ? where sID = ? and years=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setDouble(1, m.getAvg());
+            st.setString(2, m.getSid());
+            st.setInt(3, m.getYears());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void updatemarkavgcid(String cid ,String sid,int year) {
+        String sql = "update markavg set cID = ? where sID = ? and years=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, cid);
+            st.setString(2, sid);
+            st.setInt(3, year);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    public void deletemarkavgbysid(String sid) {
+        String sql = "delete from markavg where sID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);       
+            st.setString(1, sid);       
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     public ArrayList<bestclasses> getnum() {
         ArrayList<bestclasses> list = new ArrayList<>();
         String sql = "select top 6 markavg.cID,class.classname,class.numberofstudent, count(markavg.avgm) as count,markavg.years\n"

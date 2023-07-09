@@ -32,7 +32,24 @@ public class timetableDAO extends DBContext {
         }
         return list;
     }
-
+    
+    public boolean checkexisttimetalbe(String cid,String tt,int slot) {
+        String sql = "select *from timetable where cID=? and tt=? and slot=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, cid);
+            st.setString(2, tt);
+            st.setInt(3,slot);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+    
     public timetable get1timetalbe(String cID) {
         String sql = "select * from timetable where cID =?";
         try {
@@ -61,13 +78,13 @@ public class timetableDAO extends DBContext {
         }
     }
     public void updatetimetable(timetable t){
-        String sql = "update timetable set tt=?,slot=?,suID=?,cID=?";
+        String sql = "update timetable set suID=? where cID=? and tt=? and slot=?";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, t.getTt());
-            st.setInt(2, t.getSlot());
-            st.setString(3,t.getSuid());
-            st.setString(4,t.getCid());
+            st.setString(3, t.getTt());
+            st.setInt(4, t.getSlot());
+            st.setString(1,t.getSuid());
+            st.setString(2,t.getCid());
             st.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);

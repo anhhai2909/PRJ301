@@ -86,7 +86,7 @@
                                         <th class="col-md-2">${i.cid}</th>
                                         <th class="col-md-3">${i.avg}</th>
                                         <th class="col-md-3">${i.years}</th> 
-                                        <th class="col-md-2"><a href="markavgupdate?sid=${i.sid}&years=${i.years}" class="option-icon" style="margin:5px"><i class="fa-solid fa-pen"></i></a><a href="#" class="option-icon" style="margin:5px"><i class="fa-solid fa-trash"></i></a></th> 
+                                        <th class="col-md-2"><a href="markavgupdate?sid=${i.sid}&years=${i.years}" class="option-icon" style="margin:5px"><i class="fa-solid fa-pen"></i></a></th> 
                                     </tr>
                                 </c:forEach>
                             </tbody>

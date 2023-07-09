@@ -59,7 +59,7 @@ public class addtimetableservlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         classDAO d = new classDAO();
-        ArrayList<classes> list = d.getclass();
+        ArrayList<classes> list = d.getpresentclass();
         request.setAttribute("list", list);
         request.getRequestDispatcher("addtimetable.jsp").forward(request, response);
     } 

@@ -88,8 +88,7 @@ public class addclassservlet extends HttpServlet {
             String years = request.getParameter("year");
             String tid = request.getParameter("tid");
             int y = Integer.parseInt(years);
-            teacher t = d1.get1teacherbyyearandid(tid, y);
-            if (t == null) {
+            if (d1.get1teacherbyyearandid(tid, y).isEmpty()) {
                 classes c = d.get1classbycidandyear(cid, y);
                 if (c == null) {
                     String n = cid.charAt(0) + "" + cid.charAt(1);
@@ -101,24 +100,24 @@ public class addclassservlet extends HttpServlet {
                         request.getRequestDispatcher("addclass.jsp").forward(request, response);
                     } else {
                         request.setAttribute("list", list);
-                        request.setAttribute("Error", "Mã lớp không hợp lệ");
+                        request.setAttribute("error", "Mã lớp không hợp lệ");
                         request.getRequestDispatcher("addclass.jsp").forward(request, response);
                     }
                 } else {
                     request.setAttribute("list", list);
-                    request.setAttribute("Error", "**Tên lớp hoặc mã lớp đã tồn tại**");
+                    request.setAttribute("error", "**Tên lớp hoặc mã lớp đã tồn tại**");
                     request.getRequestDispatcher("addclass.jsp").forward(request, response);
                 }
             } else {
                 request.setAttribute("list", list);
-                request.setAttribute("Error", "**Giáo viên được chọn đang phụ trách lớp khác**");
+                request.setAttribute("error", "**Giáo viên được chọn đang phụ trách lớp khác**");
                 request.getRequestDispatcher("addclass.jsp").forward(request, response);
             }
         } catch (NumberFormatException e) {
             teacherDAO d1 = new teacherDAO();
             ArrayList<teacher> list = d1.getteacher();
             request.setAttribute("list", list);
-            request.setAttribute("Error", "**Thông tin cung cấp không hợp lệ**");
+            request.setAttribute("error", "**Thông tin cung cấp không hợp lệ**");
             request.getRequestDispatcher("addclass.jsp").forward(request, response);
         }
     }

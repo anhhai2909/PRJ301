@@ -16,30 +16,33 @@ import model.beststudent;
  */
 public class beststudentDAO extends DBContext {
 
-    public ArrayList<beststudent> getbst() {
+    public ArrayList<beststudent> getbst(int years) {
         ArrayList<beststudent> list = new ArrayList<>();
         String sql =   "select * from( \n"
   +     "select top 2 Student.sID,Student.name,class.classname,avg(mark.avag) as avga,mark.years\n"
   +     "from Student join class on Student.cID = class.cID join mark on mark.sID = Student.sID\n"
-  +     "where mark.years= 2019 and class.classname like'12%'\n"
+  +     "where mark.years= ? and class.classname like'12%'\n"
   +     "group by Student.sID,Student.name,class.classname,mark.years \n"
   +     "order by avga desc) as table1\n"
   +     "union \n"
   +     "select* from\n"
   +     "(select top 2 Student.sID,Student.name,class.classname,avg(mark.avag) as avga,mark.years\n"
   +     "from Student join class on Student.cID = class.cID join mark on mark.sID = Student.sID\n"
-  +     "where mark.years= 2019 and class.classname like'11%'\n"
+  +     "where mark.years= ? and class.classname like'11%'\n"
   +     "group by Student.sID,Student.name,class.classname,mark.years\n"
   +     "order by avga desc) as table2\n"
   +     "union\n"
   +     "select * from\n"
   +     "(select top 2 Student.sID,Student.name,class.classname,avg(mark.avag) as avga,mark.years\n"
   +     "from Student join class on Student.cID = class.cID join mark on mark.sID = Student.sID\n"
-  +     "where mark.years= 2019 and class.classname like'10%'\n"
+  +     "where mark.years= ? and class.classname like'10%'\n"
   +     "group by Student.sID,Student.name,class.classname,mark.years\n"
   +     "order by avga desc) as table3;\n";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,years);
+            st.setInt(2,years);
+            st.setInt(3,years);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 beststudent bs = new beststudent(rs.getString("sID"), rs.getString("name"), rs.getString("classname"), rs.getDouble("avga"), rs.getInt("years"));

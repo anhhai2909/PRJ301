@@ -6,6 +6,8 @@ package controller;
 
 import DAL.classDAO;
 import DAL.teacherDAO;
+import DAL.timetableDAO;
+import DAL.yearsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -62,11 +64,16 @@ public class deleteclassservlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         classDAO d = new classDAO();
+        timetableDAO d2 = new timetableDAO();
+        yearsDAO d3 = new yearsDAO();
         String cid = request.getParameter("cid");
         String years = request.getParameter("y");
         int y = Integer.parseInt(years);
         d.deleteclass(cid);
         d.deleteclasshistory(cid, y);
+        if(d3.getpresentyear()==y){
+            d2.deletetimetable(cid);
+        }
         response.sendRedirect("classlist");
     }
 

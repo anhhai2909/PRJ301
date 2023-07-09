@@ -25,22 +25,13 @@
                 <div style="background-color: white;padding:10px 30px 60px 30px;margin: 50px 10px 60px 10px;border-radius: 15px">
                     <div>
                         <h3 style="padding:20px;width:250px">Thêm học sinh</h3>
-                    </div> 
-                    
-                    <div style="margin-top: 10px;margin-bottom: 30px">
-                        <form action="" method="get">
-                            <div class="row" style="width: 50%" >
-                                <div class="col-md-8" style="text-align: center">
-                                    <input type="text" name="id" placeholder="  Tìm theo mã HS..." style="line-height: 35px;width: 70%;border-radius: 10px;border: 1px solid black"/>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <input type="submit" class="submit-but" value="Tìm kiếm"/>
-                                </div>
-                            </div>
-                        </form>
+                    </div>  
+                    <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
+                        <p style="color: green;text-align: center">${txt}</p>
                     </div>
-
+                    <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
+                        <p style="color: red;text-align: center">${error}</p>
+                    </div>
                     <div class="row" >
                         <div class="col-md-4" style="padding: 0 5px 0 5px">
                             <table style="width:100%;">
@@ -52,13 +43,17 @@
                                     </tr>
                                 </thead>
                                 <tbody style="text-align: center">
+                                <form>
                                     <c:forEach items="${requestScope.list1}" var="i">
                                         <tr class="row table-body" style="margin-top:15px;">
+                                        <form action="addstudenttoclass?id=${i.sID}" method="post">
                                             <td class="col-md-3">${i.sID}</td>
-                                            <td class="col-md-6">${i.name}</td>                                 
-                                            <td class="col-md-3" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-plus"></i></a></td>
+                                            <td class="col-md-6">${i.name}</td>     
+                                            <td class="col-md-3" style="padding-left: 0"><a href="addstudenttoclass2?id=${i.sID}&year=${requestScope.year}&cid=${requestScope.cid}" class="option-icon"><i class="fa-solid fa-plus"></i></a></td>
+                                        </form>
                                         </tr>
                                     </c:forEach>
+                                </form>
                                 </tbody>
                             </table>
                         </div>
@@ -77,7 +72,7 @@
                                         <tr class="row table-body" style="margin-top:15px">
                                             <td class="col-md-3">${i.sID}</td>
                                             <td class="col-md-6">${i.name}</td>                                 
-                                            <td class="col-md-3" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-plus"></i></a></td>
+                                            <td class="col-md-3" style="padding-left: 0"><a href="addstudenttoclass2?id=${i.sID}&year=${requestScope.year}&cid=${requestScope.cid}" class="option-icon"><i class="fa-solid fa-plus"></i></a></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -98,7 +93,7 @@
                                         <tr class="row table-body" style="margin-top:15px">
                                             <td class="col-md-3">${i.sID}</td>
                                             <td class="col-md-6">${i.name}</td>                                 
-                                            <td class="col-md-3" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-plus"></i></a></td>
+                                            <td class="col-md-3" style="padding-left: 0"><a href="addstudenttoclass2?id=${i.sID}&year=${requestScope.year}&cid=${requestScope.cid}" class="option-icon"><i class="fa-solid fa-plus"></i></a></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

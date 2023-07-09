@@ -35,11 +35,12 @@
                                 <a id="page-${i.cid}" class="page-link" href="timetable?cid=${i.cid}" style="border:1px solid #DFDFDF;padding:5px 10px 2px 10px;border-radius: 5px;line-height: 30px;width:70px">${i.cid}</a>
                             </c:forEach>
 
-                            <div style="margin: auto 0;margin-left: 540px">
-                                <a href="timetableupdate?cid=${requestScope.cid}" class="option-icon"><i class="fa-solid fa-pen"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a>
-                            </div>
+
 
                         </div>
+                    </div>
+                    <div style="margin: auto 0;margin-left:1100px">
+                        <a href="timetableupdate?cid=${requestScope.cid}" class="option-icon"><i class="fa-solid fa-pen"></i></a>
                     </div>
                     <div style="padding-top: 20px">
                         <table style="width:90%;margin:0 auto">

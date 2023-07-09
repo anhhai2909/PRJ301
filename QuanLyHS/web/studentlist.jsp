@@ -73,7 +73,7 @@
                                         <td class="col-md-2">${i.dob}</td>
                                         <td class="col-md-2">${i.email}</td>
                                         <td class="col-md-2">${i.phone}</td>
-                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
+                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="deletestudent?sid=${i.sID}" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

@@ -26,8 +26,15 @@
                     <div>
                         <h3 style="padding:20px;width:300px;padding-top: 30px">Sửa điểm</h3>
                     </div>
+                    <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
+                        <p style="color: green;text-align: center">${txt}</p>
+                    </div>
+
+                    <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
+                        <p style="color: red;text-align: center">${error}</p>
+                    </div>
                     <div>
-                        <form action="" meethod="">
+                        <form action="markavgupdate" method="post">
                             <table style="width:90%;margin:0 auto">
                                 <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                     <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">

@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="./font/cssfont/css/all.min.css" rel="stylesheet">
-        <link href="css/homecss.css" rel="stylesheet">    \
+        <link href="css/homecss.css" rel="stylesheet">    
         <link href="css/markavgcss.css" rel="stylesheet">  
         <link href="css/studentlistcss.css" rel="stylesheet"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -109,7 +109,7 @@
                                         <th class="col-md-1" style="margin: auto 0">${i.mt}</th>
                                         <th class="col-md-1" style="margin: auto 0">${i.fe}</th>
                                         <th class="col-md-1" style="margin: auto 0">${i.avag}</th> 
-                                        <td class="col-md-1" style="padding-left: 0;margin: auto 0"><a href="markupdate?sid=${i.sid}&suid=${i.suid}&years=${i.years}" class="option-icon"><i class="fa-solid fa-pen"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
+                                        <td class="col-md-1" style="padding-left: 0;margin: auto 0"><a href="markupdate?sid=${i.sid}&suid=${i.suid}&years=${i.years}" class="option-icon"><i class="fa-solid fa-pen"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

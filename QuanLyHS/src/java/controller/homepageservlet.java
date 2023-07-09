@@ -9,6 +9,7 @@ import DAL.beststudentDAO;
 import DAL.classDAO;
 import DAL.markavgDAO;
 import DAL.teacherDAO;
+import DAL.yearsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -51,13 +52,13 @@ public class homepageservlet extends HttpServlet {
             classDAO d3 = new classDAO();
             beststudentDAO d4 = new beststudentDAO();
             markavgDAO d5 = new markavgDAO();
+            yearsDAO d6 = new yearsDAO();
 
-            
-//            teacher t = d.get1teacher(tid);
+            int y = d6.getpresentyear();
             ArrayList<Student> list1 = d1.getStudent();
             ArrayList<teacher> list2 = d2.getteacher();
-            ArrayList<classes> list3 = d3.getclass();
-            ArrayList<beststudent> list4 = d4.getbst();
+            ArrayList<classes> list3 = d3.getpresentclass();
+            ArrayList<beststudent> list4 = d4.getbst(y);
             ArrayList<bestclasses> list5 = d5.getnum();
             
             request.setAttribute("stlistsize", list1.size());

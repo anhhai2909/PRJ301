@@ -100,9 +100,22 @@ public class markDAO extends DBContext {
         }
         return null;
     }
-
+    
+    public void updatecidbysidandyearsandsuid(String cid,String suid,String sid,int years){
+        String sql = "update mark set cID=? where suID=? and sID=? and years=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, cid);
+            st.setString(2, suid);
+            st.setString(3, sid);
+            st.setInt(4, years);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     public void updatemark(mark m) {
-        String sql = "update mark set m1=?,m2=?,pt1=?,pt2=?,mt=?,fe=?,avag=?,rating=? where suID=? and sID=? and years=?";
+        String sql = "update mark set m1=?,m2=?,pt1=?,pt2=?,mt=?,fe=?,avag=? where suID=? and sID=? and years=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setDouble(1, m.getM1());
@@ -112,16 +125,30 @@ public class markDAO extends DBContext {
             st.setDouble(5, m.getMt());
             st.setDouble(6, m.getFe());
             st.setDouble(7, m.getAvag());
-            if (m.getAvag() >= 8) {
-                st.setInt(8, 1);
-            } else if (m.getAvag() >= 6.5) {
-                st.setInt(8, 2);
-            } else {
-                st.setInt(8, 3);
-            }
-            st.setString(9, m.getSuid());
-            st.setString(10, m.getSid());
-            st.setInt(11, m.getYears());
+            st.setString(8, m.getSuid());
+            st.setString(9, m.getSid());
+            st.setInt(10, m.getYears());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void insertmark(mark m,String cid) {
+        String sql = "insert into mark values(?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setDouble(1, m.getM1());
+            st.setDouble(2, m.getM2());
+            st.setDouble(3, m.getPt1());
+            st.setDouble(4, m.getPt2());
+            st.setDouble(5, m.getMt());
+            st.setDouble(6, m.getFe());
+            st.setDouble(7, m.getAvag());          
+            st.setString(8, m.getSuid());
+            st.setString(9, m.getSid());
+            st.setInt(10, m.getYears());
+            st.setString(11, cid);
             st.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -135,6 +162,16 @@ public class markDAO extends DBContext {
             st.setString(1, suID);
             st.setString(2, sid);
             st.setInt(3, years);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+     public void deletemarkbysid( String sid) {
+        String sql = "delete from mark where sID=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, sid);
             st.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);

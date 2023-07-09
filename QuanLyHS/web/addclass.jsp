@@ -27,11 +27,12 @@
                         <div>
                             <h3 style="padding:20px;width:300px">Thêm lớp học</h3>
                         </div>
-                        <div style="text-align: center">
-                            <p style="color:red">${Error}</p>
+                        <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
+                            <p style="color: green;text-align: center">${txt}</p>
                         </div>
-                        <div style="text-align: center">
-                            <p style="color:green">${txt}</p>
+
+                        <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
+                            <p style="color: red;text-align: center">${error}</p>
                         </div>
                         <form action="addclass" method="post">
                             <div style="margin: 20px;display: flex">
@@ -47,14 +48,14 @@
                                     <input type="text" name="name" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px" required/>
                                 </div>
                             </div>
-                            
+
                             <div style="margin: 20px;display: flex">
                                 <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px ;line-height: 40px;margin-right: 50px;width: 85px">Năm học</p>
                                 <div style="text-align: center">
                                     <input type="text" name="year" style="line-height: 40px;border-radius: 10px;border:1px solid #DFDFDF;width:400px"required/>
                                 </div>
                             </div>
-                            
+
                             <div style="margin: 20px;display: flex">
                                 <p style="margin-left: 80px;margin-bottom: 0;font-weight: 500;font-size: 20px ;line-height: 40px;margin-right: 50px;width: 85px">GVCN</p>
                                 <div>

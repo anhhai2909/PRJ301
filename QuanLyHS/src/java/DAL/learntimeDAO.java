@@ -42,12 +42,12 @@ public class learntimeDAO extends DBContext{
         }
     }
     public void updatelt(learntime lt){
-        String sql="update learn set sID=?,begindate=?,enddate=?";
+        String sql="update learn set begindate=?,enddate=? where sID =?";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, lt.getSid());
-            st.setDate(2, lt.getDatein());
-            st.setDate(3, lt.getDateout());
+            st.setString(3, lt.getSid());
+            st.setDate(1, lt.getDatein());
+            st.setDate(2, lt.getDateout());
             st.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);
