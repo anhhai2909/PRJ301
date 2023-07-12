@@ -43,6 +43,18 @@ public class StudentDAO extends DBContext {
         }
         return list;
     }
+    
+    public void updateclass(String cid,String sid) {
+        String sql = "update Student set cID =? where sID =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1,cid);
+            st.setString(2, sid);
+            st.executeUpdate();          
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 
     public String getclassbystudentid(String sid, int year) {
         String sql = "select cID from learninghistory where sID=? and years=?";
@@ -280,18 +292,30 @@ public class StudentDAO extends DBContext {
             System.out.println(e);
         }
     }
-    
-    public boolean checkexistlh(String sid,int year){
+
+    public void updatestudentimg(String imgaddress,String sid) {
+        String sql = "update Student set imgaddress=? where sID=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, imgaddress);
+            st.setString(2, sid);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public boolean checkexistlh(String sid, int year) {
         String sql = "select * from learninghistory where sID = ? and years=?";
-        try{
+        try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, sid);
             st.setInt(2, year);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return true;
             }
-        }catch(SQLException e){         
+        } catch (SQLException e) {
         }
         return false;
     }
@@ -337,13 +361,12 @@ public class StudentDAO extends DBContext {
         }
     }
 
-    public void deletelearnhistory(String sid, String cid, int year) {
-        String sql = "delete from learninghistory where sID = ? and cID=? and years=?";
+    public void deletelearnhistory(String sid, int year) {
+        String sql = "delete from learninghistory where sID = ? and years=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, sid);
-            st.setString(2, cid);
-            st.setInt(3, year);
+            st.setInt(2, year);
             st.executeUpdate();
         } catch (SQLException e) {
 
@@ -373,7 +396,8 @@ public class StudentDAO extends DBContext {
             System.out.println(e);
         }
     }
-     public void deletelearn(String sid) {
+
+    public void deletelearn(String sid) {
         String sql = "delete from learn where sID = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -383,6 +407,7 @@ public class StudentDAO extends DBContext {
 
         }
     }
+
     public void deletelearnhistorybysid(String sid) {
         String sql = "delete from learninghistory where sID = ? ";
         try {
@@ -394,5 +419,4 @@ public class StudentDAO extends DBContext {
         }
     }
 
-    
 }

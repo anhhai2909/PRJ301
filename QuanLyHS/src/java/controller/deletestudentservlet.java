@@ -69,6 +69,7 @@ public class deletestudentservlet extends HttpServlet {
         classDAO d4 = new classDAO();
         yearsDAO d5 = new yearsDAO();
         String sid = request.getParameter("sid");
+        String page = request.getParameter("page");
         d.deletelearn(sid);
         d.deletelearnhistorybysid(sid);       
         d2.deletemarkbysid(sid);
@@ -81,7 +82,7 @@ public class deletestudentservlet extends HttpServlet {
                 d4.updatenumberofstudent(j.getCid(), i.getYear());
             }
         }
-        response.sendRedirect("studentlist");
+        request.getRequestDispatcher("studentlist?page="+page).forward(request, response);
     } 
 
     /** 

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -23,15 +24,15 @@
             <div class="col-md-10" style="background-color: #f7f7fa;margin-bottom: 100px">
 
                 <div style="margin-top: 50px">
-                    <form action="stprofileupdate" method="post" enctype="multipart/form-data" style="width: 90%; background-color: white;margin-left: auto ;margin-right: auto;margin-bottom: 50px;border-radius: 10px;padding:10px 0  40px 0;">
+                    <form action="stprofileupdate" method="post" style="width: 90%; background-color: white;margin-left: auto ;margin-right: auto;margin-bottom: 50px;border-radius: 10px;padding:10px 0  40px 0;">
                         <div>
                             <h3 style="padding: 20px">Sửa thông tin</h3>
                         </div> 
-                        
+
                         <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
                             <p style="color: green;text-align: center">${txt}</p>
                         </div>
-                        
+
                         <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
                             <p style="color: red;text-align: center">${error}</p>
                         </div>
@@ -54,7 +55,18 @@
                                     </div>
 
                                     <div class="row" style="margin:20px 0">
-                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Giới Tính</p><input class="col-md-8" type="text" name="gender" value="${requestScope.student.gender}" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>
+                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Giới Tính</p>                                       
+                                        <div class="col-md-8">
+                                            <c:set var = "g" scope = "request" value = "${requestScope.student.gender}"/>
+                                            <c:if test="${g==1}">                                       
+                                                <input type="radio" name="gender" value="1" checked/>Nam
+                                                <input type="radio" name="gender" value="0" style="margin-left: 20px"/>Nữ
+                                            </c:if>
+                                            <c:if test="${g==0}">                                       
+                                                <input type="radio" name="gender" value="1"/>Nam
+                                                <input type="radio" name="gender" value="0" checked style="margin-left: 20px"/>Nữ
+                                            </c:if>
+                                        </div>
                                     </div>
 
                                     <div class="row" style="margin:20px 0">
@@ -87,14 +99,7 @@
 
                                     <div class="row" style="margin:20px 0">
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">SDT cha/mẹ </p><input class="col-md-8" type="text" name="prphone" value="${requestScope.student.prphone}" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>
-                                    </div>
-
-                                    <div class="row" style="margin:20px 0">
-                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Ảnh thẻ </p>
-                                        <div  class="col-md-8" style=";border-radius: 6px;border:1px solid #DFDFDF;padding:10px 0 10px 0">
-                                            <input type ="file" id="photo"  name="photo" style="margin:auto 0" required/>
-                                        </div>
-                                    </div>
+                                    </div>                                   
 
                                 </div>                            
                             </div>

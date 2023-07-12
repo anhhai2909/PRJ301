@@ -103,9 +103,6 @@ public class stprofileupdateservlet extends HttpServlet {
         try {
             StudentDAO d1 = new StudentDAO();
             learntimeDAO d2 = new learntimeDAO();
-            Part part = request.getPart("photo");
-            String realpath = request.getServletContext().getRealPath("/img");
-            String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
 
             int phone = Integer.parseInt(sphone);
             int gender = Integer.parseInt(sgender);
@@ -115,17 +112,13 @@ public class stprofileupdateservlet extends HttpServlet {
             Date datein = Date.valueOf(sdatein);
             Date dateout = Date.valueOf(sdateout);
 
-            if (!Files.exists(Paths.get(realpath))) {
-                Files.createDirectory(Paths.get(realpath));
-            }
-            part.write(realpath + "/" + filename);
             if (sphone.length() != 10 || sprphone.length() != 10 || d1.checkexiststudentstudentupdate(sid, email, sphone, sidnum, sprphone) != null || (gender != 1 && gender != 0) || !"st".equals(sid.charAt(0) + "" + sid.charAt(1))) {
                 request.setAttribute("student", d1.get1student(sid));
                 request.setAttribute("learntime", d2.get1lt(sid));
                 request.setAttribute("error", "**Thông tin không hợp lệ**");
                 request.getRequestDispatcher("stprofileupdate.jsp").forward(request, response);
             } else {
-                Student s = new Student(sid, name, gender, dob, address, sidnum, email, sphone, prname, sprphone, ("img/" + filename), "0");               
+                Student s = new Student(sid, name, gender, dob, address, sidnum, email, sphone, prname, sprphone,d1.get1student(sid).getImgaddress(), "0");               
                 d1.updatestudent(s);
                 d2.updatelt(new learntime(sid, datein, dateout));
                 learntime lt = d2.get1lt(sid);

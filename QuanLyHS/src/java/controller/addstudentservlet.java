@@ -15,9 +15,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Date;
+import java.util.ArrayList;
 import model.Student;
 import model.learntime;
 
@@ -87,31 +87,34 @@ public class addstudentservlet extends HttpServlet {
             String realpath = request.getServletContext().getRealPath("/img");
             String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
 
-            String sid = request.getParameter("sid");
+           // String sid = request.getParameter("sid");
             String name = request.getParameter("name");
             String sdatein = request.getParameter("datein");
             String sdateout = request.getParameter("dateout");
             String sgender = request.getParameter("gender");
             String sdob = request.getParameter("dob");
             String address = request.getParameter("address");
-            String email = request.getParameter("email");
+//            String email = request.getParameter("email");
             String sphone = request.getParameter("phone");
             String prname = request.getParameter("prname");
             String sprphone = request.getParameter("prphone");
             String sidnum = request.getParameter("idnum");
             
-            int phone = Integer.parseInt(sphone);
             int gender = Integer.parseInt(sgender);
-            int prphone = Integer.parseInt(sprphone);
-            int idnum = Integer.parseInt(sidnum);
             Date dob = Date.valueOf(sdob);
             Date datein = Date.valueOf(sdatein);
             Date dateout = Date.valueOf(sdateout);
-
-            if (!Files.exists(Paths.get(realpath))) {
-                Files.createDirectory(Paths.get(realpath));
-            }
-            part.write(realpath + "/" + filename);
+            
+            ArrayList<Student> list = d1.getStudent();
+            int maxid =0;
+            for(int i =0;i< list.size();i++){
+                if(maxid < Integer.parseInt(list.get(i).getsID().substring(3, list.get(i).getsID().length()))){
+                    maxid =  Integer.parseInt(list.get(i).getsID().substring(3, list.get(i).getsID().length()));
+                }
+            }      
+            
+            String sid = "st0"+(maxid+1);
+            String email = sid + "@gmail.com";
             if (sphone.length() != 10 || sprphone.length() != 10 || d1.checkexiststudentstudent(sid, email, sphone, sidnum, sprphone)!=null  || (gender!=1 && gender !=0) || !"st".equals(sid.charAt(0)+""+sid.charAt(1))) {
                 request.setAttribute("error", "**Thông tin không hợp lệ**");
                 request.getRequestDispatcher("addstudent.jsp").forward(request, response);

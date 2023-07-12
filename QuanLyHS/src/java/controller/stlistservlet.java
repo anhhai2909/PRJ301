@@ -85,6 +85,8 @@ public class stlistservlet extends HttpServlet {
         start = (page - 1) * numperpage;
         end = Math.min(page * numperpage, size);
         ArrayList<Student> listperpage =  d.getlistbypage(list, start, end);
+        request.setAttribute("first", 1);
+        request.setAttribute("last", num);
         request.setAttribute("list", listperpage);
         request.setAttribute("pagelist", pagelist);
         request.setAttribute("page", page);

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -39,6 +40,8 @@ public class Loginservlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
+            String check = request.getParameter("remember");
+            
             teacherDAO d1 = new teacherDAO();
             accountDAO d = new accountDAO();
             String tid = d.get1account(user, pass);
@@ -46,12 +49,19 @@ public class Loginservlet extends HttpServlet {
                 teacher t = d1.get1teacher(tid);
                 HttpSession session = request.getSession();
                 session.setAttribute("teacher", t);
+                if (check != null) {
+                    Cookie username = new Cookie("user", user);
+                    username.setMaxAge(60*60*24*30);
+                    Cookie password = new Cookie("pass", pass);
+                    password.setMaxAge(60*60*24*30);
+                    response.addCookie(username);
+                    response.addCookie(password);
+                }
                 response.sendRedirect("home");
             } else {
                 request.setAttribute("error", "*Mật khẩu hoặc tài khoản không hợp lệ!*");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-            
         }
     }
 

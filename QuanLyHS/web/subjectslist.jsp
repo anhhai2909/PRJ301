@@ -65,7 +65,7 @@
                                         <td class="col-md-2" style="text-align: center">${i.suid}</td>
                                         <td class="col-md-2" style="text-align: center">${i.name}</td>
                                         <td class="col-md-6">${i.descript}</td>     
-                                        <th class="col-md-2" style="text-align: center"><a href="deletesubject?suid=${i.suid}" class="option-icon"><i class="fa-solid fa-trash"></i></a></th>
+                                        <th class="col-md-2" style="text-align: center"><a href="#" onclick="Warning('${i.suid}')" class="option-icon"><i class="fa-solid fa-trash"></i></a></th>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -74,5 +74,13 @@
                 </div>
             </div>
         </div>
+        <script>
+            function Warning(suid) {
+                var option = confirm("Xóa môn học?");
+                if (option === true) {
+                    window.location.href = 'deletesubject?suid='+suid;
+                }
+            }
+        </script>
     </body>
 </html>

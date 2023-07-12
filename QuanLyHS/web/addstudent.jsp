@@ -31,27 +31,31 @@
                         <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
                             <p style="color: green;text-align: center">${txt}</p>
                         </div>
-                        
+
                         <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
                             <p style="color: red;text-align: center">${error}</p>
                         </div>
                         <div class="row" ">
                             <div class="col-md-6">
                                 <div style="width:80%" >
-                                    <div class="row" style="margin:20px 0">
-                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Mã HS </p><input class="col-md-8" type="text" name="sid" placeholder="st0**" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF" required/>
-                                    </div>
 
+                                    <!--                                    <div class="row" style="margin:20px 0">
+                                                                            <p class="col-md-4" style="text-align: right;margin:auto 0">Mã HS </p><input class="col-md-8" type="text" name="sid" placeholder="st0**" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF" required/>
+                                                                        </div>-->
                                     <div class="row" style="margin:20px 0">
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">Họ và tên </p><input class="col-md-8" type="text" name="name" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>
                                     </div>
 
-                                    <div class="row" style="margin:20px 0">
+                                    <div class="row" style="margin:20px 0 30px 0">
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">Niên khóa </p><div class="col-md-8" style="padding:0"><input  type="date" name="datein" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF;width:48%"required/>~<input  type="date" name="dateout" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF;width:48%"required/></div>
                                     </div>
 
-                                    <div class="row" style="margin:20px 0">
-                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Giới Tính</p><input class="col-md-8" type="text" name="gender" placeholder="1-Nam | 0-Nữ" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>
+                                    <div class="row" style="margin:20px 0 30px 0">
+                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Giới Tính</p>
+                                        <div class="col-md-8">                                     
+                                            <input type="radio" name="gender" value="1" checked/>Nam
+                                            <input type="radio" name="gender" value="0" style="margin-left: 20px"/>Nữ
+                                        </div>
                                     </div>
 
                                     <div class="row" style="margin:20px 0">
@@ -62,15 +66,15 @@
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">Quê quán </p><input class="col-md-8" type="text" name="address" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>
                                     </div>       
 
-
+<!--                                    <div class="row" style="margin:20px 0">
+                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Email </p><input class="col-md-8" type="text" name="email" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>
+                                    </div>-->
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div style="width:80%">                       
-                                    <div class="row" style="margin:20px 0">
-                                        <p class="col-md-4" style="text-align: right;margin:auto 0">Email </p><input class="col-md-8" type="text" name="email" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>
-                                    </div>
+
 
                                     <div class="row" style="margin:20px 0">
                                         <p class="col-md-4" style="text-align: right;margin:auto 0">SDT </p><input class="col-md-8" type="text" name="phone" style="line-height: 40px;border-radius: 6px;border:1px solid #DFDFDF"required/>

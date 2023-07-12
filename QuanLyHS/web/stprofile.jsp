@@ -16,6 +16,7 @@
         <link href="css/markavgcss.css" rel="stylesheet">  
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
+    <style></style>
     <body>
         <%@include file="homepageheader.jsp" %>
         <div class="row">
@@ -29,7 +30,18 @@
                                 <div style="background-color: white;border-radius: 15px;width: 100%;margin: 0 auto 0 auto">
                                     <h3 style="padding:20px;width:300px">Thông tin học sinh</h3>
                                 </div>
-                                <img src="${requestScope.student.imgaddress}" style="width:230px;height:270px;object-fit: cover;margin-top: 30px;box-shadow: 0.5px 0.5px 1px 1px"/>
+                                <img src="${requestScope.student.imgaddress}" style="width:230px;height:270px;object-fit: cover;margin-top: 30px"/>
+
+                                <div style="margin:40px auto 20px auto; background-color: white;border-radius: 15px;width: 300px;padding: 10px 0 10px 0">
+                                    <form action="updateimg?sid=${requestScope.student.sID}" method="post" enctype="multipart/form-data" style="padding:0 0 0 10px">
+                                        <div style="text-align:left; margin-bottom: 5px ">
+                                            <input type ="file" name="photo" style="margin:auto 0;width: 300px" />
+                                        </div>
+                                        <div style="text-align: center ">
+                                            <input type ="submit" style="margin:auto 0;" value="Save"/>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>                           
                         </div>
 
@@ -51,10 +63,10 @@
                                             <p class="col-md-8"style="border: 1px solid #D2D2D2;border-radius: 5px;line-height: 35px">${requestScope.student.name}</p>
                                         </div>
 
-                                        <div class="row" style="margin-bottom: 15px">
-                                            <p class="col-md-4" style="font-weight: 500">Lớp </p>
-                                            <p class="col-md-8"style="border: 1px solid #D2D2D2;border-radius: 5px;line-height: 35px">${requestScope.student.cID}</p>
-                                        </div>
+                                        <!--                                        <div class="row" style="margin-bottom: 15px">
+                                                                                    <p class="col-md-4" style="font-weight: 500">Lớp </p>
+                                                                                    <p class="col-md-8"style="border: 1px solid #D2D2D2;border-radius: 5px;line-height: 35px">${requestScope.student.cID}</p>
+                                                                                </div>-->
 
                                         <div class="row" style="margin-bottom: 15px">
                                             <p class="col-md-4" style="font-weight: 500">Ngày sinh </p>

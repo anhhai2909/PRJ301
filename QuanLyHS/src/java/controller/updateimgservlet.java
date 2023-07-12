@@ -4,24 +4,28 @@
  */
 package controller;
 
-import DAL.classDAO;
-import DAL.timetableDAO;
-import DAL.yearsDAO;
+import DAL.StudentDAO;
+import DAL.learntimeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.Part;
+import java.nio.file.Paths;
+import model.Student;
+import model.learntime;
 
 /**
  *
  * @author anhha
  */
-@WebServlet(name = "deleteclassservlet", urlPatterns = {"/deleteclass"})
-public class deleteclassservlet extends HttpServlet {
+@MultipartConfig
+@WebServlet(name = "updateimgservlet", urlPatterns = {"/updateimg"})
+public class updateimgservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +44,10 @@ public class deleteclassservlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet deleteclassservlet</title>");
+            out.println("<title>Servlet updateimgservlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet deleteclassservlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateimgservlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,19 +65,7 @@ public class deleteclassservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        classDAO d = new classDAO();
-        timetableDAO d2 = new timetableDAO();
-        yearsDAO d3 = new yearsDAO();
-        String cid = request.getParameter("cid");
-        String years = request.getParameter("y");
-        String page = request.getParameter("page");
-        int y = Integer.parseInt(years);
-        d.deleteclass(cid);
-        d.deleteclasshistory(cid, y);
-        if(d3.getpresentyear()==y){
-            d2.deletetimetable(cid);
-        }
-        request.getRequestDispatcher("classlist?page="+page).forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -87,7 +79,17 @@ public class deleteclassservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        StudentDAO d = new StudentDAO();
+        learntimeDAO d1 = new learntimeDAO();
+        String sid = request.getParameter("sid");
+        Part part = request.getPart("photo");
+        String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+        d.updatestudentimg(("img/" + filename),sid);      
+        Student s = d.get1student(sid);
+        learntime lt = d1.get1lt(sid);
+        request.setAttribute("student", s);
+        request.setAttribute("learntime", lt);
+        request.getRequestDispatcher("stprofile.jsp").forward(request, response);
     }
 
     /**

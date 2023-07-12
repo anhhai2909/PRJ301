@@ -83,6 +83,7 @@ public class addstudenttoclassservlet extends HttpServlet {
         ArrayList<Student> list2 = new ArrayList<>();
         ArrayList<Student> list3 = new ArrayList<>();
         
+        String oldcid = d2.getcIDbysidandyear(id, y);
         for (int i = 0; i < list.size() / 3; i++) {
             list1.add(list.get(i));
         }
@@ -101,8 +102,8 @@ public class addstudenttoclassservlet extends HttpServlet {
             request.setAttribute("error", "**Học sinh đã ở trong lớp học đã chọn**");
             request.getRequestDispatcher("addstudenttoclass.jsp").forward(request, response);
         } else {
-            if (d.checkexistlh(id, y)) {
-                String oldcid = d2.getcIDbysidandyear(id, y);
+            if (d.checkexistlh(id, y)) {      
+                
                 d.updatelearnhistory(id, cid, y);
                 d2.updatenumberofstudent(oldcid, y);
                 d2.updatenumberofstudent(cid, y);

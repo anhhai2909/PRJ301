@@ -51,6 +51,7 @@
                             <a href="loaddata?year=${requestScope.y}&cid=${requestScope.classes.cid}" class="option-icon"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
                         </div>
                     </div>
+
                     <div style="margin-left: 50px;margin-bottom: 10px">
                         <div id="updatebox" style="visibility: hidden">
                             <form action="classprofileupdate" method="get" style="display: flex">
@@ -75,15 +76,15 @@
                                         <c:forEach items="${requestScope.list2}" var="i">
                                             <option value="${i}">${i}</option>
                                         </c:forEach>
-                                       
+
                                     </select>
                                 </div>
-                                
+
                                 <div style="width: 200px;font-size: 17px;font-weight: 600;display: flex">
                                     <p style="margin: auto 10px auto 0">Năm học: </p>
                                     <input type="text" name="y" value="${requestScope.y}"style="width: 70px;text-align: center;border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px" readonly/>
                                 </div>
-                                
+
                                 <div>
                                     <input style="border-radius: 10px;border:1px solid #E6E6E6;line-height: 30px;background-color: #3d5ee1;color:white" type="submit" value="Xác nhận"/>
                                 </div>
@@ -118,7 +119,7 @@
                                         <td class="col-md-2">${i.dob}</td>
                                         <td class="col-md-2">${i.email}</td>
                                         <td class="col-md-2">${i.phone}</td>
-                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" class="option-icon"><i class="fa-solid fa-trash" ></i></a></td>
+                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a  href="#" onclick="Warning('${i.sID}','${requestScope.y}','${requestScope.classes.cid}')" class="option-icon"><i class="fa-solid fa-trash" ></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -137,6 +138,12 @@
                 } else {
                     a.style.visibility = 'hidden';
                     b.style.visibility = 'visible';
+                }
+            }
+            function Warning(sid, y, cid) {
+                var option = confirm("Xóa học sinh?");
+                if (option === true) {
+                    window.location.href = 'deletestudentinclass?sid='+sid+'&y=' + y + '&cid=' + cid;
                 }
             }
         </script>

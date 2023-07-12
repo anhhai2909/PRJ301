@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package controller;
 
+import DAL.StudentDAO;
 import DAL.classDAO;
-import DAL.timetableDAO;
-import DAL.yearsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,44 +15,40 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author anhha
  */
-@WebServlet(name = "deleteclassservlet", urlPatterns = {"/deleteclass"})
-public class deleteclassservlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+@WebServlet(name="deletestudentinclass", urlPatterns={"/deletestudentinclass"})
+public class deletestudentinclass extends HttpServlet {
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet deleteclassservlet</title>");
+            out.println("<title>Servlet deletestudentinclass</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet deleteclassservlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet deletestudentinclass at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -60,25 +56,19 @@ public class deleteclassservlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        classDAO d = new classDAO();
-        timetableDAO d2 = new timetableDAO();
-        yearsDAO d3 = new yearsDAO();
+    throws ServletException, IOException {
+        StudentDAO d = new StudentDAO();
+        classDAO d2= new classDAO();
+        String sid = request.getParameter("sid");
         String cid = request.getParameter("cid");
-        String years = request.getParameter("y");
-        String page = request.getParameter("page");
-        int y = Integer.parseInt(years);
-        d.deleteclass(cid);
-        d.deleteclasshistory(cid, y);
-        if(d3.getpresentyear()==y){
-            d2.deletetimetable(cid);
-        }
-        request.getRequestDispatcher("classlist?page="+page).forward(request, response);
-    }
+        int y = Integer.parseInt(request.getParameter("y"));    
+        d.deletelearnhistory(sid, y);
+        d2.updatenumberofstudent(cid, y);
+        request.getRequestDispatcher("classprofile").forward(request, response);
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -86,13 +76,12 @@ public class deleteclassservlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override
