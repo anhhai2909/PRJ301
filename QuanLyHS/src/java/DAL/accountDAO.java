@@ -45,6 +45,22 @@ public class accountDAO extends DBContext{
         }
         return list;
     }
+    
+    public ArrayList<account> getaccount2(){
+        ArrayList<account> list = new ArrayList<>();
+        String sql = "select * from adminacc where tID !='GV010' order by tID";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                account a = new account(rs.getString("username"), rs.getString("upassword"), rs.getString("tID"));
+                list.add(a);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return list;
+    }
     public account getaccountbytid(String id){
         String sql = "select * from adminacc where tID=?";
         try{
@@ -67,6 +83,20 @@ public class accountDAO extends DBContext{
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1,p);
             st.setString(2,tid);
+            st.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void insertacc(String u,String p,String id,String role){
+        String sql = "insert into adminacc values(?,?,?,?);";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1,u);
+            st.setString(2,p);
+            st.setString(3,id);
+            st.setString(4,role);
             st.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);

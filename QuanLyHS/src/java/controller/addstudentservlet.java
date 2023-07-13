@@ -84,7 +84,7 @@ public class addstudentservlet extends HttpServlet {
             StudentDAO d1 = new StudentDAO();
             learntimeDAO d2 = new learntimeDAO();
             Part part = request.getPart("photo");
-            String realpath = request.getServletContext().getRealPath("/img");
+//            String realpath = request.getServletContext().getRealPath("/img");
             String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
 
            // String sid = request.getParameter("sid");

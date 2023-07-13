@@ -30,6 +30,7 @@
                 </li>
                 <ul class="stlist-option" id ="menudropdown1">
                     <li><a href="teacherlist" style="color:black;text-decoration: none;">Danh sách giáo viên</a></li>
+                    <li><a href="teacherandaccountmanage" style="color:black;text-decoration: none;">Quản lý giáo viên</a></li>
                 </ul>
 
                 <li class="menu-element" onclick="menudown('menudropdown2')">

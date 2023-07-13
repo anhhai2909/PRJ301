@@ -7,8 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Author     : anhha
 */
 .submitbut:hover{
-    opacity: 0.8;
-    
+    opacity: 0.8;  
 }
 .submitbut{
     width:200px;
