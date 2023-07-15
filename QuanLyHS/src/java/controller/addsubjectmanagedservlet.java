@@ -14,14 +14,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import java.util.ArrayList;
+import model.account;
+import model.teacher;
 
 /**
  *
  * @author anhha
  */
-@WebServlet(name = "deleteteacherservlet", urlPatterns = {"/deleteteacher"})
-public class deleteteacherservlet extends HttpServlet {
+@WebServlet(name = "addsubjectmanagedservlet", urlPatterns = {"/addsubjectmanaged"})
+public class addsubjectmanagedservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +42,10 @@ public class deleteteacherservlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet deleteteacherservlet</title>");
+            out.println("<title>Servlet addsubjectmanagedservlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet deleteteacherservlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet addsubjectmanagedservlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,14 +63,45 @@ public class deleteteacherservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String tid = request.getParameter("tid");
+        String suid = request.getParameter("suid");
+        
         teacherDAO d = new teacherDAO();
         accountDAO d1 = new accountDAO();
         subjectDAO d2 = new subjectDAO();
-        String tid = request.getParameter("tid");
-        d2.deletesubjectmanagebytid(tid);
-        d1.deleteacc(tid);
-        d.deleteteacher(tid);        
-        response.sendRedirect("teacherandaccountmanage");
+
+        if (!d2.getsubjectmanagedbytidandsuid(tid, suid).isEmpty()) {
+            ArrayList<teacher> list = d.getteacher2();
+            for (int i = 0; i < list.size(); i++) {
+                list.get(i).setList(d2.getsubjectmanaged(list.get(i).getTid()));
+            }
+            ArrayList<account> list1 = d1.getaccount2();
+            request.setAttribute("error", "**Giáo viên hiện đang phụ trách môn học này rồi**");
+            request.setAttribute("teacherlist", list);
+            request.setAttribute("accountlist", list1);
+            request.getRequestDispatcher("teachermanage.jsp").forward(request, response);
+        } else if (d2.get1subject(suid) == null || d.get1teacher(tid) == null) {
+            ArrayList<teacher> list = d.getteacher2();
+            for (int i = 0; i < list.size(); i++) {
+                list.get(i).setList(d2.getsubjectmanaged(list.get(i).getTid()));
+            }
+            ArrayList<account> list1 = d1.getaccount2();
+            request.setAttribute("error", "**Mã môn học hoặc mã giáo viên không tồn tại**");
+            request.setAttribute("teacherlist", list);
+            request.setAttribute("accountlist", list1);
+            request.getRequestDispatcher("teachermanage.jsp").forward(request, response);
+        } else {
+            ArrayList<teacher> list = d.getteacher2();
+            d2.insertsubjectmanage(tid, suid);
+            for (int i = 0; i < list.size(); i++) {
+                list.get(i).setList(d2.getsubjectmanaged(list.get(i).getTid()));
+            }
+            ArrayList<account> list1 = d1.getaccount2();
+            request.setAttribute("txt", "**Thành công**");
+            request.setAttribute("teacherlist", list);
+            request.setAttribute("accountlist", list1);
+            request.getRequestDispatcher("teachermanage.jsp").forward(request, response);
+        }
     }
 
     /**

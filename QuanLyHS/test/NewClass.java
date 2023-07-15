@@ -25,6 +25,7 @@ public class NewClass {
         int max=0;
         d.deleteteacher("GV011");
         subjectDAO d1= new subjectDAO();
-        d1.deletesubjectmanage("GV01","Toán 10");
+        accountDAO d2 = new accountDAO();
+        System.out.println(d2.getaccountbyuser("admin1"));
      }
 }

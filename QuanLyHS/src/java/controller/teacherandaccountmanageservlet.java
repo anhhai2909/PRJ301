@@ -15,7 +15,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -71,21 +70,15 @@ public class teacherandaccountmanageservlet extends HttpServlet {
         teacherDAO d = new teacherDAO();
         accountDAO d1 = new accountDAO();
         subjectDAO d2 = new subjectDAO();
-        HttpSession session = request.getSession();
-        teacher t = (teacher) session.getAttribute("teacher");
-        
+
         ArrayList<teacher> list = d.getteacher2();
-        for(int i =0; i< list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             list.get(i).setList(d2.getsubjectmanaged(list.get(i).getTid()));
         }
-        if (d1.checkadminaccount(t.getTid()) == null) {        
-            ArrayList<account> list1 = d1.getaccount2();
-            request.setAttribute("teacherlist", list);
-            request.setAttribute("accountlist", list1);
-            request.getRequestDispatcher("teachermanage.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("home");
-        }
+        ArrayList<account> list1 = d1.getaccount2();
+        request.setAttribute("teacherlist", list);
+        request.setAttribute("accountlist", list1);
+        request.getRequestDispatcher("teachermanage.jsp").forward(request, response);
     }
 
     /**
@@ -101,6 +94,7 @@ public class teacherandaccountmanageservlet extends HttpServlet {
             throws ServletException, IOException {
         teacherDAO d = new teacherDAO();
         accountDAO d1 = new accountDAO();
+        subjectDAO d2 = new subjectDAO();
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String role = request.getParameter("role");
@@ -134,9 +128,13 @@ public class teacherandaccountmanageservlet extends HttpServlet {
         } else {
             d.insertteacher(tid, name, email, ("img/" + filename));
             d1.insertacc(username, username, tid, role);
+
             request.setAttribute("txt", "**Thành công**");
             ArrayList<teacher> list2 = d.getteacher2();
             ArrayList<account> list3 = d1.getaccount2();
+            for (int i = 0; i < list2.size(); i++) {
+                list2.get(i).setList(d2.getsubjectmanaged(list2.get(i).getTid()));
+            }
             request.setAttribute("teacherlist", list2);
             request.setAttribute("accountlist", list3);
             request.getRequestDispatcher("teachermanage.jsp").forward(request, response);

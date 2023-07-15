@@ -64,6 +64,22 @@ public class subjectDAO extends DBContext {
         }
         return list;
     }
+    public ArrayList<String> getsubjectmanagedbytidandsuid(String tid,String suid) {
+        ArrayList<String> list = new ArrayList<>();
+        String sql = "select subject.name from subject join subjectmanage on subjectmanage.suID = subject.suID where tID =? and subjectmanage.suID=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, tid);
+            st.setString(2, suid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
     public String checksubjectmanage(String tid, String suid) {
         String sql = "  select distinct cID from mark join subjectmanage on mark.suID = subjectmanage.suID where subjectmanage.tID =? and subjectmanage.suID=?";
@@ -203,6 +219,28 @@ public class subjectDAO extends DBContext {
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void insertsubjectmanage(String tid, String suid) {
+        String sql = "insert into subjectmanage values(?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, suid);
+            st.setString(2, tid);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    public void deletesubjectmanagebytid(String tid) {
+        String sql = "delete from subjectmanage where tID =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, tid);
             st.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);

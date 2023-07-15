@@ -30,6 +30,20 @@ public class accountDAO extends DBContext{
         }
         return null;
     }
+     public String getaccountbyuser(String u){
+        String sql = "select * from adminacc where username=? ";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, u);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return rs.getString("tID");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return "";
+    }
     public ArrayList<account> getaccount(){
         ArrayList<account> list = new ArrayList<>();
         String sql = "select * from adminacc";
@@ -98,6 +112,17 @@ public class accountDAO extends DBContext{
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1,p);
             st.setString(2,tid);
+            st.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    public void editacc2(String p,String u){
+        String sql = "update adminacc set upassword=? where username=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1,p);
+            st.setString(2,u);
             st.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);

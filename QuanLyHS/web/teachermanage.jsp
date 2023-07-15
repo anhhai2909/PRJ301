@@ -38,7 +38,7 @@
                         <h3 style="padding:20px;width:300px;padding-top: 50px">Quản lý</h3>
                     </div>
                     <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
-                        <p style="color: green;text-align: center">${txt}</p>
+                        <p style="color: green;text-align: center">${requestScope.txt}</p>
                     </div>
                     <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
                         <p style="color: red;text-align: center">${error}</p>
@@ -73,7 +73,7 @@
                                                     </div>
                                                 </c:forEach>
                                             </td>
-                                            <td class="col-md-1" style="border-bottom: 1px solid #F3F3F3"><a nonhref onclick="showupdatebox()" style="margin-right: 10px"><i class="fa-solid fa-pen add-but" ></i></a><a href="#" onclick="Warning('${i.tid}')" ><i class="fa-solid fa-trash add-but" ></i></a> </td>
+                                            <td class="col-md-1" style="border-bottom: 1px solid #F3F3F3"><a nonhref style="margin-right: 10px"><i class="fa-solid fa-pen add-but" ></i></a><a href="#" onclick="Warning('${i.tid}')" ><i class="fa-solid fa-trash add-but" ></i></a> </td>
                                                 </c:forEach>
                                     </tr>
                                 </tbody>
@@ -104,14 +104,39 @@
                     <div class="col-md-4" >
                         <div style="background-color: white;border-radius: 10px;width: 400px;padding:40px 20px 40px 20px;text-align: center;margin-bottom: 60px">
                             <div style="text-align: left;font-size: 18px;font-weight: 500">
-                                <p>Thêm tài khoản</p>
+                                <p>Bổ sung môn học được phụ trách</p>
+                                <form action="addsubjectmanaged" method="get" >
+                                    <div>
+                                        <input type="text" name="tid" placeholder="Mã GV" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px"required/>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="suid" placeholder="Mã môn" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px"required/>
+                                    </div>
+                                    <div>
+                                        <input type="submit" value="Xác nhận" style="width: 100px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;color:white;background-color:  #3d5ee1;border:0" class="submitbut"/>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div style="background-color: white;border-radius: 10px;width: 400px;padding:40px 20px 40px 20px;text-align: center;margin-bottom: 60px">
                             <div style="text-align: left;font-size: 18px;font-weight: 500">
-                                <p>Thêm tài khoản</p>
+                                <p>Chỉnh sửa tài khoản</p>
+                                <form action="teacheraccountupdate" method="post">
+                                    <div>
+                                        <input type="text" name="user" placeholder="Tài khoản" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px"required/>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="pass" placeholder="Mật khẩu mới" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px"required/>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="repass" placeholder="Nhập lại mật khẩu" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px"required/>
+                                    </div>
+                                    <div>
+                                        <input type="submit" value="Xác nhận" style="width: 100px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;color:white;background-color:  #3d5ee1;border:0" class="submitbut"/>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -140,7 +165,7 @@
                                     <input type ="file" name="photo" style="margin-bottom: 10px;margin-left: 45px" required/>
                                 </div>
                                 <div>
-                                    <input name="photo" type="submit" value="Xác nhận" style="width: 100px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;color:white;background-color:  #3d5ee1;border:0" class="submitbut"/>
+                                    <input type="submit" value="Xác nhận" style="width: 100px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;color:white;background-color:  #3d5ee1;border:0" class="submitbut"/>
                                 </div>
                             </form>
                         </div>
