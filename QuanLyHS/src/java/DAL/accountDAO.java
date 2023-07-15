@@ -46,6 +46,21 @@ public class accountDAO extends DBContext{
         return list;
     }
     
+    public String checkadminaccount(String tid){
+        String sql = "select adminacc.tID from adminacc join teacher on teacher.tID = adminacc.tID where role !=1 and adminacc.tID=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, tid);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return rs.getString("tID");
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
+    
     public ArrayList<account> getaccount2(){
         ArrayList<account> list = new ArrayList<>();
         String sql = "select * from adminacc where tID !='GV010' order by tID";
@@ -102,11 +117,11 @@ public class accountDAO extends DBContext{
             System.out.println(e);
         }
     }
-    public void deleteacc(String u){
-        String sql="delete from adminacc where username = ?";
+    public void deleteacc(String tid){
+        String sql="delete from adminacc where tID = ?";
         try{
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, u);
+            st.setString(1, tid);
             st.executeUpdate();
         }catch(SQLException e){
             System.out.println(e);

@@ -33,6 +33,9 @@
                 <div>
                     <h3 style="margin: 20px">Welcome admin</h3>
                 </div>
+                <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
+                    <p style="color: red;text-align: center">${error}</p>
+                </div>
                 <div style="width:100%;">
                     <div class="row rightpart" >
                         <div class="col-md-4">

@@ -37,7 +37,7 @@ public class subjectDAO extends DBContext {
         String sql = "select * from subject where grade=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1,grade);
+            st.setString(1, grade);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 subject s = new subject(rs.getString("suID"), rs.getString("name"), rs.getString("descript"));
@@ -47,6 +47,38 @@ public class subjectDAO extends DBContext {
             System.out.println(e);
         }
         return list;
+    }
+
+    public ArrayList<String> getsubjectmanaged(String tid) {
+        ArrayList<String> list = new ArrayList<>();
+        String sql = "select subject.name from subject join subjectmanage on subjectmanage.suID = subject.suID where tID =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, tid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public String checksubjectmanage(String tid, String suid) {
+        String sql = "  select distinct cID from mark join subjectmanage on mark.suID = subjectmanage.suID where subjectmanage.tID =? and subjectmanage.suID=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, tid);
+            st.setString(2, suid);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString("cID");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
     public ArrayList<subject> checkexistedsubject(String id, String name, String descript) {
@@ -121,12 +153,13 @@ public class subjectDAO extends DBContext {
         }
         return null;
     }
-    public subject get1subjectbygrade(String id,String grade) {
+
+    public subject get1subjectbygrade(String id, String grade) {
         String sql = "select * from subject where suID=? and grade like ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, id);
-            st.setString(2,grade);
+            st.setString(2, grade);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 subject s = new subject(rs.getString("suID"), rs.getString("name"), rs.getString("descript"));
@@ -138,7 +171,7 @@ public class subjectDAO extends DBContext {
         return null;
     }
 
-    public void insertsubject(subject s,String grade) {
+    public void insertsubject(subject s, String grade) {
         String sql = "insert into subject values(?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -170,6 +203,17 @@ public class subjectDAO extends DBContext {
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    public void deletesubjectmanage(String tid,String suname) {
+        String sql = "delete from subjectmanage where suID =(select suID from subject where name =?) and tID =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(2, tid);
+            st.setString(1, suname);
             st.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);

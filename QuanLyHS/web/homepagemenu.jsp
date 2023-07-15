@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +31,9 @@
                 </li>
                 <ul class="stlist-option" id ="menudropdown1">
                     <li><a href="teacherlist" style="color:black;text-decoration: none;">Danh sách giáo viên</a></li>
-                    <li><a href="teacherandaccountmanage" style="color:black;text-decoration: none;">Quản lý giáo viên</a></li>
+                        <c:if test="${sessionScope.role==1}">
+                        <li><a href="teacherandaccountmanage" style="color:black;text-decoration: none;">Quản lý giáo viên</a></li>
+                        </c:if>
                 </ul>
 
                 <li class="menu-element" onclick="menudown('menudropdown2')">
@@ -58,7 +61,7 @@
                 <ul class="stlist-option" id ="menudropdown4">
                     <li><a href="marklist" style="color:black;text-decoration: none;">Danh sách điểm</a></li>
                     <li><a href="markavg" style="color:black;text-decoration: none;">Điểm trung bình</a></li>
-                     
+
                 </ul>
 
                 <li class="menu-element" onclick="menudown('menudropdown5')">
@@ -72,7 +75,7 @@
 
             </ul>
         </div>
-        
+
         <script>
             function showdropdown() {
                 var a = document.getElementById('dropdown');

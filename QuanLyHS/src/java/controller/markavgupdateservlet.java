@@ -4,6 +4,8 @@
  */
 package controller;
 
+import DAL.accountDAO;
+import DAL.classDAO;
 import DAL.markavgDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +14,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.markavg;
+import model.teacher;
 
 /**
  *
@@ -59,12 +63,22 @@ public class markavgupdateservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        accountDAO d1 = new accountDAO();
+        classDAO d2 = new classDAO();
         String sid = request.getParameter("sid");
-        int years = Integer.parseInt(request.getParameter("years"));
+        String cid = request.getParameter("cid");
+        String years = request.getParameter("years");
+        int y = Integer.parseInt(years);
         markavgDAO d = new markavgDAO();
-        markavg m = d.get1avg(years, sid);
-        request.setAttribute("m", m);
-        request.getRequestDispatcher("markavgupdate.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        teacher t = (teacher) session.getAttribute("teacher");
+        if (d2.getclassbytidyearandcid(cid, t.getTid(), years) != null || d1.checkadminaccount(t.getTid()) == null) {
+            markavg m = d.get1avg(y, sid);
+            request.setAttribute("m", m);
+            request.getRequestDispatcher("markavgupdate.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("markavg").forward(request, response);
+        }
     }
 
     /**

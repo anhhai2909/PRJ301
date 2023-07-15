@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author anhha
@@ -12,6 +14,7 @@ public class teacher {
     private String tid;
     private String name;
     private String email;
+    private ArrayList<String> list ;
     private String imgaddress;
 
     public teacher() {
@@ -25,6 +28,15 @@ public class teacher {
         this.imgaddress = imgaddress;
     }
 
+    public ArrayList<String> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<String> list) {
+        this.list = list;
+    }
+    
+    
     public String getTid() {
         return tid;
     }

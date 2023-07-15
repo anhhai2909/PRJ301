@@ -21,15 +21,10 @@ import model.teacher;
 public class NewClass {
 
     public static void main(String[] args) {
-        accountDAO d = new accountDAO();
+        teacherDAO d = new teacherDAO();
         int max=0;
-        ArrayList<account> list = d.getaccount();
-        for (int i = 0; i < list.size(); i++) {
-            if (max < Integer.parseInt(list.get(i).getUser().substring(5, list.get(i).getUser().length()))) {
-                max = Integer.parseInt(list.get(i).getUser().substring(5, list.get(i).getUser().length()));
-            }
-        }
-        String username = "admin" + (max + 1);
-        System.out.println(username);
-    }
+        d.deleteteacher("GV011");
+        subjectDAO d1= new subjectDAO();
+        d1.deletesubjectmanage("GV01","Toán 10");
+     }
 }

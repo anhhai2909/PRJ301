@@ -54,7 +54,7 @@
                                 </thead>
 
                                 <tbody style="text-align: center">
-                                    <tr class="row table-body" style="width:100%;;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
+                                    <tr class="row table-body" style="width:100%;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
                                         <th class="col-md-1"><input type="text" name="sid" value="${requestScope.m.sid}" readonly style="text-align: center;width: 60px;line-height: 35px;border-radius: 5px;border:1px solid #E4E4E4"/></th>
                                         <th class="col-md-1"><input type="text" name="m1" value="${requestScope.m.m1}" style="text-align: center;width: 50px;line-height: 35px;border-radius: 5px;border:1px solid #E4E4E4"/></th>
                                         <th class="col-md-1"><input type="text" name="m2" value="${requestScope.m.m2}" style="text-align: center;width: 50px;line-height: 35px;border-radius: 5px;border:1px solid #E4E4E4"/></th>

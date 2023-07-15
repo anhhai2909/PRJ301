@@ -4,9 +4,8 @@
  */
 package controller;
 
-import DAL.StudentDAO;
 import DAL.accountDAO;
-import DAL.classDAO;
+import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,17 +13,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import model.Student;
+import model.account;
 import model.teacher;
 
 /**
  *
  * @author anhha
  */
-@WebServlet(name = "loaddatatoaddstudenttoclass", urlPatterns = {"/loaddata"})
-public class loaddatatoaddstudenttoclass extends HttpServlet {
+@WebServlet(name = "deleteteacherservlet", urlPatterns = {"/deleteteacher"})
+public class deleteteacherservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +41,10 @@ public class loaddatatoaddstudenttoclass extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet addstudenttoclassservlet</title>");
+            out.println("<title>Servlet deleteteacherservlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet addstudenttoclassservlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet deleteteacherservlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,36 +62,12 @@ public class loaddatatoaddstudenttoclass extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        StudentDAO d = new StudentDAO();
-        classDAO d1 = new classDAO();
-        accountDAO d2 = new accountDAO();
-        String year = request.getParameter("year");
-        String cid = request.getParameter("cid");
-        HttpSession session = request.getSession();
-        teacher t = (teacher) session.getAttribute("teacher");
-        if (d1.getclassbytidyearandcid(cid, t.getTid(), year) != null||d2.checkadminaccount(t.getTid())==null) {
-            ArrayList<Student> list = d.getStudent();
-            ArrayList<Student> list1 = new ArrayList<>();
-            ArrayList<Student> list2 = new ArrayList<>();
-            ArrayList<Student> list3 = new ArrayList<>();
-            for (int i = 0; i < list.size() / 3; i++) {
-                list1.add(list.get(i));
-            }
-            for (int i = list.size() / 3; i < list.size() / 3 * 2; i++) {
-                list2.add(list.get(i));
-            }
-            for (int i = list.size() / 3 * 2; i < list.size(); i++) {
-                list3.add(list.get(i));
-            }
-            request.setAttribute("year", year);
-            request.setAttribute("cid", cid);
-            request.setAttribute("list1", list1);
-            request.setAttribute("list2", list2);
-            request.setAttribute("list3", list3);
-            request.getRequestDispatcher("addstudenttoclass.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("classprofile?cid=" + cid + "&y=" + year).forward(request, response);
-        }
+        teacherDAO d = new teacherDAO();
+        accountDAO d1 = new accountDAO();
+        String tid = request.getParameter("tid");
+        d1.deleteacc(tid);
+        d.deleteteacher(tid);        
+        response.sendRedirect("teacherandaccountmanage");
     }
 
     /**
@@ -107,7 +81,7 @@ public class loaddatatoaddstudenttoclass extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**

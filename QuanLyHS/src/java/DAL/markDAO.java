@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.mark;
-import model.years;
 
 /**
  *
@@ -26,6 +25,23 @@ public class markDAO extends DBContext {
             while (rs.next()) {
                 mark m = new mark(rs.getDouble("m1"), rs.getDouble("m2"), rs.getDouble("pt1"), rs.getDouble("pt2"), rs.getDouble("mt"), rs.getDouble("fe"), rs.getDouble("avag"), rs.getString("suID"), rs.getString("sID"), rs.getInt("years"));
                 list.add(m);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    public ArrayList<Double> getmarkavg(String sid,String years) {
+        ArrayList<Double> list = new ArrayList<>();
+        String sql = "  select avag from mark where sID=? and years=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, sid);
+            st.setString(2, years);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+
+                list.add(Double.parseDouble(rs.getString("avag")));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -52,6 +68,7 @@ public class markDAO extends DBContext {
         }
         return list;
     }
+    
 
     public ArrayList<mark> getmark_by_sid_sname_suid_years(String sid, String name, String suid, String y) {
         ArrayList<mark> list = new ArrayList<>();

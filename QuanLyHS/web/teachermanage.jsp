@@ -16,15 +16,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <style>
+        .add-but{
+            color:black;
+        }
         .add-but:hover{
             color: #007bff;
             cursor: pointer;
         }
         .submitbut:hover{
             opacity: 0.8;
-        }
-        .add-box{
-            display:none;
         }
     </style>
     <body>
@@ -43,17 +43,16 @@
                     <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
                         <p style="color: red;text-align: center">${error}</p>
                     </div>
-                    <div style="text-align: right;margin-right:30px">
-                        <i class="fa-solid fa-square-plus fa-2x add-but" onclick="showdropdown()"></i>
-                    </div>
+
                     <div class="row">
                         <div class="col-md-9" style="text-align: center">
                             <table style="margin:10px 10px 60px 10px;padding:0 0 30px 0;" >
                                 <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                     <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
-                                        <th class="col-md-3">Mã GV</th>
-                                        <th class="col-md-4">Tên GV</th>
+                                        <th class="col-md-2">Mã GV</th>
+                                        <th class="col-md-3">Tên GV</th>
                                         <th class="col-md-4">Email</th>
+                                        <th class="col-md-2">Bộ môn</th>
                                         <th class="col-md-1"></th>
                                     </tr>
                                 </thead>
@@ -61,11 +60,21 @@
                                 <tbody style="text-align: center;padding-bottom: 20px">
                                     <tr class="row table-body" style="width:100%;margin-left: 0;margin-right: 0;font-weight: 500;line-height: 40px">
                                         <c:forEach items="${requestScope.teacherlist}" var="i">
-                                            <th class="col-md-3" style="border-bottom: 1px solid #F3F3F3;border-right: 1px solid #F3F3F3">${i.tid}</th>
-                                            <th class="col-md-4" style="border-bottom: 1px solid #F3F3F3;border-right: 1px solid #F3F3F3">${i.name}</th>
-                                            <th class="col-md-4" style="border-bottom: 1px solid #F3F3F3;border-right: 1px solid #F3F3F3">${i.email}</th>   
-                                            <th class="col-md-1" style="border-bottom: 1px solid #F3F3F3">Tùy </th>
-                                            </c:forEach>
+                                            <td class="col-md-2" style="border-bottom: 1px solid #F3F3F3;border-right: 1px solid #F3F3F3">${i.tid}</td>
+                                            <td class="col-md-3" style="border-bottom: 1px solid #F3F3F3;border-right: 1px solid #F3F3F3">${i.name}</td>
+                                            <td class="col-md-4" style="border-bottom: 1px solid #F3F3F3;border-right: 1px solid #F3F3F3">${i.email}</td>   
+                                            <td class="col-md-2" style="border-bottom: 1px solid #F3F3F3;border-right: 1px solid #F3F3F3">
+                                                <c:forEach items="${i.list}" var="j">
+                                                    <div style="width: 60px;border:1px solid #ACACAD;border-radius: 5px;margin:5px">
+                                                        <div style="text-align: right;line-height: 10px">
+                                                            <a href="#" onclick="Warning2('${i.tid}', '${j}')" style="height: 15px"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+                                                        </div>
+                                                        <p style="margin:0;line-height: 20px">${j}</p>
+                                                    </div>
+                                                </c:forEach>
+                                            </td>
+                                            <td class="col-md-1" style="border-bottom: 1px solid #F3F3F3"><a nonhref onclick="showupdatebox()" style="margin-right: 10px"><i class="fa-solid fa-pen add-but" ></i></a><a href="#" onclick="Warning('${i.tid}')" ><i class="fa-solid fa-trash add-but" ></i></a> </td>
+                                                </c:forEach>
                                     </tr>
                                 </tbody>
                             </table>
@@ -91,36 +100,78 @@
                         </div>
                     </div>
                 </div>
-                <div style="background-color: white;border-radius: 20px;width: 400px;padding:40px 20px 40px 20px;text-align: center;margin-bottom: 60px" class="add-box" id="add-box">
-                    <form action="teacherandaccountmanage" method="post" enctype="multipart/form-data">
-                        <div>
-                            <input type="text" name="name" placeholder="Họ và tên" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px"required/>
-                        </div>
-                        <div>
-                            <input type="text" name="email" placeholder="Email" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px" required/>
-                        </div>
-                        <div>
-                            <div class="row" style="width: 300px;margin-left: 40px">
-                                <p class="col-md-4">Chức vụ </p>
-                                <div class="col-md-8">
-                                    <input type="radio" name="role" value="1" checked/>admin
-                                    <input type="radio" name="role" value="2"/>Giáo viên
-                                </div>
+                <div class="row">  
+                    <div class="col-md-4" >
+                        <div style="background-color: white;border-radius: 10px;width: 400px;padding:40px 20px 40px 20px;text-align: center;margin-bottom: 60px">
+                            <div style="text-align: left;font-size: 18px;font-weight: 500">
+                                <p>Thêm tài khoản</p>
                             </div>
                         </div>
-                        <div>
-                            <input type ="file" name="photo" style="margin-bottom: 10px;margin-left: 45px" required/>
+                    </div>
+                    <div class="col-md-4">
+                        <div style="background-color: white;border-radius: 10px;width: 400px;padding:40px 20px 40px 20px;text-align: center;margin-bottom: 60px">
+                            <div style="text-align: left;font-size: 18px;font-weight: 500">
+                                <p>Thêm tài khoản</p>
+                            </div>
                         </div>
-                        <div>
-                            <input name="photo" type="submit" value="Xác nhận" style="width: 100px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;color:white;background-color:  #3d5ee1;border:0" class="submitbut"/>
+                    </div>
+                    <div class="col-md-4" >
+                        <div style="background-color: white;border-radius: 10px;width: 400px;padding:40px 20px 40px 20px;text-align: center;margin-bottom: 60px">
+                            <div style="text-align: left;font-size: 18px;font-weight: 500">
+                                <p>Thêm tài khoản</p>
+                            </div>
+                            <form action="teacherandaccountmanage" method="post" enctype="multipart/form-data">
+                                <div>
+                                    <input type="text" name="name" placeholder="Họ và tên" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px"required/>
+                                </div>
+                                <div>
+                                    <input type="text" name="email" placeholder="Email" style="width: 250px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;margin-bottom: 5px;padding-left: 10px" required/>
+                                </div>
+                                <div>
+                                    <div class="row" style="width: 300px;margin-left: 40px">
+                                        <p class="col-md-4">Chức vụ </p>
+                                        <div class="col-md-8">
+                                            <input type="radio" name="role" value="1" checked/>admin
+                                            <input type="radio" name="role" value="2"/>Giáo viên
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type ="file" name="photo" style="margin-bottom: 10px;margin-left: 45px" required/>
+                                </div>
+                                <div>
+                                    <input name="photo" type="submit" value="Xác nhận" style="width: 100px;line-height: 30px;border-radius: 10px;border:1px solid #ACACAD;color:white;background-color:  #3d5ee1;border:0" class="submitbut"/>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
+
             </div>               
         </div>
-        <script>
+        <script type="text/javascript">
+            function showdropdown1(id) {
+                var a = document.getElementById(id);
+                if (a.style.display !== 'block') {
+                    a.style.display = 'block';
+                } else {
+                    a.style.display = 'none';
+                }
+            }
+            function Warning(tid) {
+                var option = confirm("Xóa giáo viên?");
+                if (option === true) {
+                    window.location.href = 'deleteteacher?tid=' + tid;
+                }
+            }
+            function Warning2(tid, suname) {
+                var option = confirm("Bỏ bộ môn?");
+                if (option === true) {
+                    window.location.href = 'deletesubjectmanage?tid=' + tid + '&suname=' + suname;
+                }
+            }
             function showdropdown() {
-                var a = document.getElementById('add-box');
+                var a = document.getElementById('dropdown');
                 if (a.style.display !== 'block') {
                     a.style.display = 'block';
 
@@ -128,6 +179,7 @@
                     a.style.display = 'none';
                 }
             }
+
         </script>
     </body>
 </html>

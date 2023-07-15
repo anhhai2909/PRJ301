@@ -5,6 +5,7 @@
 package controller;
 
 import DAL.accountDAO;
+import DAL.subjectDAO;
 import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -68,11 +70,22 @@ public class teacherandaccountmanageservlet extends HttpServlet {
             throws ServletException, IOException {
         teacherDAO d = new teacherDAO();
         accountDAO d1 = new accountDAO();
+        subjectDAO d2 = new subjectDAO();
+        HttpSession session = request.getSession();
+        teacher t = (teacher) session.getAttribute("teacher");
+        
         ArrayList<teacher> list = d.getteacher2();
-        ArrayList<account> list1 = d1.getaccount2();
-        request.setAttribute("teacherlist", list);
-        request.setAttribute("accountlist", list1);
-        request.getRequestDispatcher("teachermanage.jsp").forward(request, response);
+        for(int i =0; i< list.size();i++){
+            list.get(i).setList(d2.getsubjectmanaged(list.get(i).getTid()));
+        }
+        if (d1.checkadminaccount(t.getTid()) == null) {        
+            ArrayList<account> list1 = d1.getaccount2();
+            request.setAttribute("teacherlist", list);
+            request.setAttribute("accountlist", list1);
+            request.getRequestDispatcher("teachermanage.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("home");
+        }
     }
 
     /**
@@ -102,7 +115,7 @@ public class teacherandaccountmanageservlet extends HttpServlet {
             }
         }
         String tid = "GV0" + (max + 1);
-        
+
         ArrayList<account> list1 = d1.getaccount();
         for (int i = 0; i < list1.size(); i++) {
             if (max < Integer.parseInt(list1.get(i).getUser().substring(5, list1.get(i).getUser().length()))) {
@@ -110,7 +123,7 @@ public class teacherandaccountmanageservlet extends HttpServlet {
             }
         }
         String username = "admin" + (max + 1);
-        
+
         if (d.getteacherbyemail(email) != null) {
             request.setAttribute("error", "**Thông tin cung cấp không hợp lệ**");
             ArrayList<teacher> list2 = d.getteacher2();

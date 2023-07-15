@@ -41,14 +41,19 @@ public class Loginservlet extends HttpServlet {
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             String check = request.getParameter("remember");
-            
+
             teacherDAO d1 = new teacherDAO();
             accountDAO d = new accountDAO();
             String tid = d.get1account(user, pass);
-            if (tid != null) {
+            if (tid != null) {               
                 teacher t = d1.get1teacher(tid);
                 HttpSession session = request.getSession();
                 session.setAttribute("teacher", t);
+                if(d.checkadminaccount(tid)==null){
+                    session.setAttribute("role", 1);
+                }else{
+                    session.setAttribute("role", 2);
+                }            
                 if (check != null) {
                     Cookie username = new Cookie("user", user);
                     username.setMaxAge(60*60*24*30);

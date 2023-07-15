@@ -71,22 +71,20 @@
                         <table style="width:90%;margin:0 auto">
                             <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                 <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
-                                    <th class="col-md-2">Mã HS</th>
-                                    <th class="col-md-2">Mã lớp</th>
+                                    <th class="col-md-3">Mã HS</th>
+                                    <th class="col-md-3">Mã lớp</th>
                                     <th class="col-md-3">Trung bình</th>
                                     <th class="col-md-3">Năm học</th>       
-                                    <th class="col-md-2">Tùy chọn</th>   
                                 </tr>
                             </thead>
 
                             <tbody style="text-align: center">
                                 <c:forEach items="${requestScope.list}" var="i">
                                     <tr class="row table-body" style="width:100%;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
-                                        <th class="col-md-2">${i.sid}</th>
-                                        <th class="col-md-2">${i.cid}</th>
+                                        <th class="col-md-3">${i.sid}</th>
+                                        <th class="col-md-3">${i.cid}</th>
                                         <th class="col-md-3">${i.avg}</th>
-                                        <th class="col-md-3">${i.years}</th> 
-                                        <th class="col-md-2"><a href="markavgupdate?sid=${i.sid}&years=${i.years}" class="option-icon" style="margin:5px"><i class="fa-solid fa-pen"></i></a></th> 
+                                        <th class="col-md-3">${i.years}</th>                                      
                                     </tr>
                                 </c:forEach>
                             </tbody>

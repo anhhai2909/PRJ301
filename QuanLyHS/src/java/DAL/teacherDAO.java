@@ -137,6 +137,17 @@ public class teacherDAO extends DBContext {
             System.out.println(e);
         }
     }
+    
+    public void deleteteacher(String tid) {
+        String sql = "delete from teacher where tID =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, tid);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     public void insertteacher(String id,String name,String email,String imgaddress) {
         String sql = "insert into teacher values(?,?,?,?)";
         try {

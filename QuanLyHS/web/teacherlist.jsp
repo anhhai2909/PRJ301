@@ -29,18 +29,25 @@
                         <table style="width:90%;margin:0 auto">
                             <thead style="text-align: center;width:100%;background-color: #FBFBFB">
                                 <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
-                                    <th class="col-md-2">ID</th>
+                                    <th class="col-md-1">ID</th>
                                     <th class="col-md-3">Tên</th>
                                     <th class="col-md-3">Email</th>
+                                    <th class="col-md-1">Bộ môn</th>
                                     <th class="col-md-4">Ảnh</th>
+
                                 </tr>
                             </thead>
                             <tbody style="text-align: center">
                                 <c:forEach items="${requestScope.list}" var="i">
-                                    <tr class="row table-body" style="margin-top:10px;width:100%;;margin-left: 0;margin-right: 0;">
-                                        <td class="col-md-2">${i.tid}</td>
+                                    <tr class="row table-body" style="margin-top:10px;width:100%;margin-left: 0;margin-right: 0;">
+                                        <td class="col-md-1">${i.tid}</td>
                                         <td class="col-md-3">${i.name}</td>
                                         <td class="col-md-3">${i.email}</td>
+                                        <td class="col-md-1">
+                                            <c:forEach items="${i.list}" var="j">
+                                                <p>${j}</p>
+                                            </c:forEach>
+                                        </td>
                                         <td class="col-md-4"><img src="${i.imgaddress}"></td>
                                     </tr>
                                 </c:forEach>

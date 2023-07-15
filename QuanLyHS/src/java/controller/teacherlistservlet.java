@@ -5,6 +5,7 @@
 
 package controller;
 
+import DAL.subjectDAO;
 import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -59,7 +60,11 @@ public class teacherlistservlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         teacherDAO d = new teacherDAO();
+        subjectDAO d1 = new subjectDAO();
         ArrayList<teacher> list = d.getteacher();
+        for(int i =0; i< list.size();i++){
+            list.get(i).setList(d1.getsubjectmanaged(list.get(i).getTid()));
+        }
         request.setAttribute("list", list);
         request.getRequestDispatcher("teacherlist.jsp").forward(request, response);
     } 
