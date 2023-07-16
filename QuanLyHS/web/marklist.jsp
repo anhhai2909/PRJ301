@@ -22,24 +22,25 @@
         <div class="row">
             <%@include file="homepagemenu.jsp" %>
             <div class="col-md-10 r123" style="margin-bottom: 100px">
+
                 <div style="background-color: white;border-radius: 15px;padding: 10px 20px 10px 0;margin-bottom: 20px;margin-top: 50px">
                     <form action="marksearch" method="get" style="display:flex">
                         <div>
                             <input type="text" name="searchsid" placeholder=" Tìm theo mã HS" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF"/>
                         </div>
-                        
+
                         <div>
                             <input type="text" name="searchsname" placeholder=" Tìm theo tên" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF"/>
                         </div>
-                        
+
                         <div>
                             <input type="text" name="searchsuid" placeholder=" Tìm theo mã môn" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF"/>
                         </div>
-                        
+
                         <div>
                             <input type="text" name="searchyears" placeholder=" Tìm theo năm học" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF"/>
                         </div>
-                        
+
                         <div class="searchsubmit">
                             <input type="submit"  value="Xác nhận" style="margin:20px 20px 15px 20px;line-height: 35px;border-radius: 10px;border:1px solid #DFDFDF;width: 120px"/>
                         </div>
@@ -78,6 +79,12 @@
                     <div>
                         <h3 style="padding:20px;width:300px;padding-top: 50px">Danh sách điểm</h3>
                     </div>
+                    <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
+                        <p style="color: green;text-align: center">${txt}</p>
+                    </div>
+                    <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
+                        <p style="color: red;text-align: center">${error}</p>
+                    </div>
                     <div style="padding-top: 10px">
                         <table style="width:95%;margin:0 auto">
                             <thead style="text-align: center;width:100%;background-color: #FBFBFB">
@@ -109,7 +116,7 @@
                                         <th class="col-md-1" style="margin: auto 0">${i.mt}</th>
                                         <th class="col-md-1" style="margin: auto 0">${i.fe}</th>
                                         <th class="col-md-1" style="margin: auto 0">${i.avag}</th> 
-                                        <td class="col-md-1" style="padding-left: 0;margin: auto 0"><a href="markupdate?sid=${i.sid}&suid=${i.suid}&years=${i.years}" class="option-icon"><i class="fa-solid fa-pen"></i></a></td>
+                                        <td class="col-md-1" style="padding-left: 0;margin: auto 0"><a href="markupdate?sid=${i.sid}&suid=${i.suid}&years=${i.years}&cid=${requestScope.cid}" class="option-icon"><i class="fa-solid fa-pen"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

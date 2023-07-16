@@ -5,9 +5,11 @@
 package controller;
 
 import DAL.accountDAO;
+import DAL.classDAO;
 import DAL.markDAO;
 import DAL.markavgDAO;
 import DAL.subjectDAO;
+import DAL.yearsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,9 +19,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import model.classes;
 import model.mark;
 import model.markavg;
+import model.subject;
 import model.teacher;
+import model.years;
 
 /**
  *
@@ -69,9 +74,12 @@ public class markupdateservlet extends HttpServlet {
         markDAO d = new markDAO();
         accountDAO d1 = new accountDAO();
         subjectDAO d2 = new subjectDAO();
+        classDAO d3 = new classDAO();
+        yearsDAO d4 = new yearsDAO();
         String sid = request.getParameter("sid");
         String suid = request.getParameter("suid");
         String years = request.getParameter("years");
+        String cid = request.getParameter("cid");
         int y = Integer.parseInt(years);
 
         HttpSession session = request.getSession();
@@ -84,7 +92,20 @@ public class markupdateservlet extends HttpServlet {
             request.setAttribute("m", m);
             request.getRequestDispatcher("markupdate.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("marklist").forward(request, response);
+            ArrayList<years> list2 = d4.getyear();
+            ArrayList<classes> list3 = d3.getclassbyyear(y);
+            ArrayList<subject> list4 = d2.getsubjectbygrade(cid.substring(0, 2));
+            ArrayList<mark> list = d.getmarkbycidandsuidandyear(cid, suid, y);
+            request.setAttribute("year", y);
+            request.setAttribute("cid", cid);
+            request.setAttribute("suid", suid);
+            request.setAttribute("list", list);
+            request.setAttribute("list2", list2);
+            request.setAttribute("list3", list3);
+            request.setAttribute("list4", list4);
+            request.setAttribute("error", "**Bạn hiện đang không quản lý các đầu điểm của môn này**");
+            request.getRequestDispatcher("marklist.jsp").forward(request, response);
+            //request.getRequestDispatcher("marklist").forward(request, response);
         }
     }
 

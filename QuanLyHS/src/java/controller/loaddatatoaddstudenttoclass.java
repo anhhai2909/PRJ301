@@ -7,6 +7,7 @@ package controller;
 import DAL.StudentDAO;
 import DAL.accountDAO;
 import DAL.classDAO;
+import DAL.teacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import model.Student;
+import model.classes;
 import model.teacher;
 
 /**
@@ -67,10 +69,13 @@ public class loaddatatoaddstudenttoclass extends HttpServlet {
         StudentDAO d = new StudentDAO();
         classDAO d1 = new classDAO();
         accountDAO d2 = new accountDAO();
+        teacherDAO d3 = new teacherDAO();
         String year = request.getParameter("year");
+        int y = Integer.parseInt(year);
         String cid = request.getParameter("cid");
         HttpSession session = request.getSession();
         teacher t = (teacher) session.getAttribute("teacher");
+        
         if (d1.getclassbytidyearandcid(cid, t.getTid(), year) != null||d2.checkadminaccount(t.getTid())==null) {
             ArrayList<Student> list = d.getStudent();
             ArrayList<Student> list1 = new ArrayList<>();
@@ -92,7 +97,17 @@ public class loaddatatoaddstudenttoclass extends HttpServlet {
             request.setAttribute("list3", list3);
             request.getRequestDispatcher("addstudenttoclass.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("classprofile?cid=" + cid + "&y=" + year).forward(request, response);
+        classes c = d1.get1classbycidandyear(cid, y);
+        ArrayList<Student> list  = d.getstudentbyclassandyear(cid, y);
+        ArrayList<String> list2 = d3.getfreeteacher(y);
+        request.setAttribute("y",y);
+        
+        request.setAttribute("classes", c);
+        request.setAttribute("list",list);
+        request.setAttribute("list2",list2);
+        request.setAttribute("error", "**Bạn không được phân công phụ trách lớp học này**");
+        request.getRequestDispatcher("classprofile.jsp").forward(request, response);
+        //    request.getRequestDispatcher("classprofile?cid=" + cid + "&y=" + year).forward(request, response);
         }
     }
 

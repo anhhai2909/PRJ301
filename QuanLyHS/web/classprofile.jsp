@@ -26,6 +26,12 @@
                     <div>
                         <h3 style="padding:40px 20px 30px 20px;width:300px;margin-bottom: 5px">Thông tin lớp học</h3>
                     </div>
+                    <div style="background-color: #E1FFEA;line-height: 60px;border-radius: 10px">
+                        <p style="color: green;text-align: center">${txt}</p>
+                    </div>
+                    <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
+                        <p style="color: red;text-align: center">${error}</p>
+                    </div>
 
                     <div style="margin-left: 50px;display: flex">
                         <div id="classinfo" style="display:flex;visibility: visible;">
@@ -76,7 +82,6 @@
                                         <c:forEach items="${requestScope.list2}" var="i">
                                             <option value="${i}">${i}</option>
                                         </c:forEach>
-
                                     </select>
                                 </div>
 
@@ -119,7 +124,7 @@
                                         <td class="col-md-2">${i.dob}</td>
                                         <td class="col-md-2">${i.email}</td>
                                         <td class="col-md-2">${i.phone}</td>
-                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a  href="#" onclick="Warning('${i.sID}','${requestScope.y}','${requestScope.classes.cid}')" class="option-icon"><i class="fa-solid fa-trash" ></i></a></td>
+                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a  href="#" onclick="Warning('${i.sID}', '${requestScope.y}', '${requestScope.classes.cid}')" class="option-icon"><i class="fa-solid fa-trash" ></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -143,7 +148,7 @@
             function Warning(sid, y, cid) {
                 var option = confirm("Xóa học sinh?");
                 if (option === true) {
-                    window.location.href = 'deletestudentinclass?sid='+sid+'&y=' + y + '&cid=' + cid;
+                    window.location.href = 'deletestudentinclass?sid=' + sid + '&y=' + y + '&cid=' + cid;
                 }
             }
         </script>

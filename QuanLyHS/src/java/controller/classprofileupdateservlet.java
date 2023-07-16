@@ -5,6 +5,7 @@
 package controller;
 
 import DAL.StudentDAO;
+import DAL.accountDAO;
 import DAL.classDAO;
 import DAL.teacherDAO;
 import java.io.IOException;
@@ -14,6 +15,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import model.Student;
+import model.classes;
+import model.teacher;
 
 /**
  *
@@ -60,19 +66,39 @@ public class classprofileupdateservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-        classDAO d = new classDAO();
-        
-        String cid = request.getParameter("cid");
-        String updatename = request.getParameter("updatename");
-        String updatetid = request.getParameter("updatetid");
-        
-        int y = Integer.parseInt(request.getParameter("y"));
-        d.updateclass(updatename, updatetid, cid, y);
-        
-       response.sendRedirect("classlist");
-        }catch(NumberFormatException e){
+        try {
+            classDAO d = new classDAO();
+            accountDAO d1 = new accountDAO();
+            StudentDAO d2 = new StudentDAO();
+            teacherDAO d3 = new teacherDAO();
+            String cid = request.getParameter("cid");
+            String updatename = request.getParameter("updatename");
+            String updatetid = request.getParameter("updatetid");
+
+            int y = Integer.parseInt(request.getParameter("y"));
+            HttpSession session = request.getSession();
+            teacher t = (teacher) session.getAttribute("teacher");
+            classes c = d.get1classbycidandyear(cid, y);
+            ArrayList<Student> list = d2.getstudentbyclassandyear(cid, y);
             
+            request.setAttribute("y", y);
+            request.setAttribute("classes", c);
+            request.setAttribute("list", list);
+            
+            if (d.getclassbytidyearandcid(cid, t.getTid(), request.getParameter("y")) != null || d1.checkadminaccount(t.getTid()) == null) {
+                d.updateclass(updatename, updatetid, cid, y);
+                request.setAttribute("txt", "**Thành công**");
+                ArrayList<String> list2 = d3.getfreeteacher(y);
+                request.setAttribute("list2", list2);
+                request.getRequestDispatcher("classprofile.jsp").forward(request, response);
+            } else {
+                ArrayList<String> list2 = d3.getfreeteacher(y);
+                request.setAttribute("list2", list2);
+                request.setAttribute("error", "**Hiện tại bạn không được phân công phụ trách lớp học này**");
+                request.getRequestDispatcher("classprofile.jsp").forward(request, response);
+            }
+        } catch (NumberFormatException e) {
+
         }
     }
 
