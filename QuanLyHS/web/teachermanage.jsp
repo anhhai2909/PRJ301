@@ -73,7 +73,7 @@
                                                     </div>
                                                 </c:forEach>
                                             </td>
-                                            <td class="col-md-1" style="border-bottom: 1px solid #F3F3F3"><a nonhref style="margin-right: 10px"><i class="fa-solid fa-pen add-but" ></i></a><a href="#" onclick="Warning('${i.tid}')" ><i class="fa-solid fa-trash add-but" ></i></a> </td>
+                                            <td class="col-md-1" style="border-bottom: 1px solid #F3F3F3"><a href="#" onclick="Warning('${i.tid}')" ><i class="fa-solid fa-trash add-but" ></i></a> </td>
                                                 </c:forEach>
                                     </tr>
                                 </tbody>

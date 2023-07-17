@@ -30,9 +30,16 @@
                     ArrayList<bestclasses> bcllist = (ArrayList<bestclasses>) request.getAttribute("bestclasses");
             %>
             <div class="col-md-10 r123">
-                <div>
-                    <h3 style="margin: 20px">Welcome admin</h3>
-                </div>
+                <c:if test="${sessionScope.role==1}">
+                    <div>
+                        <h3 style="margin: 20px">Welcome admin</h3>
+                    </div>
+                </c:if>
+                <c:if test="${sessionScope.role==2}">
+                    <div>
+                        <h3 style="margin: 20px">Welcome</h3>
+                    </div>
+                </c:if>
                 <div style="background-color: #FFE9F0;line-height: 60px;border-radius: 10px">
                     <p style="color: red;text-align: center">${error}</p>
                 </div>

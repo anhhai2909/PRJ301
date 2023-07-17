@@ -73,9 +73,14 @@
                                         <td class="col-md-2">${i.dob}</td>
                                         <td class="col-md-2">${i.email}</td>
                                         <td class="col-md-2">${i.phone}</td>
-                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" onclick="Warning('${i.sID}','${requestScope.page}')" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
-                                    </tr>
-                                </c:forEach>
+                                        <td class="col-md-1" style="padding-left: 0"><a href="stprofile?id=${i.sID}" class="option-icon"><i class="fa-solid fa-eye"></i></a>
+                                                <c:if test="${sessionScope.role==1}">
+                                    <a href="#" onclick="Warning('${i.sID}', '${requestScope.page}')" class="option-icon"><i class="fa-solid fa-trash"></i></a>
+                                        </c:if>
+
+                                </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -87,10 +92,10 @@
                     <c:set var="page" value="${requestScope.page}"/>
                     <div class="pagination">
                         <a href="studentlist?page=${requestScope.first}" ><i class="fa-solid fa-angles-left page-link"></i></a>
-                        <c:forEach items="${requestScope.pagelist}" var="i">
+                            <c:forEach items="${requestScope.pagelist}" var="i">
                             <a id="page-${i}" class="page-link" href="studentlist?page=${i}">${i}</a>
                         </c:forEach>
-                            <a href="studentlist?page=${requestScope.last}" ><i class="fa-solid fa-angles-right page-link"></i></a>
+                        <a href="studentlist?page=${requestScope.last}" ><i class="fa-solid fa-angles-right page-link"></i></a>
                     </div>
                 </div>
 
@@ -114,10 +119,10 @@
                     b.style.display = 'none';
                 }
             }
-            function Warning(sid,page) {
+            function Warning(sid, page) {
                 var option = confirm("Xóa học sinh?");
                 if (option === true) {
-                    window.location.href = 'deletestudent?sid='+ sid+'&page='+page;
+                    window.location.href = 'deletestudent?sid=' + sid + '&page=' + page;
                 }
             }
             document.addEventListener("DOMContentLoaded", function () {

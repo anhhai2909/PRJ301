@@ -8,6 +8,7 @@
 <%@page import="jakarta.servlet.http.HttpSession"%>
 <%@page import = "model.teacher"%>
 <%@page import = "java.util.ArrayList"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,26 +17,28 @@
     </head>
     <body>
         <div class="header">
-            <%
-                teacher t = (teacher) session.getAttribute("teacher");
-            %>
             <div class="logo">
-                <a href="home"><i class="fa-solid fa-school fa-2x" style="color:black"></i></a>           
+                <c:if test="${sessionScope.role==1}">
+                    <a href="home"><i class="fa-solid fa-school fa-2x" style="color:black"></i></a>  
+                </c:if>
+                <c:if test="${sessionScope.role==2}">
+                    <a href="studentlist"><i class="fa-solid fa-school fa-2x" style="color:black"></i></a>  
+                </c:if>
             </div>
 
             <div>
                 <div class="tprofile" onclick="showdropdown()">
                     <div>
-                        <img class="tphoto" src =<%=t.getImgaddress()%> >
+                        <img class="tphoto" src =${sessionScope.teacher.getImgaddress()}>
                     </div>
                     <div class="tpro">
-                        <p><%=t.getName()%></p>
+                        <p>${sessionScope.teacher.getName()}</p>
                     </div>
 
                 </div>
 
                 <div class="dropdown" id="dropdown">
-                    <a href="tprofile?tid=<%=t.getTid()%>">Profile</a>
+                    <a href="tprofile?tid=${sessionScope.teacher.getTid()}">Profile</a>
                     <a href="login.jsp" id="logout">Đăng xuất</a>
                 </div>
             </div>

@@ -34,12 +34,12 @@
             <div class="fpart">
                 <div class="fpart-1">
                     <div>
-                        <img class="prophoto" src="<%=t.getImgaddress()%>">
+                        <img class="prophoto" src="${sessionScope.teacher.getImgaddress()}">
                     </div>
 
                     <div class="textbox">
-                        <h4><%=t.getName()%></h4>
-                        <h5><%=a.getUser()%></h5>
+                        <h4>${sessionScope.teacher.getName()}</h4>
+                        <h5>${sessionScope.account.getUser()}</h5>
                     </div>
                 </div>
                 <div class="fpart-2">
@@ -71,17 +71,17 @@
                 <div style="padding-bottom: 30px">
                     <div class="row">                         
                         <p class="col-md-3 pdl">Mã giáo viên</p>
-                        <p class="col-md-9 pdr"><%=t.getTid()%></p>
+                        <p class="col-md-9 pdr">${sessionScope.teacher.getTid()}</p>
                     </div>
 
                     <div class="row">
                         <p class="col-md-3 pdl">Họ và tên</p>
-                        <p class="col-md-9 pdr"><%=t.getName()%></p>
+                        <p class="col-md-9 pdr">${sessionScope.teacher.getName()}</p>
                     </div>
 
                     <div class="row">
                         <p class="col-md-3 pdl">Email</p>
-                        <p class="col-md-9 pdr"><%=t.getEmail()%></p>
+                        <p class="col-md-9 pdr">${sessionScope.teacher.getEmail()}</p>
                     </div>
                 </div>
 
@@ -94,14 +94,14 @@
                         <div class="row" style="margin-bottom: 20px">
                             <p class="col-md-3 pdl">Họ và tên</p>
                             <div class="col-md-9 pdr">
-                                <input type="text" name="name" value="<%=t.getName()%>" style="width:400px;line-height: 30px"required/>
+                                <input type="text" name="name" value="${sessionScope.teacher.getName()}" style="width:400px;line-height: 30px"required/>
                             </div>
                         </div>
 
                         <div class="row">
                             <p class="col-md-3 pdl">Email</p>
                             <div class="col-md-9 pdr">
-                                <input type="text"name="email" value="<%=t.getEmail()%>" style="width:400px;line-height: 30px;margin-bottom: 20px;"required/>
+                                <input type="text"name="email" value="${sessionScope.teacher.getEmail()}" style="width:400px;line-height: 30px;margin-bottom: 20px;"required/>
                             </div>
                         </div>
 
@@ -123,12 +123,12 @@
                 <div style="padding-bottom: 30px">
                     <div class="row" style="width: 60%; margin-bottom: 15px">
                         <p class="col-md-4" style="text-align: right;color:#7B7B7B">Tài khoản</p>
-                        <input class="col-md-8 input" type="text" value="<%=a.getUser()%>" readonly="true"/><br/>
+                        <input class="col-md-8 input" type="text" value="${sessionScope.account.getUser()}" readonly="true"/><br/>
                     </div>
 
                     <div class="row" style="width: 60%">
                         <p class="col-md-4" style="text-align: right;color:#7B7B7B"">Mật khẩu</p>
-                        <input class="col-md-8 input" type="text" value="<%=a.getPass()%>" readonly="true"/><br/>
+                        <input class="col-md-8 input" type="text" value="${sessionScope.account.getPass()}" readonly="true"/><br/>
                     </div>
                 </div>
 

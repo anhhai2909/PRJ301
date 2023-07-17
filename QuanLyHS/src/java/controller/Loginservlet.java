@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.account;
 import model.teacher;
 
 /**
@@ -49,6 +50,7 @@ public class Loginservlet extends HttpServlet {
                 teacher t = d1.get1teacher(tid);
                 HttpSession session = request.getSession();
                 session.setAttribute("teacher", t);
+                session.setAttribute("account", new account(user,pass,tid));
                 if(d.checkadminaccount(tid)==null){
                     session.setAttribute("role", 1);
                 }else{
@@ -62,7 +64,11 @@ public class Loginservlet extends HttpServlet {
                     response.addCookie(username);
                     response.addCookie(password);
                 }
-                response.sendRedirect("home");
+                if((int)session.getAttribute("role")==1){
+                    response.sendRedirect("home");
+                }else{
+                    response.sendRedirect("studentlist");
+                }
             } else {
                 request.setAttribute("error", "*Mật khẩu hoặc tài khoản không hợp lệ!*");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

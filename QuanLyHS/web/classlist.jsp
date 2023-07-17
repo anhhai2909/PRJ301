@@ -57,7 +57,11 @@
                                         <td class="col-md-3">${i.name}</td>
                                         <td class="col-md-3">${i.numofst}</td>
                                         <td class="col-md-2">${i.tid}</td>
-                                        <td class="col-md-2" style="padding-left: 0"><a href="classprofile?cid=${i.cid}&y=${requestScope.y}" class="option-icon"><i class="fa-solid fa-eye"></i></a><a href="#" onclick="Warning('${requestScope.y}', '${i.cid}','${requestScope.page}')" class="option-icon"><i class="fa-solid fa-trash"></i></a></td>
+                                        <td class="col-md-2" style="padding-left: 0"><a href="classprofile?cid=${i.cid}&y=${requestScope.y}" class="option-icon"><i class="fa-solid fa-eye"></i></a>
+                                                <c:if test="${sessionScope.role==1}">
+                                                <a href="#" onclick="Warning('${requestScope.y}', '${i.cid}', '${requestScope.page}')" class="option-icon"><i class="fa-solid fa-trash"></i></a>
+                                                </c:if>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -79,10 +83,10 @@
                     }
                 }
             });
-            function Warning(y, cid,page) {
+            function Warning(y, cid, page) {
                 var option = confirm("Xóa lớp học?");
                 if (option === true) {
-                    window.location.href = 'deleteclass?cid=' + cid + '&y=' + y+'&page='+page;
+                    window.location.href = 'deleteclass?cid=' + cid + '&y=' + y + '&page=' + page;
                 }
             }
         </script>

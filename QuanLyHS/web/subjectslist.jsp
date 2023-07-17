@@ -49,27 +49,53 @@
                         <p style="color: green;text-align: center">${txt}</p>
                     </div>
                     <div style="padding-top: 20px">
-                        <table style="width:90%;margin:0 auto">
-                            <thead style="text-align: center;width:100%;background-color: #FBFBFB">
-                                <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
-                                    <th class="col-md-2">Mã môn</th>
-                                    <th class="col-md-2">Tên môn</th>
-                                    <th class="col-md-6">Nội dung</th>
-                                    <th class="col-md-2">Tùy chọn</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <c:forEach items="${requestScope.list}" var="i">
-                                    <tr class="row table-body" style="width:100%;;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
-                                        <td class="col-md-2" style="text-align: center">${i.suid}</td>
-                                        <td class="col-md-2" style="text-align: center">${i.name}</td>
-                                        <td class="col-md-6">${i.descript}</td>     
-                                        <th class="col-md-2" style="text-align: center"><a href="#" onclick="Warning('${i.suid}')" class="option-icon"><i class="fa-solid fa-trash"></i></a></th>
+                        <c:if test="${sessionScope.role==1}">
+                            <table style="width:90%;margin:0 auto">
+                                <thead style="text-align: center;width:100%;background-color: #FBFBFB">
+                                    <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
+                                        <th class="col-md-2">Mã môn</th>
+                                        <th class="col-md-2">Tên môn</th>
+                                        <th class="col-md-6">Nội dung</th>
+                                        <th class="col-md-2">Tùy chọn</th>
                                     </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <c:forEach items="${requestScope.list}" var="i">
+                                        <tr class="row table-body" style="width:100%;;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
+                                            <td class="col-md-2" style="text-align: center">${i.suid}</td>
+                                            <td class="col-md-2" style="text-align: center">${i.name}</td>
+                                            <td class="col-md-6">${i.descript}</td>     
+                                            <th class="col-md-2" style="text-align: center">
+                                                <a href="#" onclick="Warning('${i.suid}')" class="option-icon"><i class="fa-solid fa-trash"></i></a>
+                                            </th>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </c:if>
+                        <c:if test="${sessionScope.role==2}">
+                            <table style="width:90%;margin:0 auto">
+                                <thead style="text-align: center;width:100%;background-color: #FBFBFB">
+                                    <tr class="row" style="margin-top:10px;margin-bottom: 10px;margin-left: 0;margin-right: 0;">
+                                        <th class="col-md-3">Mã môn</th>
+                                        <th class="col-md-3">Tên môn</th>
+                                        <th class="col-md-6">Nội dung</th>
+                                        
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <c:forEach items="${requestScope.list}" var="i">
+                                        <tr class="row table-body" style="width:100%;;margin-left: 0;margin-right: 0;border-bottom: 1px solid #E4E4E4;line-height: 50px;font-weight: 500">
+                                            <td class="col-md-3" style="text-align: center">${i.suid}</td>
+                                            <td class="col-md-3" style="text-align: center">${i.name}</td>
+                                            <td class="col-md-6">${i.descript}</td>     
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -78,7 +104,7 @@
             function Warning(suid) {
                 var option = confirm("Xóa môn học?");
                 if (option === true) {
-                    window.location.href = 'deletesubject?suid='+suid;
+                    window.location.href = 'deletesubject?suid=' + suid;
                 }
             }
         </script>
